@@ -1,3 +1,0 @@
-#' Calculate fungal OTU richness
-#' 
-#' 
