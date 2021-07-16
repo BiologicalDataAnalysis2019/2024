@@ -2,7 +2,7 @@
 
 # Schedule
 
-[RStudio Cloud](https://rstudio.cloud/spaces/80684/projects)
+[RStudio Cloud](https://rstudio.cloud/spaces/156175/join?access_code=s3I0mTo9w%2FCivFh5Gh48yRSSm2Q4qNhyYU0B0uBt)
 
 Lectures will be posted the day before they are given by 5 pm.
 
