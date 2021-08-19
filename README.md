@@ -9,7 +9,7 @@ Lectures will be posted the day before they are given by 5 pm.
 
 | Week | Topic | Posted | Due |
 |:----:|-------|--------|-----|
-| Week of Aug. 17 | [Introduction to RStudio](https://biologicaldataanalysis2019.github.io/2020/articles/00_Syllabus_and_Expectations.html) [and R](https://biologicaldataanalysis2019.github.io/2020/articles/01_Getting_Started_with_R.html)| [Reflection Assignment](https://biologicaldataanalysis2019.github.io/2020/articles/HomeworkOne.html) | Nothing |
+| Week of Aug. 17 | [Introduction to RStudio](https://biologicaldataanalysis2019.github.io/2020/articles/00_Syllabus_and_Expectations.html) [and R](https://biologicaldataanalysis2019.github.io/2020/articles/01_Getting_Started_with_R.html)| Nothin' | Nothing |
 | Week of Aug. 24 |  [Working with Data I](https://biologicaldataanalysis2019.github.io/2020/articles/02_Starting_with_Data.html) | [Homework Two](https://biologicaldataanalysis2019.github.io/2020/articles/HomeworkTwo.html) | Reflection Assignment | 
 | Week of Aug. 31 | [Working with Data II](https://biologicaldataanalysis2019.github.io/2020/articles/03_Manipulating_Data.html) | [Homework Two](https://biologicaldataanalysis2019.github.io/2020/articles/HomeworkTwo.html) |  Nothing | 
 | Week of Sept. 7 | [Working with Data II](https://biologicaldataanalysis2019.github.io/2020/articles/03_Manipulating_Data.html) |[Project 1](https://biologicaldataanalysis2019.github.io/2020/articles/ProjectOne.html)  |  [Homework Two](https://biologicaldataanalysis2019.github.io/2020/articles/HomeworkTwo.html)  |
