@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -84,22 +84,25 @@
       <a href="../articles/09_GBIF_and_Location.html">GBIF And Spatial Data</a>
     </li>
     <li>
+      <a href="../articles/09_Tree_of_life.html">GeneticData</a>
+    </li>
+    <li>
       <a href="../articles/FunctionReference.html">FunctionReference.Rmd</a>
     </li>
     <li>
-      <a href="../articles/HW5.html">Homework Five</a>
+      <a href="../articles/HW5.html">Homework Three</a>
     </li>
     <li>
       <a href="../articles/HomeworkFive.html">Homework Five</a>
     </li>
     <li>
-      <a href="../articles/HomeworkFour.html">Homework Four</a>
+      <a href="../articles/HomeworkFour.html">Homework Three</a>
     </li>
     <li>
       <a href="../articles/HomeworkOne.html">Homework One</a>
     </li>
     <li>
-      <a href="../articles/HomeworkThree.html">Homework Three</a>
+      <a href="../articles/HomeworkThree.html">Homework3</a>
     </li>
     <li>
       <a href="../articles/HomeworkTwo.html">Homework Two</a>
@@ -109,6 +112,9 @@
     </li>
     <li>
       <a href="../articles/ProjectTwo.html">Project Two</a>
+    </li>
+    <li>
+      <a href="../articles/SampleDocument.html">SampleDocument</a>
     </li>
   </ul>
 </li>
@@ -123,7 +129,7 @@
 
       
 
-      </header><script src="04-plotting_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="04-plotting_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Data visualization with ggplot2</h1>
@@ -137,12 +143,12 @@
 
     
     
-<pre><code>## ── Attaching packages ─────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
-## ✓ tibble  3.0.3     ✓ dplyr   1.0.0
-## ✓ tidyr   1.1.0     ✓ stringr 1.4.0
-## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
-<pre><code>## ── Conflicts ────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   2.0.1     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <hr>
@@ -158,9 +164,11 @@
 </blockquote>
 <hr>
 <p>We start by loading the required packages. <strong><code>ggplot2</code></strong> is included in the <strong><code>tidyverse</code></strong> package.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tidyverse</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
 <p>If not still in the workspace, load the data we saved in the previous lesson.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">surveys_complete</span> <span class="kw">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"/cloud/project/data_output/surveys_complete.csv"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">surveys_complete</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"/cloud/project/data_output/surveys_complete.csv"</span><span class="op">)</span></code></pre></div>
 <div id="plotting-with-ggplot2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#plotting-with-ggplot2" class="anchor"></a>Plotting with <strong><code>ggplot2</code></strong>
@@ -173,11 +181,13 @@
 <ul>
 <li>use the <code>ggplot()</code> function and bind the plot to a specific data frame using the <code>data</code> argument</li>
 </ul>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">surveys_complete</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">surveys_complete</span><span class="op">)</span></code></pre></div>
 <ul>
 <li>define a mapping (using the aesthetic (<code>aes</code>) function), by selecting the variables to be plotted and specifying how to present them in the graph, e.g. as x/y positions or characteristics such as size, shape, color, etc.</li>
 </ul>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">surveys_complete</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">weight</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">hindfoot_length</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">surveys_complete</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">hindfoot_length</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <ul>
 <li>
 <p>add ‘geoms’ – graphical representations of the data in the plot (points, lines, bars). <strong><code>ggplot2</code></strong> offers many different geoms; we will use some common ones today, including:</p>
@@ -187,38 +197,43 @@
 </li>
 </ul>
 <p>To add a geom to the plot use the <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code> operator. Because we have two continuous variables, let’s use <code>geom_point()</code> first:</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">surveys_complete</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">weight</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">hindfoot_length</span>)) +
-  <span class="fu">geom_point</span>()</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">surveys_complete</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">hindfoot_length</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/first-ggplot-1.png" width="700"></p>
 <p>The <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code> in the <strong><code>ggplot2</code></strong> package is particularly useful because it allows you to modify existing <code>ggplot</code> objects. This means you can easily set up plot templates and conveniently explore different types of plots, so the above plot can also be generated with code like this:</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="co"># Assign plot to a variable</span>
-<span class="no">surveys_plot</span> <span class="kw">&lt;-</span> <span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">surveys_complete</span>,
-                       <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">weight</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">hindfoot_length</span>))
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Assign plot to a variable</span>
+<span class="va">surveys_plot</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">surveys_complete</span>, 
+                       mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">hindfoot_length</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Draw the plot</span>
-<span class="no">surveys_plot</span> +
-    <span class="fu">geom_point</span>()</pre></body></html></div>
+<span class="va">surveys_plot</span> <span class="op">+</span> 
+    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><strong>Notes</strong></p>
 <ul>
 <li>Anything you put in the <code>ggplot()</code> function can be seen by any geom layers that you add (i.e., these are universal plot settings). This includes the x- and y-axis mapping you set up in <code>aes()</code>.</li>
 <li>You can also specify mappings for a given geom independently of the mappings defined globally in the <code>ggplot()</code> function.</li>
 <li>The <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code> sign used to add new layers must be placed at the end of the line containing the <em>previous</em> layer. If, instead, the <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code> sign is added at the beginning of the line containing the new layer, <strong><code>ggplot2</code></strong> will not add the new layer and will return an error message.</li>
 </ul>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co"># This is the correct syntax for adding layers</span>
-<span class="no">surveys_plot</span> +
-  <span class="fu">geom_point</span>()
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># This is the correct syntax for adding layers</span>
+<span class="va">surveys_plot</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># This will not add the new layer and will return an error message</span>
-<span class="no">surveys_plot</span>
-  + <span class="fu">geom_point</span>()</pre></body></html></div>
+<span class="va">surveys_plot</span>
+  <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <blockquote>
 <h3 id="challenge-optional">Challenge (optional)</h3>
 <p>Scatter plots can be useful exploratory tools for small datasets. For data sets with large numbers of observations, such as the <code>surveys_complete</code> data set, overplotting of points can be a limitation of scatter plots. One strategy for handling such settings is to use hexagonal binning of observations. The plot space is tessellated into hexagons. Each hexagon is assigned a color based on the number of observations that fall within its boundaries. To use hexagonal binning with <strong><code>ggplot2</code></strong>, first install the R package <code>hexbin</code> from CRAN:</p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"hexbin"</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">hexbin</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"hexbin"</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">hexbin</span><span class="op">)</span></code></pre></div>
 <p>Then use the <code>geom_hex()</code> function:</p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">surveys_plot</span> +
- <span class="fu">geom_hex</span>()</pre></body></html></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">surveys_plot</span> <span class="op">+</span>
+ <span class="fu">geom_hex</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <ul>
 <li>What are the relative strengths and weaknesses of a hexagonal bin plot compared to a scatter plot? Examine the above scatter plot and compare it with the hexagonal bin plot that you created.</li>
 </ul>
@@ -228,34 +243,41 @@
 <h2 class="hasAnchor">
 <a href="#building-your-plots-iteratively" class="anchor"></a>Building your plots iteratively</h2>
 <p>Building plots with <strong><code>ggplot2</code></strong> is typically an iterative process. We start by defining the dataset we’ll use, lay out the axes, and choose a geom:</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">surveys_complete</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">weight</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">hindfoot_length</span>)) +
-    <span class="fu">geom_point</span>()</pre></body></html></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">surveys_complete</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">hindfoot_length</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/create-ggplot-object-1.png" width="700"></p>
 <p>Then, we start modifying this plot to extract more information from it. For instance, we can add transparency (<code>alpha</code>) to avoid overplotting:</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">surveys_complete</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">weight</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">hindfoot_length</span>)) +
-    <span class="fu">geom_point</span>(<span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">surveys_complete</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">hindfoot_length</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/adding-transparency-1.png" width="700"></p>
 <p>We can also add colors for all the points:</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">surveys_complete</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">weight</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">hindfoot_length</span>)) +
-    <span class="fu">geom_point</span>(<span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.1</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"blue"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">surveys_complete</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">hindfoot_length</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.1</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/adding-colors-1.png" width="700"></p>
 <p>Or to color each species in the plot differently, you could use a vector as an input to the argument <strong>color</strong>. <strong><code>ggplot2</code></strong> will provide a different color corresponding to different values in the vector. Here is an example where we color with <strong><code>species_id</code></strong>:</p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">surveys_complete</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">weight</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">hindfoot_length</span>)) +
-    <span class="fu">geom_point</span>(<span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.1</span>, <span class="fu">aes</span>(<span class="kw">color</span> <span class="kw">=</span> <span class="no">species_id</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">surveys_complete</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">hindfoot_length</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.1</span>, <span class="fu">aes</span><span class="op">(</span>color <span class="op">=</span> <span class="va">species_id</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/color-by-species-1-1.png" width="700"></p>
 <p>We can also specify the colors directly inside the mapping provided in the <code>ggplot()</code> function. This will be seen by any geom layers and the mapping will be determined by the x- and y-axis set up in <code>aes()</code>.</p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">surveys_complete</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">weight</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">hindfoot_length</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">species_id</span>)) +
-    <span class="fu">geom_point</span>(<span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">surveys_complete</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">hindfoot_length</span>, color <span class="op">=</span> <span class="va">species_id</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/color-by-species-2-1.png" width="700"></p>
 <p>Notice that we can change the geom layer and colors will be still determined by <strong><code>species_id</code></strong></p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">surveys_complete</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">weight</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">hindfoot_length</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">species_id</span>)) +
-    <span class="fu">geom_jitter</span>(<span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">surveys_complete</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">hindfoot_length</span>, color <span class="op">=</span> <span class="va">species_id</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_jitter</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/color-by-species-3-1.png" width="700"></p>
 <blockquote>
 <h3 id="challenge">Challenge</h3>
 <p>Use what you just learned to create a scatter plot of <code>weight</code> over <code>species_id</code> with the plot types showing in different colors. Is this a good way to show this type of data?</p>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">surveys_complete</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">species_id</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">weight</span>)) +
-   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="kw">color</span> <span class="kw">=</span> <span class="no">plot_type</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">surveys_complete</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">species_id</span>, y <span class="op">=</span> <span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+   <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color <span class="op">=</span> <span class="va">plot_type</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/scatter-challenge-1.png" width="700"></p>
 </blockquote>
 </div>
@@ -263,13 +285,15 @@
 <h2 class="hasAnchor">
 <a href="#boxplot" class="anchor"></a>Boxplot</h2>
 <p>We can use boxplots to visualize the distribution of weight within each species:</p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">surveys_complete</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">species_id</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">weight</span>)) +
-    <span class="fu">geom_boxplot</span>()</pre></body></html></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">surveys_complete</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">species_id</span>, y <span class="op">=</span> <span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/boxplot-1.png" width="700"></p>
 <p>By adding points to boxplot, we can have a better idea of the number of measurements and of their distribution:</p>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">surveys_complete</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">species_id</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">weight</span>)) +
-    <span class="fu">geom_boxplot</span>(<span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0</span>) +
-    <span class="fu">geom_jitter</span>(<span class="kw">alpha</span> <span class="kw">=</span> <span class="fl">0.3</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"tomato"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">surveys_complete</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">species_id</span>, y <span class="op">=</span> <span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_boxplot</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_jitter</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span>, color <span class="op">=</span> <span class="st">"tomato"</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/boxplot-with-points-1.png" width="700"></p>
 <p>Notice how the boxplot layer is behind the jitter layer? What do you need to change in the code to put the boxplot in front of the points such that it’s not hidden?</p>
 <blockquote>
@@ -294,19 +318,23 @@
 <h2 class="hasAnchor">
 <a href="#plotting-time-series-data" class="anchor"></a>Plotting time series data</h2>
 <p>Let’s calculate number of counts per year for each genus. First we need to group the data and count records within each group:</p>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="no">yearly_counts</span> <span class="kw">&lt;-</span> <span class="no">surveys_complete</span> <span class="kw">%&gt;%</span>
-  <span class="fu">count</span>(<span class="no">year</span>, <span class="no">genus</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">yearly_counts</span> <span class="op">&lt;-</span> <span class="va">surveys_complete</span> <span class="op">%&gt;%</span>
+  <span class="fu">count</span><span class="op">(</span><span class="va">year</span>, <span class="va">genus</span><span class="op">)</span></code></pre></div>
 <p>Time series data can be visualized as a line plot with years on the x axis and counts on the y axis:</p>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">yearly_counts</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">year</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">n</span>)) +
-     <span class="fu">geom_line</span>()</pre></body></html></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">yearly_counts</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+     <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/first-time-series-1.png" width="700"></p>
 <p>Unfortunately, this does not work because we plotted data for all the genera together. We need to tell ggplot to draw a line for each genus by modifying the aesthetic function to include <code>group = genus</code>:</p>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">yearly_counts</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">year</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">n</span>, <span class="kw">group</span> <span class="kw">=</span> <span class="no">genus</span>)) +
-    <span class="fu">geom_line</span>()</pre></body></html></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">yearly_counts</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span>, group <span class="op">=</span> <span class="va">genus</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/time-series-by-species-1.png" width="700"></p>
 <p>We will be able to distinguish genera in the plot if we add colors (using <code>color</code> also automatically groups the data):</p>
-<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">yearly_counts</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">year</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">n</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">genus</span>)) +
-    <span class="fu">geom_line</span>()</pre></body></html></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">yearly_counts</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span>, color <span class="op">=</span> <span class="va">genus</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/time-series-with-colors-1.png" width="700"></p>
 </div>
 <div id="faceting" class="section level2">
@@ -322,64 +350,72 @@
 </ul>
 <p>Both geometries allow to to specify faceting variables specified within <code>vars()</code>. For example, <code>facet_wrap(facets = vars(facet_variable))</code> or <code>facet_grid(rows = vars(row_variable), cols = vars(col_variable))</code>.</p>
 <p>Let’s start by using <code>facet_wrap()</code> to make a time series plot for each species:</p>
-<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">yearly_counts</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">year</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">n</span>)) +
-    <span class="fu">geom_line</span>() +
-    <span class="fu">facet_wrap</span>(<span class="kw">facets</span> <span class="kw">=</span> <span class="fu">vars</span>(<span class="no">genus</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">yearly_counts</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">facet_wrap</span><span class="op">(</span>facets <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">genus</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/first-facet-1.png" width="700"></p>
 <p>Now we would like to split the line in each plot by the sex of each individual measured. To do that we need to make counts in the data frame grouped by <code>year</code>, <code>species_id</code>, and <code>sex</code>:</p>
-<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="no">yearly_sex_counts</span> <span class="kw">&lt;-</span> <span class="no">surveys_complete</span> <span class="kw">%&gt;%</span>
-  <span class="fu">count</span>(<span class="no">year</span>, <span class="no">genus</span>, <span class="no">sex</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">yearly_sex_counts</span> <span class="op">&lt;-</span> <span class="va">surveys_complete</span> <span class="op">%&gt;%</span>
+  <span class="fu">count</span><span class="op">(</span><span class="va">year</span>, <span class="va">genus</span>, <span class="va">sex</span><span class="op">)</span></code></pre></div>
 <p>We can now make the faceted plot by splitting further by sex using <code>color</code> (within each panel):</p>
-<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">yearly_sex_counts</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">year</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">n</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">sex</span>)) +
-  <span class="fu">geom_line</span>() +
-  <span class="fu">facet_wrap</span>(<span class="kw">facets</span> <span class="kw">=</span>  <span class="fu">vars</span>(<span class="no">genus</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">yearly_sex_counts</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span>, color <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_wrap</span><span class="op">(</span>facets <span class="op">=</span>  <span class="fu">vars</span><span class="op">(</span><span class="va">genus</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/facet-by-species-and-sex-1.png" width="700"></p>
 <p>Now let’s use <code>facet_grid()</code> to control how panels are organised by both rows and columns:</p>
-<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">yearly_sex_counts</span>,
-       <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">year</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">n</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">sex</span>)) +
-  <span class="fu">geom_line</span>() +
-  <span class="fu">facet_grid</span>(<span class="kw">rows</span> <span class="kw">=</span> <span class="fu">vars</span>(<span class="no">sex</span>), <span class="kw">cols</span> <span class="kw">=</span>  <span class="fu">vars</span>(<span class="no">genus</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">yearly_sex_counts</span>, 
+       mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span>, color <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_grid</span><span class="op">(</span>rows <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">sex</span><span class="op">)</span>, cols <span class="op">=</span>  <span class="fu">vars</span><span class="op">(</span><span class="va">genus</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/average-weight-time-facet-both-1.png" width="912"></p>
 <p>You can also organise the panels only by rows (or only by columns):</p>
-<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="co"># One column, facet by rows</span>
-<span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">yearly_sex_counts</span>,
-       <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">year</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">n</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">sex</span>)) +
-  <span class="fu">geom_line</span>() +
-  <span class="fu">facet_grid</span>(<span class="kw">rows</span> <span class="kw">=</span> <span class="fu">vars</span>(<span class="no">genus</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># One column, facet by rows</span>
+<span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">yearly_sex_counts</span>, 
+       mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span>, color <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_grid</span><span class="op">(</span>rows <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">genus</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/average-weight-time-facet-sex-rows-1.png" width="768"></p>
-<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="co"># One row, facet by column</span>
-<span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">yearly_sex_counts</span>,
-       <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">year</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">n</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">sex</span>)) +
-  <span class="fu">geom_line</span>() +
-  <span class="fu">facet_grid</span>(<span class="kw">cols</span> <span class="kw">=</span> <span class="fu">vars</span>(<span class="no">genus</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># One row, facet by column</span>
+<span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">yearly_sex_counts</span>, 
+       mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span>, color <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_grid</span><span class="op">(</span>cols <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">genus</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/average-weight-time-facet-sex-columns-1.png" width="912"></p>
 <p><strong>Note:</strong> In earlier versions of <code>ggplot2</code> you need to use an interface using formulas to specify how plots are faceted (and this is still supported in new versions). The equivalent syntax is:</p>
-<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="co"># facet wrap</span>
-<span class="fu">facet_wrap</span>(<span class="fu">vars</span>(<span class="no">genus</span>))    <span class="co"># new</span>
-<span class="fu">facet_wrap</span>(~ <span class="no">genus</span>)        <span class="co"># old</span>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># facet wrap</span>
+<span class="fu">facet_wrap</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">genus</span><span class="op">)</span><span class="op">)</span>    <span class="co"># new</span>
+<span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">genus</span><span class="op">)</span>        <span class="co"># old</span>
 
 <span class="co"># grid on both rows and columns</span>
-<span class="fu">facet_grid</span>(<span class="kw">rows</span> <span class="kw">=</span> <span class="fu">vars</span>(<span class="no">genus</span>), <span class="kw">cols</span> <span class="kw">=</span> <span class="fu">vars</span>(<span class="no">sex</span>))   <span class="co"># new</span>
-<span class="fu">facet_grid</span>(<span class="no">genus</span> ~ <span class="no">sex</span>)                            <span class="co"># old</span>
+<span class="fu">facet_grid</span><span class="op">(</span>rows <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">genus</span><span class="op">)</span>, cols <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span>   <span class="co"># new</span>
+<span class="fu">facet_grid</span><span class="op">(</span><span class="va">genus</span> <span class="op">~</span> <span class="va">sex</span><span class="op">)</span>                            <span class="co"># old</span>
 
 <span class="co"># grid on rows only</span>
-<span class="fu">facet_grid</span>(<span class="kw">rows</span> <span class="kw">=</span> <span class="fu">vars</span>(<span class="no">genus</span>))   <span class="co"># new</span>
-<span class="fu">facet_grid</span>(<span class="no">genus</span> ~ <span class="no">.</span>)            <span class="co"># old</span>
+<span class="fu">facet_grid</span><span class="op">(</span>rows <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">genus</span><span class="op">)</span><span class="op">)</span>   <span class="co"># new</span>
+<span class="fu">facet_grid</span><span class="op">(</span><span class="va">genus</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span>            <span class="co"># old</span>
 
 <span class="co"># grid on columns only</span>
-<span class="fu">facet_grid</span>(<span class="kw">cols</span> <span class="kw">=</span> <span class="fu">vars</span>(<span class="no">genus</span>))   <span class="co"># new</span>
-<span class="fu">facet_grid</span>(<span class="no">.</span> ~ <span class="no">genus</span>)            <span class="co"># old</span></pre></body></html></div>
+<span class="fu">facet_grid</span><span class="op">(</span>cols <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">genus</span><span class="op">)</span><span class="op">)</span>   <span class="co"># new</span>
+<span class="fu">facet_grid</span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">genus</span><span class="op">)</span>            <span class="co"># old</span></code></pre></div>
 </div>
 <div id="ggplot2-themes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ggplot2-themes" class="anchor"></a><strong><code>ggplot2</code></strong> themes</h2>
 <p>Usually plots with white background look more readable when printed. Every single component of a <code>ggplot</code> graph can be customized using the generic <code>theme()</code> function, as we will see below. However, there are pre-loaded themes available that change the overall appearance of the graph without much effort.</p>
 <p>For example, we can change our previous graph to have a simpler white background using the <code>theme_bw()</code> function:</p>
-<div class="sourceCode" id="cb35"><html><body><pre class="r"> <span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">yearly_sex_counts</span>,
-        <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">year</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">n</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">sex</span>)) +
-     <span class="fu">geom_line</span>() +
-     <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(<span class="no">genus</span>)) +
-     <span class="fu">theme_bw</span>()</pre></body></html></div>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"> <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">yearly_sex_counts</span>, 
+        mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span>, color <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+     <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+     <span class="fu">facet_wrap</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">genus</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+     <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/facet-by-species-and-sex-white-bg-1.png" width="700"></p>
 <p>In addition to <code>theme_bw()</code>, which changes the plot background to white, <strong><code>ggplot2</code></strong> comes with several other themes which can be useful to quickly change the look of your visualization. The complete list of themes is available at <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="uri">https://ggplot2.tidyverse.org/reference/ggtheme.html</a>. <code>theme_minimal()</code> and <code>theme_light()</code> are popular, and <code>theme_void()</code> can be useful as a starting point to create a new hand-crafted theme.</p>
 <p>The <a href="https://jrnold.github.io/ggthemes/reference/index.html">ggthemes</a> package provides a wide variety of options. The <a href="https://www.ggplot2-exts.org"><strong><code>ggplot2</code></strong> extensions website</a> provides a list of packages that extend the capabilities of <strong><code>ggplot2</code></strong>, including additional themes.</p>
@@ -388,14 +424,16 @@
 </blockquote>
 <blockquote>
 <p>Use what you just learned to create a plot that depicts how the average weight of each species changes through the years.</p>
-<div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="no">yearly_weight</span> <span class="kw">&lt;-</span> <span class="no">surveys_complete</span> <span class="kw">%&gt;%</span>
-                <span class="fu">group_by</span>(<span class="no">year</span>, <span class="no">species_id</span>) <span class="kw">%&gt;%</span>
-                 <span class="fu">summarize</span>(<span class="kw">avg_weight</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">weight</span>))</pre></body></html></div>
-<pre><code>## `summarise()` regrouping output by 'year' (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb38"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">yearly_weight</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span><span class="kw">=</span><span class="no">year</span>, <span class="kw">y</span><span class="kw">=</span><span class="no">avg_weight</span>)) +
-   <span class="fu">geom_line</span>() +
-   <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(<span class="no">species_id</span>)) +
-   <span class="fu">theme_bw</span>()</pre></body></html></div>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">yearly_weight</span> <span class="op">&lt;-</span> <span class="va">surveys_complete</span> <span class="op">%&gt;%</span>
+                <span class="fu">group_by</span><span class="op">(</span><span class="va">year</span>, <span class="va">species_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
+                 <span class="fu">summarize</span><span class="op">(</span>avg_weight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">yearly_weight</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y<span class="op">=</span><span class="va">avg_weight</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+   <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+   <span class="fu">facet_wrap</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">species_id</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+   <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/average-weight-time-series-1.png" width="700"></p>
 </blockquote>
 </div>
@@ -404,47 +442,51 @@
 <a href="#customization" class="anchor"></a>Customization</h2>
 <p>Take a look at the <a href="https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf"><strong><code>ggplot2</code></strong> cheat sheet</a>, and think of ways you could improve the plot.</p>
 <p>Now, let’s change names of axes to something more informative than ‘year’ and ‘n’ and add a title to the figure:</p>
-<div class="sourceCode" id="cb39"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">yearly_sex_counts</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">year</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">n</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">sex</span>)) +
-    <span class="fu">geom_line</span>() +
-    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(<span class="no">genus</span>)) +
-    <span class="fu">labs</span>(<span class="kw">title</span> <span class="kw">=</span> <span class="st">"Observed genera through time"</span>,
-         <span class="kw">x</span> <span class="kw">=</span> <span class="st">"Year of observation"</span>,
-         <span class="kw">y</span> <span class="kw">=</span> <span class="st">"Number of individuals"</span>) +
-    <span class="fu">theme_bw</span>()</pre></body></html></div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">yearly_sex_counts</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span>, color <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">facet_wrap</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">genus</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Observed genera through time"</span>,
+         x <span class="op">=</span> <span class="st">"Year of observation"</span>,
+         y <span class="op">=</span> <span class="st">"Number of individuals"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/number-species-year-with-right-labels-1.png" width="700"></p>
 <p>The axes have more informative names, but their readability can be improved by increasing the font size. This can be done with the generic <code>theme()</code> function:</p>
-<div class="sourceCode" id="cb40"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">yearly_sex_counts</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">year</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">n</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">sex</span>)) +
-    <span class="fu">geom_line</span>() +
-    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(<span class="no">genus</span>)) +
-    <span class="fu">labs</span>(<span class="kw">title</span> <span class="kw">=</span> <span class="st">"Observed genera through time"</span>,
-        <span class="kw">x</span> <span class="kw">=</span> <span class="st">"Year of observation"</span>,
-        <span class="kw">y</span> <span class="kw">=</span> <span class="st">"Number of individuals"</span>) +
-    <span class="fu">theme_bw</span>() +
-    <span class="fu">theme</span>(<span class="kw">text</span><span class="kw">=</span><span class="fu">element_text</span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">16</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">yearly_sex_counts</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span>, color <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">facet_wrap</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">genus</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Observed genera through time"</span>,
+        x <span class="op">=</span> <span class="st">"Year of observation"</span>,
+        y <span class="op">=</span> <span class="st">"Number of individuals"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">theme</span><span class="op">(</span>text<span class="op">=</span><span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/number-species-year-with-right-labels-xfont-size-1.png" width="700"></p>
 <p>Note that it is also possible to change the fonts of your plots. If you are on Windows, you may have to install the <a href="https://github.com/wch/extrafont"><strong><code>extrafont</code></strong> package</a>, and follow the instructions included in the README for this package.</p>
 <p>After our manipulations, you may notice that the values on the x-axis are still not properly readable. Let’s change the orientation of the labels and adjust them vertically and horizontally so they don’t overlap. You can use a 90-degree angle, or experiment to find the appropriate angle for diagonally oriented labels:</p>
-<div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">yearly_sex_counts</span>, <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">year</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">n</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">sex</span>)) +
-    <span class="fu">geom_line</span>() +
-    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(<span class="no">genus</span>)) +
-    <span class="fu">labs</span>(<span class="kw">title</span> <span class="kw">=</span> <span class="st">"Observed genera through time"</span>,
-        <span class="kw">x</span> <span class="kw">=</span> <span class="st">"Year of observation"</span>,
-        <span class="kw">y</span> <span class="kw">=</span> <span class="st">"Number of individuals"</span>) +
-    <span class="fu">theme_bw</span>() +
-    <span class="fu">theme</span>(<span class="kw">axis.text.x</span> <span class="kw">=</span> <span class="fu">element_text</span>(<span class="kw">colour</span> <span class="kw">=</span> <span class="st">"grey20"</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">12</span>, <span class="kw">angle</span> <span class="kw">=</span> <span class="fl">90</span>, <span class="kw">hjust</span> <span class="kw">=</span> <span class="fl">0.5</span>, <span class="kw">vjust</span> <span class="kw">=</span> <span class="fl">0.5</span>),
-                        <span class="kw">axis.text.y</span> <span class="kw">=</span> <span class="fu">element_text</span>(<span class="kw">colour</span> <span class="kw">=</span> <span class="st">"grey20"</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">12</span>),
-          <span class="kw">text</span> <span class="kw">=</span> <span class="fu">element_text</span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">16</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">yearly_sex_counts</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span>, color <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">facet_wrap</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">genus</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Observed genera through time"</span>,
+        x <span class="op">=</span> <span class="st">"Year of observation"</span>,
+        y <span class="op">=</span> <span class="st">"Number of individuals"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"grey20"</span>, size <span class="op">=</span> <span class="fl">12</span>, angle <span class="op">=</span> <span class="fl">90</span>, hjust <span class="op">=</span> <span class="fl">0.5</span>, vjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,
+                        axis.text.y <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"grey20"</span>, size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,
+          text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/number-species-year-with-theme-1.png" width="700"></p>
 <p>If you like the changes you created better than the default theme, you can save them as an object to be able to easily apply them to other plots you may create:</p>
-<div class="sourceCode" id="cb42"><html><body><pre class="r"><span class="co"># define custom theme</span>
-<span class="no">grey_theme</span> <span class="kw">&lt;-</span> <span class="fu">theme</span>(<span class="kw">axis.text.x</span> <span class="kw">=</span> <span class="fu">element_text</span>(<span class="kw">colour</span> <span class="kw">=</span> <span class="st">"grey20"</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">12</span>, <span class="kw">angle</span> <span class="kw">=</span> <span class="fl">90</span>, <span class="kw">hjust</span> <span class="kw">=</span> <span class="fl">0.5</span>, <span class="kw">vjust</span> <span class="kw">=</span> <span class="fl">0.5</span>),
-                          <span class="kw">axis.text.y</span> <span class="kw">=</span> <span class="fu">element_text</span>(<span class="kw">colour</span> <span class="kw">=</span> <span class="st">"grey20"</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">12</span>),
-                          <span class="kw">text</span> <span class="kw">=</span> <span class="fu">element_text</span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">16</span>))
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># define custom theme</span>
+<span class="va">grey_theme</span> <span class="op">&lt;-</span> <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"grey20"</span>, size <span class="op">=</span> <span class="fl">12</span>, angle <span class="op">=</span> <span class="fl">90</span>, hjust <span class="op">=</span> <span class="fl">0.5</span>, vjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,
+                          axis.text.y <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"grey20"</span>, size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,
+                          text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># create a boxplot with the new theme</span>
-<span class="fu">ggplot</span>(<span class="no">surveys_complete</span>, <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">species_id</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">hindfoot_length</span>)) +
-    <span class="fu">geom_boxplot</span>() +
-    <span class="no">grey_theme</span></pre></body></html></div>
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">surveys_complete</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">species_id</span>, y <span class="op">=</span> <span class="va">hindfoot_length</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="va">grey_theme</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/boxplot-grey-custom-theme-1.png" width="700"></p>
 <blockquote>
 <h3 id="challenge-2">Challenge</h3>
@@ -460,43 +502,46 @@
 <h2 class="hasAnchor">
 <a href="#arranging-and-exporting-plots" class="anchor"></a>Arranging and exporting plots</h2>
 <p>Faceting is a great tool for splitting one plot into multiple plots, but sometimes you may want to produce a single figure that contains multiple plots using different variables or even different data frames. The <strong><code>gridExtra</code></strong> package allows us to combine separate ggplots into a single figure using <code><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange()</a></code>:</p>
-<div class="sourceCode" id="cb43"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"gridExtra"</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb44"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">gridExtra</span>)
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"gridExtra"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span>
 
-<span class="no">spp_weight_boxplot</span> <span class="kw">&lt;-</span> <span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">surveys_complete</span>,
-                             <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">genus</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">weight</span>)) +
-  <span class="fu">geom_boxplot</span>() +
-  <span class="fu">xlab</span>(<span class="st">"Genus"</span>) + <span class="fu">ylab</span>(<span class="st">"Weight (g)"</span>) +
-  <span class="fu">scale_y_log10</span>() +
-  <span class="fu">theme</span>(<span class="kw">axis.text.x</span> <span class="kw">=</span> <span class="fu">element_text</span>(<span class="kw">angle</span> <span class="kw">=</span> <span class="fl">45</span>, <span class="kw">hjust</span> <span class="kw">=</span> <span class="fl">1</span>))
+<span class="va">spp_weight_boxplot</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">surveys_complete</span>, 
+                             mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">genus</span>, y <span class="op">=</span> <span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">xlab</span><span class="op">(</span><span class="st">"Genus"</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ylab</span><span class="op">(</span><span class="st">"Weight (g)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_y_log10</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 
-<span class="no">spp_count_plot</span> <span class="kw">&lt;-</span> <span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">yearly_counts</span>,
-                         <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">year</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">n</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">genus</span>)) +
-  <span class="fu">geom_line</span>() +
-  <span class="fu">xlab</span>(<span class="st">"Year"</span>) + <span class="fu">ylab</span>(<span class="st">"Abundance"</span>)
+<span class="va">spp_count_plot</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">yearly_counts</span>, 
+                         mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span>, color <span class="op">=</span> <span class="va">genus</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">xlab</span><span class="op">(</span><span class="st">"Year"</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ylab</span><span class="op">(</span><span class="st">"Abundance"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange</a></span>(<span class="no">spp_weight_boxplot</span>, <span class="no">spp_count_plot</span>, <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">widths</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4</span>, <span class="fl">6</span>))</pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange</a></span><span class="op">(</span><span class="va">spp_weight_boxplot</span>, <span class="va">spp_count_plot</span>, ncol <span class="op">=</span> <span class="fl">2</span>, widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="04-plotting_files/figure-html/gridarrange-example-1.png" width="960"></p>
 <p>In addition to the <code>ncol</code> and <code>nrow</code> arguments, used to make simple arrangements, there are tools for <a href="https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html">constructing more complex layouts</a>.</p>
 <p>After creating your plot, you can save it to a file in your favorite format. The Export tab in the <strong>Plot</strong> pane in RStudio will save your plots at low resolution, which will not be accepted by many journals and will not scale well for posters.</p>
 <p>Instead, use the <code>ggsave()</code> function, which allows you easily change the dimension and resolution of your plot by adjusting the appropriate arguments (<code>width</code>, <code>height</code> and <code>dpi</code>).</p>
 <p>Make sure you have the <code>fig_output/</code> folder in your working directory.</p>
-<div class="sourceCode" id="cb45"><html><body><pre class="r"><span class="no">my_plot</span> <span class="kw">&lt;-</span> <span class="fu">ggplot</span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">yearly_sex_counts</span>,
-                  <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">year</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">n</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">sex</span>)) +
-    <span class="fu">geom_line</span>() +
-    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(<span class="no">species_id</span>)) +
-    <span class="fu">labs</span>(<span class="kw">title</span> <span class="kw">=</span> <span class="st">"Observed genera through time"</span>,
-        <span class="kw">x</span> <span class="kw">=</span> <span class="st">"Year of observation"</span>,
-        <span class="kw">y</span> <span class="kw">=</span> <span class="st">"Number of individuals"</span>) +
-    <span class="fu">theme_bw</span>() +
-    <span class="fu">theme</span>(<span class="kw">axis.text.x</span> <span class="kw">=</span> <span class="fu">element_text</span>(<span class="kw">colour</span> <span class="kw">=</span> <span class="st">"grey20"</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">12</span>, <span class="kw">angle</span> <span class="kw">=</span> <span class="fl">90</span>, <span class="kw">hjust</span> <span class="kw">=</span> <span class="fl">0.5</span>, <span class="kw">vjust</span> <span class="kw">=</span> <span class="fl">0.5</span>),
-                        <span class="kw">axis.text.y</span> <span class="kw">=</span> <span class="fu">element_text</span>(<span class="kw">colour</span> <span class="kw">=</span> <span class="st">"grey20"</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">12</span>),
-          <span class="kw">text</span><span class="kw">=</span><span class="fu">element_text</span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">16</span>))
-<span class="fu">ggsave</span>(<span class="st">"/cloud/project/fig_output/yearly_sex_counts.png"</span>, <span class="no">my_plot</span>, <span class="kw">width</span> <span class="kw">=</span> <span class="fl">15</span>, <span class="kw">height</span> <span class="kw">=</span> <span class="fl">10</span>)
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_plot</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">yearly_sex_counts</span>, 
+                  mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span>, color <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">facet_wrap</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">species_id</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Observed genera through time"</span>,
+        x <span class="op">=</span> <span class="st">"Year of observation"</span>,
+        y <span class="op">=</span> <span class="st">"Number of individuals"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"grey20"</span>, size <span class="op">=</span> <span class="fl">12</span>, angle <span class="op">=</span> <span class="fl">90</span>, hjust <span class="op">=</span> <span class="fl">0.5</span>, vjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,
+                        axis.text.y <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"grey20"</span>, size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,
+          text<span class="op">=</span><span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">ggsave</span><span class="op">(</span><span class="st">"/cloud/project/fig_output/yearly_sex_counts.png"</span>, <span class="va">my_plot</span>, width <span class="op">=</span> <span class="fl">15</span>, height <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
 
 <span class="co"># This also works for grid.arrange() plots</span>
-<span class="no">combo_plot</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange</a></span>(<span class="no">spp_weight_boxplot</span>, <span class="no">spp_count_plot</span>, <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">widths</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4</span>, <span class="fl">6</span>))
-<span class="fu">ggsave</span>(<span class="st">"/cloud/project/fig_output/combo_plot_abun_weight.png"</span>, <span class="no">combo_plot</span>, <span class="kw">width</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">dpi</span> <span class="kw">=</span> <span class="fl">300</span>)</pre></body></html></div>
+<span class="va">combo_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange</a></span><span class="op">(</span><span class="va">spp_weight_boxplot</span>, <span class="va">spp_count_plot</span>, ncol <span class="op">=</span> <span class="fl">2</span>, widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">ggsave</span><span class="op">(</span><span class="st">"/cloud/project/fig_output/combo_plot_abun_weight.png"</span>, <span class="va">combo_plot</span>, width <span class="op">=</span> <span class="fl">10</span>, dpi <span class="op">=</span> <span class="fl">300</span><span class="op">)</span></code></pre></div>
 <p>Note: The parameters <code>width</code> and <code>height</code> also determine the font size in the saved plot.</p>
 </div>
   </div>
@@ -516,7 +561,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

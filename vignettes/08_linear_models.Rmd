@@ -195,7 +195,7 @@ There are other types of correlations that can be employed (for example, Spearma
 
 All examples will use the external dataset `crabs` and assume $\alpha=0.05$. This dataset contains physical measurements from 200 crabs, including their sex (M/F), color (orange or blue), and various other quantities measured in millimeters (mm). **The goal of these examples is model body depth in crabs. Therefore, the column `body_depth` is our response variable.**
 ```{r, collapse=T}
-crabs <- read_csv("https://raw.githubusercontent.com/sjspielman/datascience_for_biologists/master/spring2020/rmd_lessons/lm_files/crabs.csv")
+crabs <- read_csv("/cloud/project/data/crabs.csv")
 dplyr::glimpse(crabs)
 ```
 

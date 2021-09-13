@@ -3,7 +3,7 @@ title: "HomeworkOne.Rmd"
 output: html_document
 ---
 
-# Homework One: Due Sept. 6 at 5 pm.
+# Homework One: Due Sept. 24 at 5 pm.
 
 First, download your homework. In your RStudio, enter:
 
@@ -28,7 +28,7 @@ Load in the surveys.csv data file, and save it to a variable called "surveys".
 
 ```{r}
 #Enter your answer for Question 1 here
-
+klj;ljef;lkjwa'klmec'klwm
 ```
 
 ## Question Two - 1 point

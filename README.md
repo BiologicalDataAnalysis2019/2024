@@ -17,9 +17,10 @@ Lectures will be posted the day before they are given by 5 pm.
 | Week of Oct. 11 | [Project Structuring](https://biologicaldataanalysis2019.github.io/2021/articles/05-Functions.html) |  [Homework 4]([HW3](https://biologicaldataanalysis2019.github.io/2021/articles/HomeworkFour.html)) | [Homework Three](https://biologicaldataanalysis2019.github.io/2021/articles/HomeworkThree.html) | 
 | Week of Oct. 18 | [Programming I](https://biologicaldataanalysis2019.github.io/2021/articles/06_Exploration_Setup.html) | [Homework 5](https://biologicaldataanalysis2019.github.io/2021/articles/HomeworkFive.html) | [Homework Four](https://biologicaldataanalysis2019.github.io/2021/articles/HomeworkFour.html) | 
 | Week of Oct. 25 |  [Revision management](https://biologicaldataanalysis2019.github.io/2021/articles/07_Exploration_Hands_On.html) | Project II | [Homework 5](https://biologicaldataanalysis2019.github.io/2021/articles/HomeworkFive.html)  | 
-| Week of Nov. 1 | [Tree Of Life](https://biologicaldataanalysis2019.github.io/2021/articles/08_Tree_of_life.html) | Homework Five | Homework Four | 
-| Week of Nov. 8 | Making an R Package, Deploying an analysis | Homework Six | Homework Five |
-| Week of Nov. 15 | Exploration Activity | Exploration Summary | Homework Six |
-| Week of Nov. 22  | Tree Of Life | Homework Seven | Exploration Summary |  
-| Week of Nov. 29  | [Maps and Location](https://biologicaldataanalysis2019.github.io/2021/articles/09_GBIF_and_Location.html) | Project Three | Homework Seven | 
+| Week of Nov. 1 | [Tree Of Life](https://biologicaldataanalysis2019.github.io/2021/articles/08_Tree_of_life.html) | Homework Six | Project II | 
+| Week of Nov. 8 | Making an R Package, Deploying an analysis | Homework Seven | Homework Six |
+| Week of Nov. 15 | Exploration Activity | Exploration Summary | Homework Seven |
+| Week of Nov. 22  | Tree Of Life | Project III | Exploration Summary |  
+| Week of Nov. 29  | [Maps and Location](https://biologicaldataanalysis2019.github.io/2021/articles/09_GBIF_and_Location.html) | Final Instructions | Project III | 
 | Week of Dec 6, we will present final presentations | | | 
+
