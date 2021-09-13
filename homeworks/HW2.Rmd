@@ -3,12 +3,12 @@ title: "Homework Two"
 output: html_document
 ---
 
-# Homework One: Due Sept. 24 at 5 pm.
+# Homework One: Due Sept. 11 at 5 pm.
 
 First, download your homework. In your RStudio, enter:
 
 ```{r}
-download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2021/master/vignettes/HomeworkTwo.Rmd", destfile = "/cloud/project/homeworks/HW2.Rmd")
+download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2020/master/vignettes/HomeworkTwo.Rmd", destfile = "/cloud/project/homeworks/HW2.Rmd")
 ```
 
 Your homework will now be located in a directory called `homeworks`.
