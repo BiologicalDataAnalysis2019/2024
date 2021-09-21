@@ -3,7 +3,7 @@ title: "Homework Three"
 output: html_document
 ---
 
-# Homework Four: Due Oct. 4 at 5 pm.
+# Homework Four: Due Oct. 22 at 5 pm.
 
 First, download your homework. In your RStudio, fill in the below command:
 

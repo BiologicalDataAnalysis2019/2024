@@ -1,4 +1,4 @@
-pandoc: 2.10.1
+pandoc: 2.11.4
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
@@ -13,7 +13,15 @@ articles:
   08_linear_models: 08_linear_models.html
   09_GBIF_and_Location: 09_GBIF_and_Location.html
   09_Tree_of_life: 09_Tree_of_life.html
-  ProblemSession0: ProblemSession0.html
-  ProblemSession1: ProblemSession1.html
-last_built: 2021-08-24T21:34Z
+  FunctionReference: FunctionReference.html
+  HW5: HW5.html
+  HomeworkFive: HomeworkFive.html
+  HomeworkFour: HomeworkFour.html
+  HomeworkOne: HomeworkOne.html
+  HomeworkThree: HomeworkThree.html
+  HomeworkTwo: HomeworkTwo.html
+  ProjectOne: ProjectOne.html
+  ProjectTwo: ProjectTwo.html
+  SampleDocument: SampleDocument.html
+last_built: 2021-09-13T15:10Z
 
