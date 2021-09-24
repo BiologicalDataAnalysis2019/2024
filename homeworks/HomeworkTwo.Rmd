@@ -7,7 +7,7 @@ output: html_document
 
 First, we will use a modified version of surveys.csv, which has some strange values entered for NAs. Download like so: 
 
-```{r}
+```{r, eval=FALSE}
 download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2021/master/homeworks/HomeworkTwo.Rmd", destfile = "/cloud/project/homeworks/HomeworkTwo.Rmd")
 download.file("https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2021/master/homeworks/HW2_data/surveys_odd_NA_values.csv", destfile = "/cloud/project/data/surveys_odd_NA_values.csv")
 ```
