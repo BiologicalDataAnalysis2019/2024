@@ -10,7 +10,7 @@ output: html_document
 
 Below are the questions for the first data practical assignment. This project uses the "FossilAnts.csv" file, located in the data directory for the project. The point value of each question is denoted next to it. A blank cell is below each for your answer; feel free to create more blank cells as needed.
 
-0. (5 pts) Create a directory called `projects`, and in it, a subdirectory called `project_one`. Use `download.files` to get [this file](https://github.com/BiologicalDataAnalysis2019/2019/blob/master/projects/project_one/ProjectOneUndergrads.Rmd), and [this one](https://github.com/BiologicalDataAnalysis2019/2019/blob/master/projects/project_one/data/FossilAnts.csv).
+0. (5 pts) Create a directory called `projects`, and in it, a subdirectory called `project_one`. Use `download.files` to get [this file](https://github.com/BiologicalDataAnalysis2019/2021/blob/master/projects/project_one/ProjectOneUndergrads.Rmd), and [this one](https://github.com/BiologicalDataAnalysis2019/2021/blob/master/projects/project_one/data/FossilAnts.csv).
 
 
 
@@ -27,7 +27,7 @@ Below are the questions for the first data practical assignment. This project us
 # Answer here
 ```
 
-3. (5 pts) Change the datatype of the reference number column to character.
+3. (5 pts) Change the datatype of the reference number column to character. Take a peek at the function as.character().
 
 ```{r}
 #Answer Here
@@ -41,12 +41,6 @@ Below are the questions for the first data practical assignment. This project us
 
 ```
 
-5. (5pts) Now do it - replace your missing values with these more logical missing values. 
-
-```{r}
-#Answer here
-
-```
 6. (5 points) Are there any columns in your dataset that contain two pieces of data? If so, identify them.
 
 ```
@@ -70,9 +64,8 @@ Next, we will test a hypothesis. Your hypthesis is that there are more specimens
 
 8. (5 pts) Write out the steps you would take to address this question. Will you need to split up the data? Will you need to group the data based on the values in some column? 
 
-```
 #Answer Here
-```
+
 
 9. (15 pts) Perform the operations you described in (8). 
 
@@ -95,7 +88,7 @@ Next, we will test a hypothesis. Your hypthesis is that there are more specimens
 
 ```
 
-12. (10 pts) Produce a histogram of the number of specimens by minimum age
+12. (10 pts) Produce a histogram of the number of specimens by minimum age. Look at the geom_histogram() help.
 
 ```{r}
 #Answer here
@@ -108,4 +101,10 @@ Next, we will test a hypothesis. Your hypthesis is that there are more specimens
 
 ```
 
+14. Finally, produce a histogram of counts for each subfamily.
+
+```{r}
+
+
+```
 
