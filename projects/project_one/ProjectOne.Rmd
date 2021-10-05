@@ -7,10 +7,11 @@ output: html_document
 # Data Project One
 
 ## 100 points
+# DUE Oct 8 at Midnight
 
 Below are the questions for the first data practical assignment. This project uses the "FossilAnts.csv" file, located in the data directory for the project. The point value of each question is denoted next to it. A blank cell is below each for your answer; feel free to create more blank cells as needed.
 
-0. (5 pts) Create a directory called `projects`, and in it, a subdirectory called `project_one`. Use `download.files` to get [this file](https://github.com/BiologicalDataAnalysis2019/2021/blob/master/projects/project_one/ProjectOneUndergrads.Rmd), and [this one](https://github.com/BiologicalDataAnalysis2019/2021/blob/master/projects/project_one/data/FossilAnts.csv).
+0. (5 pts) Create a directory called `projects`, and in it, a subdirectory called `project_one`. Use `download.files` to get [this file](https://github.com/BiologicalDataAnalysis2019/2021/blob/master/projects/project_one/ProjectOne.Rmd), and [this one](https://github.com/BiologicalDataAnalysis2019/2021/blob/master/projects/project_one/data/FossilAnts.csv).
 
 
 
