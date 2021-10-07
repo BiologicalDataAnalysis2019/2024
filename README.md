@@ -24,4 +24,3 @@ Lectures will be posted the day before they are given by 5 pm.
 | Week of Nov. 29  | [Maps and Location](https://biologicaldataanalysis2019.github.io/2021/articles/09_GBIF_and_Location.html) | Final Instructions | Project III | 
 | Week of Dec 6, we will present final presentations | | | 
 
->>>>>>> 41c18cae13f9668444f372c9a87e9f51358b5363
