@@ -81,16 +81,10 @@
       <a href="../articles/08_linear_models.html">Introduction to Linear Models: Building and Interpreting Linear Regressions</a>
     </li>
     <li>
-      <a href="../articles/09_GBIF_and_Location.html">GBIF And Spatial Data</a>
+      <a href="../articles/09_Tree_of_life.html">GeneticData</a>
     </li>
     <li>
-      <a href="../articles/10_Tree_of_life.html">GeneticData</a>
-    </li>
-    <li>
-      <a href="../articles/FunctionReference.html">FunctionReference.Rmd</a>
-    </li>
-    <li>
-      <a href="../articles/HW5.html">Homework Three</a>
+      <a href="../articles/10_GBIF_and_Location.html">GBIF And Spatial Data</a>
     </li>
     <li>
       <a href="../articles/HomeworkFive.html">Homework Five</a>
@@ -99,22 +93,22 @@
       <a href="../articles/HomeworkFour.html">Homework Three</a>
     </li>
     <li>
-      <a href="../articles/HomeworkOne.html">Homework One</a>
-    </li>
-    <li>
-      <a href="../articles/HomeworkThree.html">Homework3</a>
+      <a href="../articles/HomeworkThree.html">Homework Three</a>
     </li>
     <li>
       <a href="../articles/HomeworkTwo.html">Homework Two</a>
+    </li>
+    <li>
+      <a href="../articles/ProblemSession0.html">ProblemSession01</a>
+    </li>
+    <li>
+      <a href="../articles/ProblemSession1.html">ProblemSession1</a>
     </li>
     <li>
       <a href="../articles/ProjectOne.html">ProjectOne</a>
     </li>
     <li>
       <a href="../articles/ProjectTwo.html">Project Two</a>
-    </li>
-    <li>
-      <a href="../articles/SampleDocument.html">SampleDocument</a>
     </li>
   </ul>
 </li>
@@ -150,8 +144,8 @@
 <div id="cheatsheet-chunk" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cheatsheet-chunk" class="anchor"></a>Cheatsheet chunk</h2>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">###### Building linear models with lm ######</span>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co">###### Building linear models with lm ######</span>
 <span class="co"># Single predictor</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">X</span>, data <span class="op">=</span> <span class="va">dataframe</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">lm_output</span>
 
@@ -172,7 +166,7 @@
 <span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">lm_output</span><span class="op">)</span> <span class="co">## Get mmmooorrree information</span>
 
 <span class="co"># Extract model info with the modelr library</span>
-<span class="fu">modelr</span><span class="fu">::</span><span class="fu"><a href="https://modelr.tidyverse.org/reference/add_residuals.html">add_residuals</a></span><span class="op">(</span><span class="va">dataframe</span>, <span class="va">lm_output</span><span class="op">)</span>    <span class="co"># residuals for each observation</span></code></pre></div>
+<span class="fu">modelr</span><span class="fu">::</span><span class="fu"><a href="https://modelr.tidyverse.org/reference/add_residuals.html">add_residuals</a></span><span class="op">(</span><span class="va">dataframe</span>, <span class="va">lm_output</span><span class="op">)</span>    <span class="co"># residuals for each observation</span></pre></div>
 </div>
 <div id="note" class="section level1">
 <h1 class="hasAnchor">
@@ -268,8 +262,8 @@
 <h2 class="hasAnchor">
 <a href="#examples-and-interpretation" class="anchor"></a>Examples and interpretation</h2>
 <p>All examples will use the external dataset <code>crabs</code> and assume <span class="math inline">\(\alpha=0.05\)</span>. This dataset contains physical measurements from 200 crabs, including their sex (M/F), color (orange or blue), and various other quantities measured in millimeters (mm). <strong>The goal of these examples is model body depth in crabs. Therefore, the column <code>body_depth</code> is our response variable.</strong></p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">crabs</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"/cloud/project/data/crabs.csv"</span><span class="op">)</span>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="va">crabs</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/crabs.csv"</span><span class="op">)</span>
 <span class="co">## Rows: 200 Columns: 7</span>
 <span class="co">## ── Column specification ────────────────────────────────────────────────────────</span>
 <span class="co">## Delimiter: ","</span>
@@ -287,26 +281,26 @@
 <span class="co">## $ rear_width      &lt;dbl&gt; 6.7, 7.7, 7.8, 7.9, 8.0, 9.0, 9.9, 9.1, 9.6, 10.5, 10.…</span>
 <span class="co">## $ carapace_length &lt;dbl&gt; 16.1, 18.1, 19.0, 20.1, 20.3, 23.0, 23.8, 24.5, 24.2, …</span>
 <span class="co">## $ carapace_width  &lt;dbl&gt; 19.0, 20.8, 22.4, 23.1, 23.0, 26.5, 27.1, 28.4, 27.8, …</span>
-<span class="co">## $ body_depth      &lt;dbl&gt; 7.0, 7.4, 7.7, 8.2, 8.2, 9.8, 9.8, 10.4, 9.7, 10.3, 10…</span></code></pre></div>
+<span class="co">## $ body_depth      &lt;dbl&gt; 7.0, 7.4, 7.7, 8.2, 8.2, 9.8, 9.8, 10.4, 9.7, 10.3, 10…</span></pre></div>
 <div id="simple-linear-regression-single-numeric-predictor" class="section level3">
 <h3 class="hasAnchor">
 <a href="#simple-linear-regression-single-numeric-predictor" class="anchor"></a>Simple linear regression: Single numeric predictor</h3>
 <p>Let’s begin with a simple regression to examine the relationship between <strong>carapace length</strong> and <strong>body depth</strong>, specifically to what extent body depth can be explained by carapace length. Therefore, carapace length is our predictor (X) variable, and body depth is our response (Y) variable.</p>
 <p><strong>The very first thing we should do is VISUALIZE our data</strong> . Make sure that each numeric predictor (in this case there is only 1!) indeed has a roughly <em>linear relationship</em> to the response. Indeed, this relationship looks linear, and apparantly (quite strongly!) positively related, so we are good to go.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># predictor goes on X, response goes on Y</span>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co"># predictor goes on X, response goes on Y</span>
 <span class="fu">ggplot</span><span class="op">(</span><span class="va">crabs</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">carapace_length</span>, y <span class="op">=</span> <span class="va">body_depth</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></pre></div>
 <p><img src="08_linear_models_files/figure-html/unnamed-chunk-8-1.png" width="384"></p>
 <p>We perform regressions using the function <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> (any guesses what this stands for?).</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## perform linear regression and save as model_fit</span>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="co">## perform linear regression and save as model_fit</span>
 <span class="co">## Y ~ X !!!!!!!!!!!!!! </span>
 <span class="co">## RESPONSE ~ PREDICTOR !!!!!!!!!!!!!!!!</span>
 <span class="va">model_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">body_depth</span> <span class="op">~</span> <span class="va">carapace_length</span>, data <span class="op">=</span> <span class="va">crabs</span><span class="op">)</span>
 
 <span class="co">## view output with summary(). Ugly, useful for getting a visual overview.</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = body_depth ~ carapace_length, data = crabs)
@@ -353,8 +347,8 @@
 <h3 class="hasAnchor">
 <a href="#visualizing-the-model" class="anchor"></a>Visualizing the model</h3>
 <p>We can visualize this output with a scatterplot and <code>geom_smooth()</code>! This is why we’ve been saying <code>method = "lm"</code> in <code>geom_smooth()</code> - this function adds a trendline, and by specify “lm” we are telling <code>geom_smooth()</code> to use a linear model to determine the trendline:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># predictor goes on X, response goes on Y</span>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="co"># predictor goes on X, response goes on Y</span>
 <span class="fu">ggplot</span><span class="op">(</span><span class="va">crabs</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">carapace_length</span>, y <span class="op">=</span> <span class="va">body_depth</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>        <span class="co">## making the points small to help see the regression line</span>
   <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>,     <span class="co">## make a trendline using "lm"</span>
@@ -369,7 +363,7 @@
            label <span class="op">=</span> <span class="st">"R^2 == 0.966"</span>, <span class="co">## label itself, double equals is needed for use with parse=T</span>
            parse<span class="op">=</span><span class="cn">T</span>,               <span class="co">## makes label actually show as a formula, with squared as superscript!</span>
            color <span class="op">=</span> <span class="st">"firebrick"</span>, size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>  <span class="op">+</span> <span class="co">## font color and size </span>
-  <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></pre></div>
 <pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
 <p><img src="08_linear_models_files/figure-html/unnamed-chunk-10-1.png" width="576"></p>
 <p><strong>Critical followup: What is a confidence interval?</strong> A confidence interval (CI) is meant to help convey <em>error</em> in the estimate - in this case, the confidence bands you see (pink area around the line) represents the error associated with our fitted slope aka our model’s <span class="math inline">\(\beta_1\)</span> estimate! It is directly related to “standard error”, so in the function <code>geom_smooth()</code> you can turn it off as <code>geom_smooth(se=F)</code> to not display it.</p>
@@ -382,43 +376,43 @@
 <p>One of the assumptions of linear regressions is that residuals should be normally distributed. Residuals are calculated as part of the model itself, so the goal is to check the residuals AFTER you perform the model to see if it worked out ok. If the residuals are severely not normal, it means there were some problems with the model itself and you need to rethink your approach - which predictors to include/exclude? add in interaction effect [keep reading!!]? transform some of the data?</p>
 <p>We can check this assumption using a <strong>Q-Q plot</strong>, specifically a NORMAL QQ plot which shows the relationship between your data and a <em>theoretical prediction</em> for what the data would like if it were normally distributed. If the data falls roughly in a straight line, the data is distributed normally!!! If not, not normal :(</p>
 <p>First, we need to get the residuals themselves out of the model - my preferred way for doing this uses the <code>broom()</code> package. This packages tidies (sweeps up?…sigh.) model output into nice little tibbles, and it has three main functions we want: <code><a href="https://generics.r-lib.org/reference/tidy.html">broom::tidy()</a></code>, <code><a href="https://generics.r-lib.org/reference/glance.html">broom::glance()</a></code>, and <code><a href="https://generics.r-lib.org/reference/augment.html">broom::augment()</a></code>. The first two are nice for collecting the ugly summary data into tibbles. We simply pass in the model output itself.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># redefining model just to orient you back</span>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="co"># redefining model just to orient you back</span>
 <span class="va">model_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">body_depth</span> <span class="op">~</span> <span class="va">carapace_length</span>, data <span class="op">=</span> <span class="va">crabs</span><span class="op">)</span>
 
 <span class="co"># assumes broom library is loaded! </span>
 <span class="co"># it comes installed with tidyverse, but needs to be loaded with library(broom) in the setup chunk.</span>
 <span class="co"># Gives coefficients in tidy form</span>
-<span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 5
+<span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></pre></div>
+<pre><code>## # A tibble: 2 x 5
 ##   term            estimate std.error statistic   p.value
 ##   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 (Intercept)       -1.16    0.205       -5.63 6.09e-  8
 ## 2 carapace_length    0.473   0.00624     75.8  3.13e-148</code></pre>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Gives R^2 (and some other values, stay tuned!!!) in tidy form</span>
-<span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/glance.html">glance</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 12
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="co"># Gives R^2 (and some other values, stay tuned!!!) in tidy form</span>
+<span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/glance.html">glance</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></pre></div>
+<pre><code>## # A tibble: 1 x 12
 ##   r.squared adj.r.squared sigma statistic   p.value    df logLik   AIC   BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     0.967         0.967 0.627     5746. 3.13e-148     1  -189.  385.  395.
 ## # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Gives a whoooole bunch of under-the-hood info in tidy form - tacked onto the data itself!!!</span>
-<span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 200 × 8
-##    body_depth carapace_length .fitted   .resid    .hat .sigma    .cooksd .std.resid
-##         &lt;dbl&gt;           &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-##  1        7              16.1    6.46  0.540   0.0304   0.627 0.0120        0.875  
-##  2        7.4            18.1    7.41 -0.00596 0.0244   0.628 0.00000116   -0.00963
-##  3        7.7            19      7.83 -0.132   0.0220   0.628 0.000508     -0.212  
-##  4        8.2            20.1    8.35 -0.152   0.0193   0.628 0.000590     -0.245  
-##  5        8.2            20.3    8.45 -0.247   0.0188   0.628 0.00151      -0.397  
-##  6        9.8            23      9.72  0.0764  0.0132   0.628 0.000101      0.123  
-##  7        9.8            23.8   10.1  -0.302   0.0118   0.628 0.00141      -0.485  
-##  8       10.4            24.5   10.4  -0.0331  0.0107   0.628 0.0000153    -0.0532 
-##  9        9.7            24.2   10.3  -0.591   0.0112   0.627 0.00510      -0.949  
-## 10       10.3            25.2   10.8  -0.464   0.00973  0.627 0.00272      -0.744  
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="co">## Gives a whoooole bunch of under-the-hood info in tidy form - tacked onto the data itself!!!</span>
+<span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></pre></div>
+<pre><code>## # A tibble: 200 x 8
+##    body_depth carapace_length .fitted   .resid .std.resid    .hat .sigma .cooksd
+##         &lt;dbl&gt;           &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+##  1        7              16.1    6.46  0.540      0.875   0.0304   0.627 1.20e-2
+##  2        7.4            18.1    7.41 -0.00596   -0.00963 0.0244   0.628 1.16e-6
+##  3        7.7            19      7.83 -0.132     -0.212   0.0220   0.628 5.08e-4
+##  4        8.2            20.1    8.35 -0.152     -0.245   0.0193   0.628 5.90e-4
+##  5        8.2            20.3    8.45 -0.247     -0.397   0.0188   0.628 1.51e-3
+##  6        9.8            23      9.72  0.0764     0.123   0.0132   0.628 1.01e-4
+##  7        9.8            23.8   10.1  -0.302     -0.485   0.0118   0.628 1.41e-3
+##  8       10.4            24.5   10.4  -0.0331    -0.0532  0.0107   0.628 1.53e-5
+##  9        9.7            24.2   10.3  -0.591     -0.949   0.0112   0.627 5.10e-3
+## 10       10.3            25.2   10.8  -0.464     -0.744   0.00973  0.627 2.72e-3
 ## # … with 190 more rows</code></pre>
 <p>Focusing on the <code>augment()</code> output, we see there are 136 rows - indeed there are 136 crabs!! Each row represents an outcome from the model. The particular columns we may want are <code>.fitted</code> and <code>.resid</code>:</p>
 <ul>
@@ -428,22 +422,22 @@
 <code>.resid</code>: The residual associated with that row - this column contains our residuals!!!</li>
 </ul>
 <p>For making QQ plots, we’ll use the base R functions <code><a href="https://rdrr.io/r/stats/qqnorm.html">qqnorm()</a></code> (for a <strong>norm</strong>al distribution QQ plot) and <code><a href="https://rdrr.io/r/stats/qqnorm.html">qqline()</a></code> (in this case base R is a lot easier than ggplot2). They are run as <em>separate commands entirely</em>, but R will always assume <code><a href="https://rdrr.io/r/stats/qqnorm.html">qqline()</a></code> should go on top of the <em>most recently run QQ plot</em>:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## plot</span>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="co">## plot</span>
 <span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">augmented_fit</span>
 
 <span class="co"># plot the .resid column (yes it starts with a period), and add a line for visual guidance. </span>
 <span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqnorm</a></span><span class="op">(</span><span class="va">augmented_fit</span><span class="op">$</span><span class="va">.resid</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqline</a></span><span class="op">(</span><span class="va">augmented_fit</span><span class="op">$</span><span class="va">.resid</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>  <span class="co">#Spielman personal preference, I like making it a color. base R uses "col"</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqline</a></span><span class="op">(</span><span class="va">augmented_fit</span><span class="op">$</span><span class="va">.resid</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>  <span class="co">#Spielman personal preference, I like making it a color. base R uses "col"</span></pre></div>
 <p><img src="08_linear_models_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 <p>This is pretty good, but could be better - the tails of the plot, in particular the right, have a bit of deviation, but not so much that I’d worry. So, I’m satisified with the assumptions being met for this model.</p>
 <p><em>Here are examples of how the plot might look when it’s time to start worrying:</em> <img src="08_linear_models_files/figure-html/unnamed-chunk-13-1.png" width="960"></p>
 <p><strong>Notably</strong> there is another neat way to get the residuals using the package <code>modelr</code> (within <code>tidyverse</code>, but needs to be loaded). We will use several more functions from this VERY helpful (but caution, often times very advanced) package soon!. The function <code>add_residuals()</code> can be used this way:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## first argument is the data itself, second is the model object</span>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="co">## first argument is the data itself, second is the model object</span>
 <span class="co">## output column `resid` contains the goods</span>
-<span class="fu">modelr</span><span class="fu">::</span><span class="fu"><a href="https://modelr.tidyverse.org/reference/add_residuals.html">add_residuals</a></span><span class="op">(</span><span class="va">crabs</span>, <span class="va">model_fit</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 200 × 8
+<span class="fu">modelr</span><span class="fu">::</span><span class="fu"><a href="https://modelr.tidyverse.org/reference/add_residuals.html">add_residuals</a></span><span class="op">(</span><span class="va">crabs</span>, <span class="va">model_fit</span><span class="op">)</span></pre></div>
+<pre><code>## # A tibble: 200 x 8
 ##    color sex   frontal_lobe rear_width carapace_length carapace_width body_depth
 ##    &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;      &lt;dbl&gt;
 ##  1 blue  M              8.1        6.7            16.1           19          7  
@@ -463,16 +457,16 @@
 <a href="#simple-anova-single-categorical-predictor" class="anchor"></a>Simple ANOVA: Single categorical predictor</h3>
 <p>What if, rather than a numeric predictor (carapace Length), we had a <em>categorical</em> predictor, say sex? Here we might ask: <strong>Does sex predict body depth in crabs</strong>? In the context of running an explicit ANOVA, one might phrase it as: <strong>Does the variation in body depth differ across sex in crabs?</strong> They are in fact the same question!</p>
 <p>Again, begin with a quick-and-dirty visualization. Here we’d like to see that the distribution of body depths has similar <em>spread</em> across sex categories (the assumption of equal variance for categorical predictors!). Indeed, these two distributions show similar amounts of spread (how much relative space along the Y axis they take up), so assumption is met.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">crabs</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">sex</span>, y <span class="op">=</span> <span class="va">body_depth</span>, color<span class="op">=</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_jitter</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">crabs</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">sex</span>, y <span class="op">=</span> <span class="va">body_depth</span>, color<span class="op">=</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_jitter</span><span class="op">(</span><span class="op">)</span></pre></div>
 <p><img src="08_linear_models_files/figure-html/unnamed-chunk-15-1.png" width="384"></p>
 <p>Let’s run the model:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## perform linear model and save as model_fit</span>
+<div class="sourceCode" id="cb18"><pre class="downlit">
+<span class="co">## perform linear model and save as model_fit</span>
 <span class="va">model_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">body_depth</span> <span class="op">~</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">crabs</span><span class="op">)</span>
 
 <span class="co">## view output with summary(). </span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = body_depth ~ sex, data = crabs)
@@ -496,22 +490,22 @@
 <p>We see the intercept is highly significant (<em>P&lt;2e-16</em>) with a value of 13.724. <strong>Intercepts for a model with a categorical predictor mean: What is the expected body depth of the baseline level, which in this case is “F” (female)?</strong>. We expect the average female crab to have a body depth of 13.72 mm. This is the “categorical” analogy of a standard intercept that would be interpreted as, “what is body depth when sex is 0?”. Of course, as a categorical variable, sex cannot be 0 - it’s F or M in this dataset.</p>
 <p>The coefficient associated with SexM means, <strong>How does being male influence body depth relative to the factor baseline, female?</strong> On average, males have body depth 0.613 mm larger than females. (Notably, for a categorical variable with <em>N</em> levels, there will be see <em>N-1</em> coefficients). In this case, however, the P-value is NOT significant (P=0.206). Similarly our adjusted <em>R^2</em> is not significant. Therefore, we actually do not see evidence that the average male body depth differs from the average female body depth.</p>
 <p><strong>This model therefore tells us: sex is NOT explanatory of body depth in crabs!</strong> Either way, let’s think how we might visualize the model results. The strip plot used above to check assumptions is a pretty good way to do it, or any other way to show distributions. That said, these models operate on <em>means</em>, so it might be useful to actually visualize the means specifically. A neat trick for doing this comes from <code>stat_summary()</code>!!</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">crabs</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">sex</span>, y <span class="op">=</span> <span class="va">body_depth</span>, color <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+<div class="sourceCode" id="cb20"><pre class="downlit">
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">crabs</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">sex</span>, y <span class="op">=</span> <span class="va">body_depth</span>, color <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_jitter</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Sex"</span>, y <span class="op">=</span> <span class="st">"Body depth (mm)"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">stat_summary</span><span class="op">(</span>fun.data <span class="op">=</span> <span class="st">"mean_se"</span>, <span class="co"># calculate mean and se</span>
-               color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> </code></pre></div>
+               color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> </pre></div>
 <p><img src="08_linear_models_files/figure-html/unnamed-chunk-17-1.png" width="576"></p>
 <p>As you can see, those means look about identical and their standard errors overlap - it makes sense that the model did <em>not</em> show evidence that sex is predictive of body depth.</p>
 <div id="as-an-anova" class="section level4">
 <h4 class="hasAnchor">
 <a href="#as-an-anova" class="anchor"></a>As an ANOVA</h4>
 <p>For posterity, it can’t hurt to see how this looks as a bonafide ANOVA table using the function <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">anova_model_fit</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">anova_model_fit</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">anova_model_fit</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">anova_model_fit</span><span class="op">)</span></pre></div>
 <pre><code>##              Df Sum Sq Mean Sq F value Pr(&gt;F)
 ## sex           1   18.8   18.79   1.607  0.206
 ## Residuals   198 2315.3   11.69</code></pre>
@@ -522,8 +516,8 @@
 <a href="#lm-with-numeric-and-categorical-predictors" class="anchor"></a>LM with numeric and categorical predictors</h3>
 <p>Let’s see how to run and interpret a model with BOTH numeric and categorical predictors. We will examine how color and carapace length together might be predictive of body depth in crabs. Said otherwise: We’ve seen how carapace length influences body depth. Does this effect persist when controlling for color? Importantly, when you have multiple predictors, the model assumes they are FULLY INDEPENDENT and ENTIRELY UNRELATED. Of course this is not always true - read on to learn more about how to deal with this issue!</p>
 <p>Let’s run the model with multiple predictors, which we simply add together in the formula</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## order of predictors does NOT matter</span>
+<div class="sourceCode" id="cb23"><pre class="downlit">
+<span class="co">## order of predictors does NOT matter</span>
 <span class="va">model_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">body_depth</span> <span class="op">~</span> <span class="va">color</span> <span class="op">+</span> <span class="va">carapace_length</span>, data <span class="op">=</span> <span class="va">crabs</span><span class="op">)</span>
 
 <span class="co">## view output with summary(). </span>
@@ -546,7 +540,7 @@
 <span class="co">## </span>
 <span class="co">## Residual standard error: 0.3749 on 197 degrees of freedom</span>
 <span class="co">## Multiple R-squared:  0.9881, Adjusted R-squared:  0.988 </span>
-<span class="co">## F-statistic:  8204 on 2 and 197 DF,  p-value: &lt; 2.2e-16</span></code></pre></div>
+<span class="co">## F-statistic:  8204 on 2 and 197 DF,  p-value: &lt; 2.2e-16</span></pre></div>
 <p>When considering BOTH color and carapace length as model predictors, we find:</p>
 <ul>
 <li>The intercept means your average blue (the baseline level of <code>color</code>) crab <em>with a carapace length of 0</em> has a body depth of -0.997 mm. It’s highly sigificant but unrealistic - moving on.</li>
@@ -555,21 +549,21 @@
 <li>The predictors explain <em>~98.8%</em> of the variation in body depth - our model appears to have improved in predictive ability by jointly considering color with carapace length! A mere 1.2% of variation in body depth is unexplained by the two significant predictors.</li>
 </ul>
 <p>Let’s check our residuals as well with a QQ plot. We find that they are indeed normally distributed, so the model’s assumptions have been met and we can rely on its output.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">augment</span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">augmented_fit</span>
+<div class="sourceCode" id="cb24"><pre class="downlit">
+<span class="fu">augment</span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">augmented_fit</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqnorm</a></span><span class="op">(</span><span class="va">augmented_fit</span><span class="op">$</span><span class="va">.resid</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqline</a></span><span class="op">(</span><span class="va">augmented_fit</span><span class="op">$</span><span class="va">.resid</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqline</a></span><span class="op">(</span><span class="va">augmented_fit</span><span class="op">$</span><span class="va">.resid</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></pre></div>
 <p><img src="08_linear_models_files/figure-html/unnamed-chunk-20-1.png" width="700"></p>
 <p><strong>How can we visualize this model?</strong> We can again make a scatterplot, and show the trend lines for each sex:</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">crabs</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">carapace_length</span>, y <span class="op">=</span> <span class="va">body_depth</span>, color <span class="op">=</span> <span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+<div class="sourceCode" id="cb25"><pre class="downlit">
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">crabs</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">carapace_length</span>, y <span class="op">=</span> <span class="va">body_depth</span>, color <span class="op">=</span> <span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Carapace length (mm)"</span>,
        y <span class="op">=</span> <span class="st">"Body Depth (mm)"</span>,
        color <span class="op">=</span> <span class="st">"Crab color"</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"orange"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="co"># why not!</span>
   <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">annotate</span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">20</span>, y <span class="op">=</span> <span class="fl">30</span>, label <span class="op">=</span> <span class="st">"R^2 == 0.988"</span>, parse<span class="op">=</span><span class="cn">T</span>, size<span class="op">=</span><span class="fl">5</span><span class="op">)</span></code></pre></div>
+  <span class="fu">annotate</span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">20</span>, y <span class="op">=</span> <span class="fl">30</span>, label <span class="op">=</span> <span class="st">"R^2 == 0.988"</span>, parse<span class="op">=</span><span class="cn">T</span>, size<span class="op">=</span><span class="fl">5</span><span class="op">)</span></pre></div>
 <pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
 <p><img src="08_linear_models_files/figure-html/unnamed-chunk-21-1.png" width="576"></p>
 </div>
@@ -577,16 +571,16 @@
 <h3 class="hasAnchor">
 <a href="#lm-with-multiple-numeric-predictors" class="anchor"></a>LM with multiple numeric predictors</h3>
 <p>Now we will look at a model with multiple numeric predictors, carapace width <em>and</em> carapace length. We know already that carapace length has a linear relationship with body depth from earlier in this document, so let’s just check out the linearity of body depth/carapace width. Indeed, the relationship is linear, so let’s proceed.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">crabs</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">carapace_width</span>, y <span class="op">=</span> <span class="va">body_depth</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit">
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">crabs</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">carapace_width</span>, y <span class="op">=</span> <span class="va">body_depth</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></pre></div>
 <p><img src="08_linear_models_files/figure-html/unnamed-chunk-22-1.png" width="288"></p>
 <p>Again, we can simply add predictors together (order does not matter!):</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## perform linear model and save as model_fit</span>
+<div class="sourceCode" id="cb28"><pre class="downlit">
+<span class="co">## perform linear model and save as model_fit</span>
 <span class="va">model_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">body_depth</span> <span class="op">~</span> <span class="va">carapace_width</span> <span class="op">+</span> <span class="va">carapace_length</span>, data <span class="op">=</span> <span class="va">crabs</span><span class="op">)</span>
 
 <span class="co">## view output with summary(). </span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = body_depth ~ carapace_width + carapace_length, data = crabs)
@@ -614,21 +608,21 @@
 <li>The independent effects of carapace length and width explain roughly 97.76% of variation in body depth, and it is highly significant.</li>
 </ul>
 <p>A quick check of residuals also shows normality, so we’re all set.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">augment</span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">augmented_fit</span>
+<div class="sourceCode" id="cb30"><pre class="downlit">
+<span class="fu">augment</span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">augmented_fit</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqnorm</a></span><span class="op">(</span><span class="va">augmented_fit</span><span class="op">$</span><span class="va">.resid</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqline</a></span><span class="op">(</span><span class="va">augmented_fit</span><span class="op">$</span><span class="va">.resid</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqline</a></span><span class="op">(</span><span class="va">augmented_fit</span><span class="op">$</span><span class="va">.resid</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></pre></div>
 <p><img src="08_linear_models_files/figure-html/unnamed-chunk-24-1.png" width="700"></p>
 <p>We could visualize this if we want by putting on predictor on the X, and using color to disinguish the other predictor. That said, it is very difficult to make scatterplot visualizations with multiple numeric predictors, especially since we can’t draw two trend lines in one set of axes.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">crabs</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">carapace_length</span>, y <span class="op">=</span> <span class="va">body_depth</span>, color <span class="op">=</span> <span class="va">carapace_width</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+<div class="sourceCode" id="cb31"><pre class="downlit">
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">crabs</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">carapace_length</span>, y <span class="op">=</span> <span class="va">body_depth</span>, color <span class="op">=</span> <span class="va">carapace_width</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span> <span class="op">+</span> <span class="co"># i like the plot with bigger points </span>
   <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Carapace length (mm)"</span>, 
        y <span class="op">=</span> <span class="st">"Body depth (mm)"</span>,
        color <span class="op">=</span> <span class="st">"Carapace width (mm)"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_color_distiller</span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Reds"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">annotate</span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">20</span>, y <span class="op">=</span> <span class="fl">30</span>, label <span class="op">=</span> <span class="st">"R^2 == 0.977"</span>, parse<span class="op">=</span><span class="cn">T</span>, size<span class="op">=</span><span class="fl">5</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> <span class="co"># again my personal preference</span></code></pre></div>
+  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> <span class="co"># again my personal preference</span></pre></div>
 <p><img src="08_linear_models_files/figure-html/unnamed-chunk-25-1.png" width="576"></p>
 </div>
 <div id="lm-with-interaction-effects" class="section level3">
@@ -640,10 +634,10 @@
 <h4 class="hasAnchor">
 <a href="#example-1" class="anchor"></a>Example #1</h4>
 <p>Previously, we looked at the explanatory power of carapace length and color on body depth as independent effects. What if they are not independent, however? Looking at the visualization we made from this model, we see that the two regression lines for each crab color are roughly parallel - this suggests that the relationship between carapace length and body depth is consistent regardless of color. This would mean NO interaction effect, but we can formally test this out by adding an interaction term to the model:</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># interact by using * instead of + for predictors</span>
+<div class="sourceCode" id="cb32"><pre class="downlit">
+<span class="co"># interact by using * instead of + for predictors</span>
 <span class="va">model_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">body_depth</span> <span class="op">~</span> <span class="va">carapace_length</span> <span class="op">*</span> <span class="va">color</span>, data <span class="op">=</span> <span class="va">crabs</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = body_depth ~ carapace_length * color, data = crabs)
@@ -674,28 +668,28 @@
 <strong>carapace_length:colororange</strong> is the <em>interaction effect</em> coefficient for caparace length x color, and it is in fact significant at <em>P=0.00394</em>!! Indeed, there <strong>is</strong> a significant difference in trend between crab colors. However it’s quite hard to see in the plot - this is a great example of when statistical significance corresponds to only moderate, in this case, small, effect size.</li>
 </ul>
 <p>Our residuals are also normally distributed:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">augment</span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">augmented_fit</span>
+<div class="sourceCode" id="cb34"><pre class="downlit">
+<span class="fu">augment</span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">augmented_fit</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqnorm</a></span><span class="op">(</span><span class="va">augmented_fit</span><span class="op">$</span><span class="va">.resid</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqline</a></span><span class="op">(</span><span class="va">augmented_fit</span><span class="op">$</span><span class="va">.resid</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqline</a></span><span class="op">(</span><span class="va">augmented_fit</span><span class="op">$</span><span class="va">.resid</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></pre></div>
 <p><img src="08_linear_models_files/figure-html/unnamed-chunk-27-1.png" width="700"></p>
 <p>Upon finding a significant interaction effect, we promptly <em>ignore</em> any independent effects - since the interaction tells us these variables are not independent, it does not make sense to consider their independent influence on body depth. We have evidence that the way that carapace length affects body depth depends on color! Similarly, the way that color affects body depth depends on carapace length.</p>
 <p>The best way to interpret this model is not to focus on the interaction term coefficient (they’re a little tricky..), but rather to make a plot like we did earlier with the two slopes, and see how those slopes potentially cross or interact, or in this case are only barely non-parallel. In fact, although small, these slopes are NOT identical and the lines are NOT exactly parallel - there is a significant interaction! However, it is of course a very small effect size. <strong>The punchline here is that the interaction is significant, so we have evidence that carapace length and color INTERACT when explaining body depth.</strong></p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">crabs</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">carapace_length</span>, y <span class="op">=</span> <span class="va">body_depth</span>, color <span class="op">=</span> <span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+<div class="sourceCode" id="cb35"><pre class="downlit">
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">crabs</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">carapace_length</span>, y <span class="op">=</span> <span class="va">body_depth</span>, color <span class="op">=</span> <span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Carapace length (mm)"</span>,
        y <span class="op">=</span> <span class="st">"Body Depth (mm)"</span>,
        color <span class="op">=</span> <span class="st">"Crab color"</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"orange"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">annotate</span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">20</span>, y <span class="op">=</span> <span class="fl">30</span>, label <span class="op">=</span> <span class="st">"R^2 == 0.988"</span>, parse<span class="op">=</span><span class="cn">T</span>, size<span class="op">=</span><span class="fl">5</span><span class="op">)</span></code></pre></div>
+  <span class="fu">annotate</span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">20</span>, y <span class="op">=</span> <span class="fl">30</span>, label <span class="op">=</span> <span class="st">"R^2 == 0.988"</span>, parse<span class="op">=</span><span class="cn">T</span>, size<span class="op">=</span><span class="fl">5</span><span class="op">)</span></pre></div>
 <pre><code>## `geom_smooth()` using formula 'y ~ x'</code></pre>
 <p><img src="08_linear_models_files/figure-html/unnamed-chunk-28-1.png" width="576"></p>
 <p>NOTE: It is possible to directly specify the interaction effect to the linear model like so - in fact the interaction effect is a <em>third term</em> in the model:</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">model_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">body_depth</span> <span class="op">~</span> <span class="va">carapace_length</span> <span class="op">+</span> <span class="va">color</span> <span class="op">+</span> <span class="va">carapace_length</span><span class="op">:</span><span class="va">color</span>, data <span class="op">=</span> <span class="va">crabs</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="downlit">
+<span class="va">model_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">body_depth</span> <span class="op">~</span> <span class="va">carapace_length</span> <span class="op">+</span> <span class="va">color</span> <span class="op">+</span> <span class="va">carapace_length</span><span class="op">:</span><span class="va">color</span>, data <span class="op">=</span> <span class="va">crabs</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = body_depth ~ carapace_length + color + carapace_length:color, 
@@ -722,23 +716,23 @@
 <h4 class="hasAnchor">
 <a href="#example-2" class="anchor"></a>Example #2</h4>
 <p>Let’s do another interaction model by considering two <em>categorical predictors</em>, sex and color. This can be visualized with an <em>interaction plot</em> which explictly show how the <em>mean response</em> (here, mean body depth) depends on levels of two categorical predictor:</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">crabs</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb39"><pre class="downlit">
+<span class="va">crabs</span> <span class="op">%&gt;%</span>
   <span class="co">## get mean body depth per group first</span>
   <span class="fu">group_by</span><span class="op">(</span><span class="va">sex</span>, <span class="va">color</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">summarize</span><span class="op">(</span>mean_body_depth <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">body_depth</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">sex</span>, y <span class="op">=</span> <span class="va">mean_body_depth</span>, color <span class="op">=</span> <span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
     <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
     <span class="fu">geom_path</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>group <span class="op">=</span> <span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu">scale_color_manual</span><span class="op">(</span>values<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"blue"</span>,<span class="st">"orange"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <span class="fu">scale_color_manual</span><span class="op">(</span>values<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"blue"</span>,<span class="st">"orange"</span><span class="op">)</span><span class="op">)</span></pre></div>
 <pre><code>## `summarise()` has grouped output by 'sex'. You can override using the `.groups` argument.</code></pre>
 <p><img src="08_linear_models_files/figure-html/unnamed-chunk-30-1.png" width="432"></p>
 <p>This plot suggests potential interaction effect! It seems female orange crabs have higher mean body depths compared to male orange crabs, but the opposite appears true blue. Notably, you see the <em>slopes of these lines do not match.</em> (Lines have the same slope - the effect of sex does NOT appear to depend on Color.) A linear model will tell us if this potential interaction is significant - but note the tiny tiny breaks on the Y-axis? If there is a significant interation, it will likely have a very small effect size.</p>
 <p>Let’s go ahead and see:</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># interact by using * instead of + for predictors</span>
+<div class="sourceCode" id="cb41"><pre class="downlit">
+<span class="co"># interact by using * instead of + for predictors</span>
 <span class="va">model_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">body_depth</span> <span class="op">~</span> <span class="va">sex</span> <span class="op">*</span> <span class="va">color</span>, data <span class="op">=</span> <span class="va">crabs</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = body_depth ~ sex * color, data = crabs)
@@ -769,10 +763,10 @@
 <strong>sexM:colororange</strong> is the <em>interaction effect</em> coefficient for sex x color, and it is moderately significant at <em>P=0.0355</em>.</li>
 </ul>
 <p>And, residuals again are ok:</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">augment</span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">augmented_fit</span>
+<div class="sourceCode" id="cb43"><pre class="downlit">
+<span class="fu">augment</span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">augmented_fit</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqnorm</a></span><span class="op">(</span><span class="va">augmented_fit</span><span class="op">$</span><span class="va">.resid</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqline</a></span><span class="op">(</span><span class="va">augmented_fit</span><span class="op">$</span><span class="va">.resid</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/stats/qqnorm.html">qqline</a></span><span class="op">(</span><span class="va">augmented_fit</span><span class="op">$</span><span class="va">.resid</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></pre></div>
 <p><img src="08_linear_models_files/figure-html/unnamed-chunk-32-1.png" width="700"></p>
 <p>The best way to interpret this model is to a) identify if an interaction is significant, and b) compare the means with an interaction plot. We’ve basically done all those steps, so we are set!</p>
 </div>

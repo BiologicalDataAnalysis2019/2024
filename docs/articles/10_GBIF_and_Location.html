@@ -87,34 +87,28 @@
       <a href="../articles/10_GBIF_and_Location.html">GBIF And Spatial Data</a>
     </li>
     <li>
-      <a href="../articles/FunctionReference.html">FunctionReference.Rmd</a>
-    </li>
-    <li>
-      <a href="../articles/HW5.html">Homework Three</a>
-    </li>
-    <li>
       <a href="../articles/HomeworkFive.html">Homework Five</a>
     </li>
     <li>
       <a href="../articles/HomeworkFour.html">Homework Three</a>
     </li>
     <li>
-      <a href="../articles/HomeworkOne.html">Homework One</a>
-    </li>
-    <li>
-      <a href="../articles/HomeworkThree.html">Homework3</a>
+      <a href="../articles/HomeworkThree.html">Homework Three</a>
     </li>
     <li>
       <a href="../articles/HomeworkTwo.html">Homework Two</a>
+    </li>
+    <li>
+      <a href="../articles/ProblemSession0.html">ProblemSession01</a>
+    </li>
+    <li>
+      <a href="../articles/ProblemSession1.html">ProblemSession1</a>
     </li>
     <li>
       <a href="../articles/ProjectOne.html">ProjectOne</a>
     </li>
     <li>
       <a href="../articles/ProjectTwo.html">Project Two</a>
-    </li>
-    <li>
-      <a href="../articles/SampleDocument.html">SampleDocument</a>
     </li>
   </ul>
 </li>
@@ -144,54 +138,54 @@
     
 <p>This week, we will be starting with geospatial data and mapping. Today, we will begin with locality data in GBIF. GBIF is a website for aggregating location data from other sources.</p>
 <p>We will work with two packages today. One is <a href="https://www.gbif.org/tool/81747/rgbif">RGBIF</a>, an interface to <a href="https://www.gbif.org/">GBIF</a> data maintained by the <a href="https://ropensci.org/">ROpenSci</a> group.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"rgbif"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"leaflet"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"rgbif"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"leaflet"</span><span class="op">)</span></pre></div>
 <p>Later in this lesson, we will also use the <code>rotl</code> package we’ve seen last week.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-## ✓ tibble  3.1.4     ✓ dplyr   1.0.7
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></pre></div>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
+## ✓ tibble  3.1.2     ✓ dplyr   1.0.7
 ## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-## ✓ readr   2.0.1     ✓ forcats 0.5.1</code></pre>
+## ✓ readr   2.0.0     ✓ forcats 0.5.0</code></pre>
 <pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rotl/">rotl</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rgbif">rgbif</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/">leaflet</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://rstudio.github.io/leaflet/">leaflet</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></pre></div>
 <p>First, we’re going to try an example for one ant. We will query locality data and map it in a few ways. Then, you will figure out how to make the process of mapping data iterable over a set of taxa.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://docs.ropensci.org/rgbif/reference/name_suggest.html">name_suggest</a></span><span class="op">(</span><span class="st">"Atta mexicana"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="fu"><a href="https://docs.ropensci.org/rgbif/reference/name_suggest.html">name_suggest</a></span><span class="op">(</span><span class="st">"Atta mexicana"</span><span class="op">)</span></pre></div>
 <pre><code>## Records returned [1] 
 ## No. unique hierarchies [0] 
 ## Args [q=Atta mexicana, limit=100, fields1=key, fields2=canonicalName,
 ##      fields3=rank] 
-## # A tibble: 1 × 3
+## # A tibble: 1 x 3
 ##       key canonicalName rank   
 ##     &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;  
 ## 1 5035745 Atta mexicana SPECIES</code></pre>
 <p>Next, we’re going to use <code>occ_search</code> to search the GBIF database for where these things are occurring.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"> <span class="va">occurences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rgbif/reference/occ_search.html">occ_search</a></span><span class="op">(</span>taxonKey <span class="op">=</span> <span class="fl">5035745</span>, limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+ <span class="va">occurences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rgbif/reference/occ_search.html">occ_search</a></span><span class="op">(</span>taxonKey <span class="op">=</span> <span class="fl">5035745</span>, limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></pre></div>
 <p>Next, we will filter the resultant dataset to name and lat and longitude data.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">no_na</span> <span class="op">&lt;-</span> <span class="va">occurences</span><span class="op">$</span><span class="va">data</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="va">no_na</span> <span class="op">&lt;-</span> <span class="va">occurences</span><span class="op">$</span><span class="va">data</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">scientificName</span>, <span class="va">decimalLatitude</span>, <span class="va">decimalLongitude</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span></pre></div>
 <p>And finally, we will plot the data using <code>leaflet</code></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, popup <span class="op">=</span> <span class="va">no_na</span><span class="op">$</span><span class="va">scientificName</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, popup <span class="op">=</span> <span class="va">no_na</span><span class="op">$</span><span class="va">scientificName</span><span class="op">)</span></pre></div>
 <p>This looks much like plotting with <code>ggplot</code> and tidyverse. That’s because leaflet is based on the same principles. We establish a canvas and the data in the first line, then we add tiles (the actual map we will use), and then we add our points. When we think about it, this is quite similar to establishing a ggplot canvas, the axes, and the points to plot.</p>
 <p>One point is easy. How often do we only want one point, though? Probably, we will want to plot several species. First, with a partner, work out how to get GBIF ids for a set of taxa.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ants</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Martialis"</span>, <span class="st">"Atta"</span>, <span class="st">"Ectatomma"</span>, <span class="st">"Tatuidris"</span>, <span class="st">"Aneuretus"</span>, <span class="st">"Xymmer"</span>, <span class="st">"Aenictus"</span><span class="op">)</span>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="va">ants</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Martialis"</span>, <span class="st">"Atta"</span>, <span class="st">"Ectatomma"</span>, <span class="st">"Tatuidris"</span>, <span class="st">"Aneuretus"</span>, <span class="st">"Xymmer"</span>, <span class="st">"Aenictus"</span><span class="op">)</span>
 
 <span class="co">#Get GBIF ids for our vector of species.</span>
 
@@ -202,12 +196,12 @@
    <span class="va">raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rgbif/reference/name_suggest.html">name_suggest</a></span><span class="op">(</span><span class="va">ant</span><span class="op">)</span>
    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">raw</span><span class="op">)</span>
    <span class="va">ids</span><span class="op">[</span><span class="va">ant</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">raw</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">key</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<span class="op">}</span></pre></div>
 <pre><code>## [1] "Martialis"
-## Records returned [75] 
+## Records returned [74] 
 ## No. unique hierarchies [0] 
 ## Args [q=Martialis, limit=100, fields1=key, fields2=canonicalName, fields3=rank] 
-## # A tibble: 75 × 3
+## # A tibble: 74 x 3
 ##        key canonicalName         rank    
 ##      &lt;int&gt; &lt;chr&gt;                 &lt;chr&gt;   
 ##  1 7744356 Martialis             GENUS   
@@ -220,14 +214,14 @@
 ##  8 4499030 Entedon martialis     SPECIES 
 ##  9 4756132 Oniticellus martialis SPECIES 
 ## 10 1275279 Tycherus martialis    SPECIES 
-## # … with 65 more rows</code></pre>
+## # … with 64 more rows</code></pre>
 <pre><code>## Warning in ids[ant] &lt;- c(raw$data$key): number of items to replace is not a
 ## multiple of replacement length</code></pre>
 <pre><code>## [1] "Atta"
 ## Records returned [100] 
 ## No. unique hierarchies [0] 
 ## Args [q=Atta, limit=100, fields1=key, fields2=canonicalName, fields3=rank] 
-## # A tibble: 100 × 3
+## # A tibble: 100 x 3
 ##        key canonicalName    rank   
 ##      &lt;int&gt; &lt;chr&gt;            &lt;chr&gt;  
 ##  1 6006602 Atta             GENUS  
@@ -247,7 +241,7 @@
 ## Records returned [87] 
 ## No. unique hierarchies [0] 
 ## Args [q=Ectatomma, limit=100, fields1=key, fields2=canonicalName, fields3=rank] 
-## # A tibble: 87 × 3
+## # A tibble: 87 x 3
 ##        key canonicalName          rank   
 ##      &lt;int&gt; &lt;chr&gt;                  &lt;chr&gt;  
 ##  1 1314135 Ectatomma              GENUS  
@@ -257,9 +251,9 @@
 ##  5 1314150 Ectatomma tuberculatum SPECIES
 ##  6 4673125 Ectatomma rothneyi     SPECIES
 ##  7 4673127 Ectatomma socrus       SPECIES
-##  8 8217186 Ectatomma tornatum     SPECIES
-##  9 8224209 Ectatomma dolo         SPECIES
-## 10 7570313 Ectatomma parasiticum  SPECIES
+##  8 7570313 Ectatomma parasiticum  SPECIES
+##  9 8217186 Ectatomma tornatum     SPECIES
+## 10 8224209 Ectatomma dolo         SPECIES
 ## # … with 77 more rows</code></pre>
 <pre><code>## Warning in ids[ant] &lt;- c(raw$data$key): number of items to replace is not a
 ## multiple of replacement length</code></pre>
@@ -267,7 +261,7 @@
 ## Records returned [3] 
 ## No. unique hierarchies [0] 
 ## Args [q=Tatuidris, limit=100, fields1=key, fields2=canonicalName, fields3=rank] 
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##       key canonicalName     rank   
 ##     &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;  
 ## 1 1319364 Tatuidris         GENUS  
@@ -279,7 +273,7 @@
 ## Records returned [4] 
 ## No. unique hierarchies [0] 
 ## Args [q=Aneuretus, limit=100, fields1=key, fields2=canonicalName, fields3=rank] 
-## # A tibble: 4 × 3
+## # A tibble: 4 x 3
 ##       key canonicalName     rank   
 ##     &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;  
 ## 1 1320037 Aneuretus         GENUS  
@@ -292,7 +286,7 @@
 ## Records returned [3] 
 ## No. unique hierarchies [0] 
 ## Args [q=Xymmer, limit=100, fields1=key, fields2=canonicalName, fields3=rank] 
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##        key canonicalName rank   
 ##      &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;  
 ## 1  4674293 Xymmer        GENUS  
@@ -304,88 +298,88 @@
 ## Records returned [100] 
 ## No. unique hierarchies [0] 
 ## Args [q=Aenictus, limit=100, fields1=key, fields2=canonicalName, fields3=rank] 
-## # A tibble: 100 × 3
-##        key canonicalName          rank   
-##      &lt;int&gt; &lt;chr&gt;                  &lt;chr&gt;  
-##  1 1317499 Aenictus               GENUS  
-##  2 1317539 Aenictus laeviceps     SPECIES
-##  3 8423108 Aenictus rotundicollis SPECIES
-##  4 8992160 Aenictus wiwatwitayai  SPECIES
-##  5 1317567 Aenictus camposi       SPECIES
-##  6 1317578 Aenictus pharoa        SPECIES
-##  7 1317639 Aenictus foreli        SPECIES
-##  8 1317508 Aenictus alticola      SPECIES
-##  9 1317577 Aenictus buttgenbachi  SPECIES
-## 10 1317661 Aenictus hilli         SPECIES
+## # A tibble: 100 x 3
+##        key canonicalName            rank   
+##      &lt;int&gt; &lt;chr&gt;                    &lt;chr&gt;  
+##  1 1317499 Aenictus                 GENUS  
+##  2 8343222 Aenictus acerbus         SPECIES
+##  3 9206927 Aenictus duengkaei       SPECIES
+##  4 7705915 Aenictus breviceps       SPECIES
+##  5 1317598 Aenictus fuscipennis     SPECIES
+##  6 8311018 Aenictus bodongjaya      SPECIES
+##  7 9169381 Aenictus gutianshanensis SPECIES
+##  8 7513461 Aenictus prolixus        SPECIES
+##  9 8757598 Aenictus gonioccipus     SPECIES
+## 10 1317593 Aenictus artipus         SPECIES
 ## # … with 90 more rows</code></pre>
 <pre><code>## Warning in ids[ant] &lt;- c(raw$data$key): number of items to replace is not a
 ## multiple of replacement length</code></pre>
 <p>Now, we will get the actual specimen occurrences for these ants. Practice using an apply function to do this. Inspect the object you’ve queried when you’ve completed your loop. Have we dealt with an object like this before?</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ids</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<div class="sourceCode" id="cb27"><pre class="downlit">
+<span class="va">ids</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
   <span class="kw">for</span> <span class="op">(</span><span class="va">ant</span> <span class="kw">in</span> <span class="va">ants</span><span class="op">)</span><span class="op">{</span>
    <span class="va">raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rgbif/reference/name_suggest.html">name_suggest</a></span><span class="op">(</span><span class="va">ant</span><span class="op">)</span>
    <span class="fu"><a href="https://docs.ropensci.org/rgbif/reference/occ_search.html">occ_search</a></span><span class="op">(</span>taxonKey <span class="op">=</span> <span class="va">raw</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">key</span>, limit <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<span class="op">}</span></pre></div>
 <p>This is a vector or dataframes. Each individual query made it’s own dataframe. For simplicity, lets combine them into one dataframe object.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Combine the resultant dataframes into one large dataframe</span>
+<div class="sourceCode" id="cb28"><pre class="downlit">
+<span class="co">#Combine the resultant dataframes into one large dataframe</span>
 <span class="va">mega_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span>.id <span class="op">=</span> <span class="st">"column_label"</span><span class="op">)</span>
   <span class="kw">for</span> <span class="op">(</span><span class="va">ant</span> <span class="kw">in</span> <span class="va">ants</span><span class="op">)</span><span class="op">{</span>
    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">ant</span><span class="op">$</span><span class="va">data</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<span class="op">}</span></pre></div>
 <p>Since we will be plotting these with a map, we need complete data in both columns - lat and long. Let’s drop any columns without data in both.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Drop rows with NA values in the lat and long</span>
+<div class="sourceCode" id="cb29"><pre class="downlit">
+<span class="co">#Drop rows with NA values in the lat and long</span>
 <span class="va">no_na</span> <span class="op">&lt;-</span> <span class="va">mega_df</span> <span class="op">%&gt;%</span>
 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">scientificName</span>, <span class="va">decimalLatitude</span>, <span class="va">decimalLongitude</span><span class="op">)</span> <span class="op">%&gt;%</span>
-<span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span></pre></div>
 <p>Now let’s take a peek at our results!</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Plot the dataframe of observations</span>
+<div class="sourceCode" id="cb30"><pre class="downlit">
+<span class="co"># Plot the dataframe of observations</span>
 <span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span>
 <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-<span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, popup <span class="op">=</span> <span class="va">no_na</span><span class="op">$</span><span class="va">scientificName</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, popup <span class="op">=</span> <span class="va">no_na</span><span class="op">$</span><span class="va">scientificName</span><span class="op">)</span></pre></div>
 <div id="geospatial-choose-your-own-adventure" class="section level1">
 <h1 class="hasAnchor">
 <a href="#geospatial-choose-your-own-adventure" class="anchor"></a>GeoSpatial Choose Your Own Adventure</h1>
 <p>Below are six code snippets to do different types of map-based plotting. With a partner, discuss what you think would be interesting or important to view in these data. Choose a block of code to modify to accomplish your visualization. We will reconvene in about 30 minutes and do a Round Robin showing everyone’s maps. <em>Have Fun!</em></p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb31"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addCircles</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addCircles</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span><span class="op">)</span></pre></div>
 <div id="draw-point-sizes-from-a-distribution" class="section level3">
 <h3 class="hasAnchor">
 <a href="#draw-point-sizes-from-a-distribution" class="anchor"></a>Draw point sizes from a distribution</h3>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb32"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addCircleMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, radius <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">4</span>, <span class="fl">10</span><span class="op">)</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'red'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addCircleMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, radius <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">4</span>, <span class="fl">10</span><span class="op">)</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'red'</span><span class="op">)</span><span class="op">)</span></pre></div>
 </div>
 <div id="cluster-observations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#cluster-observations" class="anchor"></a>Cluster observations</h3>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb33"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, clusterOptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-options.html">markerClusterOptions</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, clusterOptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-options.html">markerClusterOptions</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></pre></div>
 </div>
 <div id="size-points-by-number-of-observations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#size-points-by-number-of-observations" class="anchor"></a>Size points by number of observations</h3>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">no_na</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb34"><pre class="downlit">
+<span class="va">no_na</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">decimalLatitude</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>n_areas <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>  <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addCircleMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, radius <span class="op">=</span> <span class="op">~</span><span class="va">n_areas</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'red'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addCircleMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, radius <span class="op">=</span> <span class="op">~</span><span class="va">n_areas</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'red'</span><span class="op">)</span><span class="op">)</span></pre></div>
 </div>
 <div id="color-points-by-species" class="section level3">
 <h3 class="hasAnchor">
 <a href="#color-points-by-species" class="anchor"></a>Color points by species</h3>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/colorNumeric.html">colorBin</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb35"><pre class="downlit">
+<span class="va">pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/colorNumeric.html">colorBin</a></span><span class="op">(</span>
   palette <span class="op">=</span> <span class="st">"Blues"</span>,
   <span class="va">no_na</span><span class="op">$</span><span class="va">scientificName</span>,
   pretty <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
@@ -402,13 +396,13 @@
     <span class="op">~</span><span class="va">decimalLatitude</span>,
     color <span class="op">=</span> <span class="op">~</span><span class="fu">factpal</span><span class="op">(</span><span class="va">scientificName</span><span class="op">)</span>,
     stroke <span class="op">=</span> <span class="cn">FALSE</span>, fillOpacity <span class="op">=</span> <span class="fl">0.5</span>
-  <span class="op">)</span> </code></pre></div>
+  <span class="op">)</span> </pre></div>
 </div>
 <div id="set-view-width" class="section level3">
 <h3 class="hasAnchor">
 <a href="#set-view-width" class="anchor"></a>Set view Width</h3>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/colorNumeric.html">colorBin</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb36"><pre class="downlit">
+<span class="va">pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/colorNumeric.html">colorBin</a></span><span class="op">(</span>
   palette <span class="op">=</span> <span class="st">"Blues"</span>,
   <span class="va">no_na</span><span class="op">$</span><span class="va">scientificName</span>,
   pretty <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
@@ -432,7 +426,7 @@
   <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-methods.html">setMaxBounds</a></span><span class="op">(</span> lng1 <span class="op">=</span> <span class="op">-</span><span class="fl">100</span>,
                 lat1 <span class="op">=</span> <span class="fl">19.432241</span>,
                 lng2 <span class="op">=</span> <span class="op">-</span><span class="fl">98</span>,
-                lat2 <span class="op">=</span> <span class="fl">20</span> <span class="op">)</span></code></pre></div>
+                lat2 <span class="op">=</span> <span class="fl">20</span> <span class="op">)</span></pre></div>
 </div>
 <div id="extra-map-color-options-base-maps" class="section level3">
 <h3 class="hasAnchor">
@@ -443,10 +437,10 @@
 <h2 class="hasAnchor">
 <a href="#mapping-a-tree-to-space" class="anchor"></a>Mapping a tree to space</h2>
 <p>We will need one package we haven’t used yet, Liam Revell’s Phytools.</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"liamrevell/phytools"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/liamrevell/phytools">phytools</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="downlit">
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"liamrevell/phytools"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb38"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/liamrevell/phytools">phytools</a></span><span class="op">)</span></pre></div>
 <pre><code>## Loading required package: ape</code></pre>
 <pre><code>## Loading required package: maps</code></pre>
 <pre><code>## 
@@ -463,43 +457,43 @@
 </ol>
 <p>You may have noticed that the GBIF package includes citation information in the scientificName column. We will need to remove that. To do this, let’s try the <code>strsplit</code> function. This function splits a character string on a defined character and returns a vector of the elements in that character string.</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_string</span> <span class="op">=</span> <span class="st">"This is my string"</span>
+<div class="sourceCode" id="cb43"><pre class="downlit">
+<span class="va">my_string</span> <span class="op">=</span> <span class="st">"This is my string"</span>
 <span class="va">split_up</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">my_string</span>, <span class="st">" "</span><span class="op">)</span>
-<span class="va">split_up</span></code></pre></div>
+<span class="va">split_up</span></pre></div>
 <pre><code>## [[1]]
 ## [1] "This"   "is"     "my"     "string"</code></pre>
 <p>Try indexing this object. What do you need to do to access data? Now, with a partner, make this iterable across every row in the <code>scientificName</code> column. Then, unite the split objects into one new column called <code>genusSpecies</code>.</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">split_names</span> <span class="op">&lt;-</span> <span class="va">no_na</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb45"><pre class="downlit">
+<span class="va">split_names</span> <span class="op">&lt;-</span> <span class="va">no_na</span> <span class="op">%&gt;%</span> 
 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>genus <span class="op">=</span> <span class="fu">map_chr</span><span class="op">(</span><span class="va">scientificName</span>, <span class="kw">function</span><span class="op">(</span><span class="va">s</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">" "</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>species <span class="op">=</span> <span class="fu">map_chr</span><span class="op">(</span><span class="va">scientificName</span>, <span class="kw">function</span><span class="op">(</span><span class="va">s</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">s</span>, <span class="st">" "</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-<span class="fu">unite</span><span class="op">(</span>col <span class="op">=</span> <span class="va">genusSpecies</span>, <span class="va">genus</span>, <span class="va">species</span><span class="op">)</span></code></pre></div>
+<span class="fu">unite</span><span class="op">(</span>col <span class="op">=</span> <span class="va">genusSpecies</span>, <span class="va">genus</span>, <span class="va">species</span><span class="op">)</span></pre></div>
 <p>If you look at the data, there are some obviously mistaken values in there. For example, BOLD is not an ant species. Let’s drop that.</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Use ROTL to resolve names</span>
+<div class="sourceCode" id="cb46"><pre class="downlit">
+<span class="co"># Use ROTL to resolve names</span>
 
-<span class="va">no_bold</span> <span class="op">&lt;-</span> <span class="va">split_names</span><span class="op">[</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"BOLD"</span>, <span class="va">split_names</span><span class="op">$</span><span class="va">genusSpecies</span>, invert <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> , <span class="op">]</span></code></pre></div>
+<span class="va">no_bold</span> <span class="op">&lt;-</span> <span class="va">split_names</span><span class="op">[</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"BOLD"</span>, <span class="va">split_names</span><span class="op">$</span><span class="va">genusSpecies</span>, invert <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> , <span class="op">]</span></pre></div>
 <p>We also ended up with far more ant taxa than I thought. What a nice problem to have! But let’s filter down to, say, five of them:</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">a_couple_ants</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Martialis_heureka"</span>, <span class="st">"Atta_mexicana"</span>, <span class="st">"Atta_cephalotes"</span>, <span class="st">"Atta_sexdens"</span>, <span class="st">"Atta_Fabricius"</span><span class="op">)</span>
+<div class="sourceCode" id="cb47"><pre class="downlit">
+<span class="va">a_couple_ants</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Martialis_heureka"</span>, <span class="st">"Atta_mexicana"</span>, <span class="st">"Atta_cephalotes"</span>, <span class="st">"Atta_sexdens"</span>, <span class="st">"Atta_Fabricius"</span><span class="op">)</span>
 <span class="va">subset_data</span> <span class="op">&lt;-</span> <span class="va">no_bold</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">genusSpecies</span> <span class="op">%in%</span> <span class="va">a_couple_ants</span><span class="op">)</span></code></pre></div>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">genusSpecies</span> <span class="op">%in%</span> <span class="va">a_couple_ants</span><span class="op">)</span></pre></div>
 <p>Now, let’s use ROTL to make sure we don’t have spelling errors.</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">reconciled_names</span> <span class="op">&lt;-</span> <span class="fu">rotl</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rotl/reference/tnrs_match_names.html">tnrs_match_names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">subset_data</span><span class="op">$</span><span class="va">genusSpecies</span><span class="op">)</span><span class="op">)</span>
+<div class="sourceCode" id="cb48"><pre class="downlit">
+<span class="va">reconciled_names</span> <span class="op">&lt;-</span> <span class="fu">rotl</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rotl/reference/tnrs_match_names.html">tnrs_match_names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">subset_data</span><span class="op">$</span><span class="va">genusSpecies</span><span class="op">)</span><span class="op">)</span>
 <span class="va">good_names</span> <span class="op">&lt;-</span>  <span class="va">reconciled_names</span> <span class="op">%&gt;%</span>
-  <span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span></pre></div>
 <p>Now, we will query our tree from OpenTree.</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">rotl</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rotl/reference/tol_induced_subtree.html">tol_induced_subtree</a></span><span class="op">(</span><span class="va">good_names</span><span class="op">$</span><span class="va">ott_id</span>, label<span class="op">=</span><span class="st">"name"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="downlit">
+<span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu">rotl</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rotl/reference/tol_induced_subtree.html">tol_induced_subtree</a></span><span class="op">(</span><span class="va">good_names</span><span class="op">$</span><span class="va">ott_id</span>, label<span class="op">=</span><span class="st">"name"</span><span class="op">)</span></pre></div>
 <p>Now, we must combine our GBIF data and our taxon names into a matrix, a two-dimensional data structure with fewer neat data parsing features than a dataframe or tibble. These structures are often preferred when speed is an issue. Matrices can only be one type, which means we must add the row names after generating the object.</p>
 <p>And the big reveal! Let’s overlay our OpenTree with our map:</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridis/">viridis</a></span><span class="op">)</span>
-<span class="va">cols</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html">viridis</a></span><span class="op">(</span>n<span class="op">=</span><span class="fu">Ntip</span><span class="op">(</span><span class="va">tree</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+<div class="sourceCode" id="cb50"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sjmgarnier/viridis">viridis</a></span><span class="op">)</span>
+<span class="va">cols</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/viridisLite/man/viridis.html">viridis</a></span><span class="op">(</span>n<span class="op">=</span><span class="fu">Ntip</span><span class="op">(</span><span class="va">tree</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
     <span class="va">tree</span><span class="op">$</span><span class="va">tip.label</span><span class="op">)</span>
 
-<span class="va">obj</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/phytools/man/phylo.to.map.html">phylo.to.map</a></span><span class="op">(</span><span class="va">tree</span>,<span class="va">only_lat_long</span>, plot<span class="op">=</span><span class="cn">FALSE</span>, direction<span class="op">=</span><span class="st">"rightwards"</span><span class="op">)</span></code></pre></div>
+<span class="va">obj</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/phytools/man/phylo.to.map.html">phylo.to.map</a></span><span class="op">(</span><span class="va">tree</span>,<span class="va">only_lat_long</span>, plot<span class="op">=</span><span class="cn">FALSE</span>, direction<span class="op">=</span><span class="st">"rightwards"</span><span class="op">)</span></pre></div>
 <p>Oh no! What has gone wrong?</p>
 <p>This tree has several quirks. Have a look at the object and see if you can spot them.</p>
 <pre><code>
@@ -511,16 +505,16 @@
 <p>First, let’s resolve the polytomy issue. We will do this using Ape’s <code>multi2di</code> function, which arbitrarily resolves polytomies. In real life, you would probably want to think about this a little more.:</p>
 <p>We’ll also need to add some branch lengths. In our case, we will draw them from an exponential distribution. The exponential is often assumed to be a reasonable approximation for banch lengths - you’ll hear more about this if you take my systematics lab ;)</p>
 <p>In our case, we will use <code>rexp</code> to make the draws, and we will map them to a new attribute <code>edge.length</code> that is a standard attribute of the tree object. In reality, you would likely not want to do this for a publication quality analysis, and would want to estimate branch lengths from data. But being able to rescale branch lengths is a good skill for sensitivity and other similar analyses.</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tree</span><span class="op">$</span><span class="va">edge.length</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span><span class="op">(</span><span class="va">tree</span><span class="op">$</span><span class="va">Nnode</span><span class="op">*</span><span class="fl">2</span><span class="op">)</span>
-<span class="va">tree</span><span class="op">$</span><span class="va">edge.length</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="downlit">
+<span class="va">tree</span><span class="op">$</span><span class="va">edge.length</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span><span class="op">(</span><span class="va">tree</span><span class="op">$</span><span class="va">Nnode</span><span class="op">*</span><span class="fl">2</span><span class="op">)</span>
+<span class="va">tree</span><span class="op">$</span><span class="va">edge.length</span></pre></div>
 <p>Now let’s try that map again.</p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_object</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/phytools/man/phylo.to.map.html">phylo.to.map</a></span><span class="op">(</span><span class="va">tree</span>,<span class="va">only_lat_long</span>, plot<span class="op">=</span><span class="cn">FALSE</span>, direction<span class="op">=</span><span class="st">"rightwards"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="downlit">
+<span class="va">plot_object</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/phytools/man/phylo.to.map.html">phylo.to.map</a></span><span class="op">(</span><span class="va">tree</span>,<span class="va">only_lat_long</span>, plot<span class="op">=</span><span class="cn">FALSE</span>, direction<span class="op">=</span><span class="st">"rightwards"</span><span class="op">)</span></pre></div>
 <p>Finally, we will actually plot to space.</p>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">plot_object</span>,direction<span class="op">=</span><span class="st">"rightwards"</span>,colors<span class="op">=</span><span class="va">cols</span>,cex.points<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,
-    lwd<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>,ftype<span class="op">=</span><span class="st">"i"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">plot_object</span>,direction<span class="op">=</span><span class="st">"rightwards"</span>,colors<span class="op">=</span><span class="va">cols</span>,cex.points<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,
+    lwd<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>,ftype<span class="op">=</span><span class="st">"i"</span><span class="op">)</span></pre></div>
 </div>
 </div>
   </div>

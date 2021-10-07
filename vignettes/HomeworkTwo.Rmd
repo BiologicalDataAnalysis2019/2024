@@ -3,16 +3,14 @@ title: "Homework Two"
 output: html_document
 ---
 
-# Homework One: Due Sept. 24 at 5 pm.
+# Homework Two: Due Oct. 1 at 5 pm.
 
-First, download your homework. In your RStudio, enter:
+First, we will use a modified version of surveys.csv, which has some strange values entered for NAs. Download like so: 
 
-```{r}
-download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2021/master/vignettes/HomeworkTwo.Rmd", destfile = "/cloud/project/homeworks/HW2.Rmd")
+```{r, eval=FALSE}
+download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2021/master/homeworks/HomeworkTwo.Rmd", destfile = "/cloud/project/homeworks/HomeworkTwo.Rmd")
+download.file("https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2021/master/homeworks/HW2_data/surveys_odd_NA_values.csv", destfile = "/cloud/project/data/surveys_odd_NA_values.csv")
 ```
-
-Your homework will now be located in a directory called `homeworks`.
-
 
 In your RStudio interface, you will note that there is now a "Homeworks" directory. In it, you will find "HomeworkTwo.Rmd". In your RStudio instance, open it.
 
@@ -23,7 +21,7 @@ You are welcome, and even encouraged, to work with a partner. I do ask, though, 
 
 ## Question One - 1 point.
 
-Load in the surveys.csv data file, and save it to a variable called "surveys".
+Load in the `surveys.csv` data file that is located in your homework folder, and save it to a variable called `surveys`. Use the read_csv function in the `tidyverse` package to do this.
 
 ```{r}
 #Enter your answer for Question 1 here
@@ -32,7 +30,7 @@ Load in the surveys.csv data file, and save it to a variable called "surveys".
 
 ## Question Two - 1 point
 
-What is the mean hindfoot length? Show your work below:
+Have a look at the copy of `surveys.csv`. You will notice that there are some unusual NA values. Particularly, the "species_id" column has some odd values. Look at the help page for `read_csv`. Can you find a way to read these unusual values as NAs? Are you able to process both NA and the odd value as NAs? Try it out.
 ```{r}
 #Enter your answer for Question 2 here
 
@@ -40,7 +38,7 @@ What is the mean hindfoot length? Show your work below:
 
 ## Question Three - 1 point
 
-Save the `hindfoot_length` column to its own variable, called `hindfoot_vector`.
+Remove the NA values from the `hindfoot_length` column using a pipe and a filter.
 ```{r}
 #Enter your answer for Question 3 here
 
@@ -48,55 +46,31 @@ Save the `hindfoot_length` column to its own variable, called `hindfoot_vector`.
 
 ## Question Four - 2 points
 
-Calculate the mean of the `hindfoot_vector`. Does it work? 
+Verify that the NA values were removed. Don't do this by looking at the column - use code.
 ```{r}
 #Enter your answer for Question 4 here
 
 ```
-In your own words, why did it not work? 
-
 
 ## Question Five - 1 point
 
-Test your idea about why it didn't work by writing some code that will fix the problem.
-```{r}
-#Enter your answer for Question 5 here
+Explain the logic of your answer to Question Four. How did you accomplish this? 
 
-```
 
-## Question Six - 2 points
+## Question Six - 1 point
 
-We included an example in class that was a little confusing. Can you explain, in your own words, why the code gives the result it does?
+Imagine you are testing the hypothesis that mammal body sizes will be larger under climate change to decrease surface to body size ratio. First, what columns in the dataframe will you use to address this question? 
 
-```{r}
-animals <- c("mouse", "rat", "dog", "cat")
-animals %in% c("rat", "cat", "dog", "duck", "goat")
-
-```
-Enter your explanation here:
 
 ## Question Seven - 2 points
 
-I have written some code to calculate the mean of the hindfoot. But it's not working! Correct my code. 
+Let's try some analysis: Use a `filter`, a `group_by`, and a `summarize` to decide if you think mammal body sizes are decreasing under climate change.
 
 ```{r eval=FALSE}
-surveys <- read.csv("/cloud/project/data/surveys.csv")
-hindfoot_vector <- surveys[7]
-hindfoot_mean <- (sum(hindfoot_vector)/length(hindfoot_vector))
+
+
 ```
 
+## Question Eight - 1 points
 
-## For the Graduate Students
-
-Each of you sent in a spreadsheet to me. They looked good. They'll work. But I'd like each of you to think about the data in those spreadsheets.
-
-1. If your data are saved in Excel format, under the `File` menu in Excel, Save As -> csv. To keep it simple for now, if you have multiple worksheets in your Excel file, just pick a single one for now. Upload it to your RStudio Cloud and save in the data folder.
-
-2. Read it in with `read.csv`. Are the types of the columns appropriate? 
-
-
-3. Do your NA values read in appropriately? If you drop NAs from your dataframe, does the resultant dataframe seem to have the correct rows or columns dropped?
-
-4. Dates. Are they formatted consistently? If not, fix with `lubridate`. 
-
-5. What are you looking to do with this data? Make sure you actually want to do this task - you might see it again ;p
+Based on the outputs of question 7, does it look like mammal body sizes are decreasing over time?

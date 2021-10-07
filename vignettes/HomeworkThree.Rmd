@@ -48,4 +48,12 @@ Answer here
 
 # Question 5
 
+Do you trust that this package does what it says it is doing? Why or why not? 
+
+```
+Answer here
+```
+
+# Question 6
+
 Have a look at [these](https://libguides.bc.edu/dataplan/best_practices) data storage best practices from Boston College. Have this read by Tuesday, Oct. 7 as we will use this in an activity.

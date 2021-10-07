@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -81,28 +81,28 @@
       <a href="../articles/08_linear_models.html">Introduction to Linear Models: Building and Interpreting Linear Regressions</a>
     </li>
     <li>
-      <a href="../articles/09_GBIF_and_Location.html">GBIF And Spatial Data</a>
+      <a href="../articles/09_Tree_of_life.html">GeneticData</a>
     </li>
     <li>
-      <a href="../articles/FunctionReference.html">FunctionReference.Rmd</a>
-    </li>
-    <li>
-      <a href="../articles/HW5.html">Homework Five</a>
+      <a href="../articles/10_GBIF_and_Location.html">GBIF And Spatial Data</a>
     </li>
     <li>
       <a href="../articles/HomeworkFive.html">Homework Five</a>
     </li>
     <li>
-      <a href="../articles/HomeworkFour.html">Homework Four</a>
-    </li>
-    <li>
-      <a href="../articles/HomeworkOne.html">Homework One</a>
+      <a href="../articles/HomeworkFour.html">Homework Three</a>
     </li>
     <li>
       <a href="../articles/HomeworkThree.html">Homework Three</a>
     </li>
     <li>
       <a href="../articles/HomeworkTwo.html">Homework Two</a>
+    </li>
+    <li>
+      <a href="../articles/ProblemSession0.html">ProblemSession01</a>
+    </li>
+    <li>
+      <a href="../articles/ProblemSession1.html">ProblemSession1</a>
     </li>
     <li>
       <a href="../articles/ProjectOne.html">ProjectOne</a>
@@ -123,7 +123,7 @@
 
       
 
-      </header><script src="ProjectTwo_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="ProjectTwo_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Project Two</h1>
@@ -136,23 +136,25 @@
 
     
     
-<p>Due Oct. 18 at Midnight.</p>
-<p>First, obtain a copy of the RMarkdown for this exam</p>
+<p>Due Nov. 5 at Midnight.</p>
 <p>For this first part of the exam, you can either use <code>surveys_complete.csv</code> or your own data. If you are using your own data, you must have data in which you think you have a numerical predictor variable and a numerical response variable. If you are using <code>surveys_complete</code>, you can use weight and hindfoot_length for this.</p>
 <ol style="list-style-type: decimal">
 <li>Load in your data. Which variable will you be using as a predictor, and which as a response? (5 pts)</li>
 </ol>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"># read in data here</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># read in data here</span></pre></div>
 <pre><code># Answer which column is predictor and which is response</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Plot the two against each other with a scatter plot. Do the data appear to be related linearly? (5 pts)</li>
 </ol>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"># Plot here</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co"># Plot here</span></pre></div>
 <pre><code>#Answer here</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Fit the linear model. View the summary. (5 pts)</li>
 </ol>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"># Code here</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="co"># Code here</span></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Does the summary make sense? Does our model have good precitive power? Evaluate the residual standard error, intercept, and R-Squared in particular. (10 pts)</li>
 </ol>
@@ -164,34 +166,41 @@
 <ol start="6" style="list-style-type: decimal">
 <li>Check the normality of the residuals. Do they look OK? Are we violating assumptions? (5 pts)</li>
 </ol>
-<div class="sourceCode" id="cb8"><html><body><pre class="r">#Code here</pre></body></html></div>
-<div class="sourceCode" id="cb9"><html><body><pre class="r">#Answer here</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="co">#Code here</span></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="co">#Answer here</span></pre></div>
 <ol start="7" style="list-style-type: decimal">
 <li>If you are using <code>surveys_complete</code>: Is there interspecific variation in the linear model? Hint: look at our prior work with facet plots. (15 pts)</li>
 </ol>
 <p>If you are <em>not</em> using <code>surveys_complete</code>: Do you think there are groupings within your data that may have a separate linear model? Try grouping the data by that variable and redoing the lm. (15 pts)</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r">#code here</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="co">#code here</span></pre></div>
 <div id="part-two" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-two" class="anchor"></a>Part Two</h2>
 <p>In this portion, you are free to use your own data if you have a categorical predictor variable and a response variable. Otherwise, you may use the columns sex and weight in <code>surveys_complete</code></p>
 <ol style="list-style-type: decimal">
-<li>First, plot the data grouped by sex, <em>or a relevant variable in your data</em> (5 pts)</li>
+<li>First, plot the data grouped by sex (5 pts)</li>
 </ol>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"># plot code here</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="co"># plot code here</span></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Try an ANOVA of this data (5 pt)</li>
 </ol>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"># ANOVA code here</pre></body></html></div>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="co"># ANOVA code here</span></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>How about a linear model? What information does this give you that an ANOVA can’t? (5 pts)</li>
 </ol>
-<div class="sourceCode" id="cb13"><html><body><pre class="r">#Code here</pre></body></html></div>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="co">#Code here</span></pre></div>
 <pre><code>#Answer here</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Plot the lm with the data, with points colored by sex <em>or your relevant variable</em>. (10 pts)</li>
+<li>Plot the lm with the data, with points colored by sex. (10 pts)</li>
 </ol>
-<div class="sourceCode" id="cb15"><html><body><pre class="r">#Plot code here</pre></body></html></div>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="co">#Plot code here</span></pre></div>
 </div>
 <div id="part-three" class="section level2">
 <h2 class="hasAnchor">
@@ -231,7 +240,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

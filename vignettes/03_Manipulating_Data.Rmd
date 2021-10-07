@@ -4,7 +4,7 @@ author: Data Carpentry contributors
 ---
 
 ```{r, echo=FALSE, purl=FALSE, message = FALSE}
-surveys <- read.csv("/cloud/project/data/portal_data_joined.csv")
+surveys <- read.csv("data/portal_data_joined.csv")
 suppressWarnings(surveys$date <- lubridate::ymd(paste(surveys$year,
                                                       surveys$month,
                                                       surveys$day,
@@ -95,7 +95,7 @@ We'll read in our data using the `read_csv()` function, from the tidyverse packa
 
 
 ```{r, results = 'hide', purl = FALSE}
-surveys <- read_csv("/cloud/project/data/portal_data_joined.csv")
+surveys <- read_csv("data/portal_data_joined.csv")
 
 ## inspect the data
 str(surveys)
@@ -778,11 +778,11 @@ Now that our data set is ready, we can save it as a CSV file in our `data_output
 folder.
 
 ```{r, purl=FALSE, eval=FALSE}
-write_csv(surveys_complete, path = "/cloud/project//cloud/project/data_output/surveys_complete.csv")
+write_csv(surveys_complete, path = "data_output/surveys_complete.csv")
 ```
 
 ```{r, purl=FALSE, eval=TRUE, echo=FALSE}
-if (!dir.exists("/cloud/project/data_output")) dir.create("/cloud/project/data_output")
-write_csv(surveys_complete, path = "/cloud/project/data_output/surveys_complete.csv")
+if (!dir.exists("data_output/")) dir.create("data_output/")
+write_csv(surveys_complete, path = "data_output/surveys_complete.csv")
 ```
 
