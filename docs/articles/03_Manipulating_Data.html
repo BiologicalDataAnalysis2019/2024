@@ -75,9 +75,6 @@
       <a href="../articles/06_Exploration_Setup.html">Exploration</a>
     </li>
     <li>
-      <a href="../articles/07_Exploration_Hands_On.html">Exploration Hands-On</a>
-    </li>
-    <li>
       <a href="../articles/08_linear_models.html">Introduction to Linear Models: Building and Interpreting Linear Regressions</a>
     </li>
     <li>
@@ -90,19 +87,13 @@
       <a href="../articles/HomeworkFive.html">Homework Five</a>
     </li>
     <li>
-      <a href="../articles/HomeworkFour.html">Homework Three</a>
+      <a href="../articles/HomeworkFour.html">Homework Four</a>
     </li>
     <li>
       <a href="../articles/HomeworkThree.html">Homework Three</a>
     </li>
     <li>
       <a href="../articles/HomeworkTwo.html">Homework Two</a>
-    </li>
-    <li>
-      <a href="../articles/ProblemSession0.html">ProblemSession01</a>
-    </li>
-    <li>
-      <a href="../articles/ProblemSession1.html">ProblemSession1</a>
     </li>
     <li>
       <a href="../articles/ProjectOne.html">ProjectOne</a>
@@ -237,7 +228,7 @@
 <p>To choose rows based on a specific criteria, use <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">surveys</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">1995</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 1,180 x 13
+<pre><code>## # A tibble: 1,180 × 13
 ##    record_id month   day  year plot_id species_id sex   hindfoot_length weight
 ##        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
 ##  1     22314     6     7  1995       2 NL         M                  34     NA
@@ -271,7 +262,7 @@
 <span class="va">surveys</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">weight</span> <span class="op">&lt;</span> <span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">select</span><span class="op">(</span><span class="va">species_id</span>, <span class="va">sex</span>, <span class="va">weight</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 17 x 3
+<pre><code>## # A tibble: 17 × 3
 ##    species_id sex   weight
 ##    &lt;chr&gt;      &lt;chr&gt;  &lt;dbl&gt;
 ##  1 PF         F          4
@@ -300,7 +291,7 @@
   <span class="fu">select</span><span class="op">(</span><span class="va">species_id</span>, <span class="va">sex</span>, <span class="va">weight</span><span class="op">)</span>
 
 <span class="va">surveys_sml</span></pre></div>
-<pre><code>## # A tibble: 17 x 3
+<pre><code>## # A tibble: 17 × 3
 ##    species_id sex   weight
 ##    &lt;chr&gt;      &lt;chr&gt;  &lt;dbl&gt;
 ##  1 PF         F          4
@@ -337,7 +328,7 @@
 <div class="sourceCode" id="cb19"><pre class="downlit">
 <span class="va">surveys</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>weight_kg <span class="op">=</span> <span class="va">weight</span> <span class="op">/</span> <span class="fl">1000</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 34,786 x 14
+<pre><code>## # A tibble: 34,786 × 14
 ##    record_id month   day  year plot_id species_id sex   hindfoot_length weight
 ##        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
 ##  1         1     7    16  1977       2 NL         M                  32     NA
@@ -357,7 +348,7 @@
 <span class="va">surveys</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>weight_kg <span class="op">=</span> <span class="va">weight</span> <span class="op">/</span> <span class="fl">1000</span>,
          weight_kg2 <span class="op">=</span> <span class="va">weight_kg</span> <span class="op">*</span> <span class="fl">2</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 34,786 x 15
+<pre><code>## # A tibble: 34,786 × 15
 ##    record_id month   day  year plot_id species_id sex   hindfoot_length weight
 ##        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
 ##  1         1     7    16  1977       2 NL         M                  32     NA
@@ -377,7 +368,7 @@
 <span class="va">surveys</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>weight_kg <span class="op">=</span> <span class="va">weight</span> <span class="op">/</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 6 x 14
+<pre><code>## # A tibble: 6 × 14
 ##   record_id month   day  year plot_id species_id sex   hindfoot_length weight
 ##       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
 ## 1         1     7    16  1977       2 NL         M                  32     NA
@@ -394,7 +385,7 @@
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>weight_kg <span class="op">=</span> <span class="va">weight</span> <span class="op">/</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 6 x 14
+<pre><code>## # A tibble: 6 × 14
 ##   record_id month   day  year plot_id species_id sex   hindfoot_length weight
 ##       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
 ## 1       588     2    18  1978       2 NL         M                  NA    218
@@ -430,7 +421,7 @@
 <span class="va">surveys</span> <span class="op">%&gt;%</span>
   <span class="fu">group_by</span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">summarize</span><span class="op">(</span>mean_weight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">weight</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 3 x 2
+<pre><code>## # A tibble: 3 × 2
 ##   sex   mean_weight
 ##   &lt;chr&gt;       &lt;dbl&gt;
 ## 1 F            42.2
@@ -443,7 +434,7 @@
   <span class="fu">group_by</span><span class="op">(</span><span class="va">sex</span>, <span class="va">species_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">summarize</span><span class="op">(</span>mean_weight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">weight</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></pre></div>
 <pre><code>## `summarise()` has grouped output by 'sex'. You can override using the `.groups` argument.</code></pre>
-<pre><code>## # A tibble: 92 x 3
+<pre><code>## # A tibble: 92 × 3
 ## # Groups:   sex [3]
 ##    sex   species_id mean_weight
 ##    &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
@@ -465,7 +456,7 @@
   <span class="fu">group_by</span><span class="op">(</span><span class="va">sex</span>, <span class="va">species_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">summarize</span><span class="op">(</span>mean_weight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span></pre></div>
 <pre><code>## `summarise()` has grouped output by 'sex'. You can override using the `.groups` argument.</code></pre>
-<pre><code>## # A tibble: 64 x 3
+<pre><code>## # A tibble: 64 × 3
 ## # Groups:   sex [3]
 ##    sex   species_id mean_weight
 ##    &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
@@ -488,7 +479,7 @@
   <span class="fu">summarize</span><span class="op">(</span>mean_weight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></pre></div>
 <pre><code>## `summarise()` has grouped output by 'sex'. You can override using the `.groups` argument.</code></pre>
-<pre><code>## # A tibble: 64 x 3
+<pre><code>## # A tibble: 64 × 3
 ## # Groups:   sex [3]
 ##    sex   species_id mean_weight
 ##    &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
@@ -516,7 +507,7 @@
   <span class="fu">summarize</span><span class="op">(</span>mean_weight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span>,
             min_weight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span></pre></div>
 <pre><code>## `summarise()` has grouped output by 'sex'. You can override using the `.groups` argument.</code></pre>
-<pre><code>## # A tibble: 64 x 4
+<pre><code>## # A tibble: 64 × 4
 ## # Groups:   sex [3]
 ##    sex   species_id mean_weight min_weight
 ##    &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;
@@ -540,7 +531,7 @@
             min_weight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">arrange</span><span class="op">(</span><span class="va">min_weight</span><span class="op">)</span></pre></div>
 <pre><code>## `summarise()` has grouped output by 'sex'. You can override using the `.groups` argument.</code></pre>
-<pre><code>## # A tibble: 64 x 4
+<pre><code>## # A tibble: 64 × 4
 ## # Groups:   sex [3]
 ##    sex   species_id mean_weight min_weight
 ##    &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;
@@ -564,7 +555,7 @@
             min_weight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">mean_weight</span><span class="op">)</span><span class="op">)</span></pre></div>
 <pre><code>## `summarise()` has grouped output by 'sex'. You can override using the `.groups` argument.</code></pre>
-<pre><code>## # A tibble: 64 x 4
+<pre><code>## # A tibble: 64 × 4
 ## # Groups:   sex [3]
 ##    sex   species_id mean_weight min_weight
 ##    &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;
@@ -587,7 +578,7 @@
 <div class="sourceCode" id="cb48"><pre class="downlit">
 <span class="va">surveys</span> <span class="op">%&gt;%</span>
     <span class="fu">count</span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> </pre></div>
-<pre><code>## # A tibble: 3 x 2
+<pre><code>## # A tibble: 3 × 2
 ##   sex       n
 ##   &lt;chr&gt; &lt;int&gt;
 ## 1 F     15690
@@ -598,7 +589,7 @@
 <span class="va">surveys</span> <span class="op">%&gt;%</span>
     <span class="fu">group_by</span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu">summarise</span><span class="op">(</span>count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 3 x 2
+<pre><code>## # A tibble: 3 × 2
 ##   sex   count
 ##   &lt;chr&gt; &lt;int&gt;
 ## 1 F     15690
@@ -608,7 +599,7 @@
 <div class="sourceCode" id="cb52"><pre class="downlit">
 <span class="va">surveys</span> <span class="op">%&gt;%</span>
     <span class="fu">count</span><span class="op">(</span><span class="va">sex</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </pre></div>
-<pre><code>## # A tibble: 3 x 2
+<pre><code>## # A tibble: 3 × 2
 ##   sex       n
 ##   &lt;chr&gt; &lt;int&gt;
 ## 1 M     17348
@@ -618,7 +609,7 @@
 <div class="sourceCode" id="cb54"><pre class="downlit">
 <span class="va">surveys</span> <span class="op">%&gt;%</span>
   <span class="fu">count</span><span class="op">(</span><span class="va">sex</span>, <span class="va">species</span><span class="op">)</span> </pre></div>
-<pre><code>## # A tibble: 81 x 3
+<pre><code>## # A tibble: 81 × 3
 ##    sex   species         n
 ##    &lt;chr&gt; &lt;chr&gt;       &lt;int&gt;
 ##  1 F     albigula      675
@@ -637,7 +628,7 @@
 <span class="va">surveys</span> <span class="op">%&gt;%</span>
   <span class="fu">count</span><span class="op">(</span><span class="va">sex</span>, <span class="va">species</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">arrange</span><span class="op">(</span><span class="va">species</span>, <span class="fu">desc</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 81 x 3
+<pre><code>## # A tibble: 81 × 3
 ##    sex   species             n
 ##    &lt;chr&gt; &lt;chr&gt;           &lt;int&gt;
 ##  1 F     albigula          675
@@ -660,7 +651,7 @@
 <div class="sourceCode" id="cb58"><pre class="downlit">
 <span class="va">surveys</span> <span class="op">%&gt;%</span>
     <span class="fu">count</span><span class="op">(</span><span class="va">plot_type</span><span class="op">)</span> </pre></div>
-<pre><code>## # A tibble: 5 x 2
+<pre><code>## # A tibble: 5 × 2
 ##   plot_type                     n
 ##   &lt;chr&gt;                     &lt;int&gt;
 ## 1 Control                   15611
@@ -681,7 +672,7 @@
         max_hindfoot_length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">hindfoot_length</span><span class="op">)</span>,
         n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>
     <span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 25 x 5
+<pre><code>## # A tibble: 25 × 5
 ##    species_id mean_hindfoot_length min_hindfoot_length max_hindfoot_length     n
 ##    &lt;chr&gt;                     &lt;dbl&gt;               &lt;dbl&gt;               &lt;dbl&gt; &lt;int&gt;
 ##  1 AH                         33                    31                  35     2
@@ -705,7 +696,7 @@
     <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">weight</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu">select</span><span class="op">(</span><span class="va">year</span>, <span class="va">genus</span>, <span class="va">species</span>, <span class="va">weight</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu">arrange</span><span class="op">(</span><span class="va">year</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 27 x 4
+<pre><code>## # A tibble: 27 × 4
 ## # Groups:   year [26]
 ##     year genus     species     weight
 ##    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt;
@@ -802,7 +793,7 @@
 <span class="va">surveys_gw</span> <span class="op">%&gt;%</span>
   <span class="fu">spread</span><span class="op">(</span><span class="va">genus</span>, <span class="va">mean_weight</span>, fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 6 x 11
+<pre><code>## # A tibble: 6 × 11
 ##   plot_id Baiomys Chaetodipus Dipodomys Neotoma Onychomys Perognathus Peromyscus
 ##     &lt;dbl&gt;   &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
 ## 1       1    7           22.2      60.2    156.      27.7        9.62       22.2
@@ -843,7 +834,7 @@
 <span class="va">surveys_spread</span> <span class="op">%&gt;%</span>
   <span class="fu">gather</span><span class="op">(</span>key <span class="op">=</span> <span class="va">genus</span>, value <span class="op">=</span> <span class="va">mean_weight</span>, <span class="va">Baiomys</span><span class="op">:</span><span class="va">Spermophilus</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 6 x 3
+<pre><code>## # A tibble: 6 × 3
 ##   plot_id genus   mean_weight
 ##     &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
 ## 1       1 Baiomys        7   
@@ -865,7 +856,7 @@
 <pre><code>## `summarise()` has grouped output by 'plot_id'. You can override using the `.groups` argument.</code></pre>
 <div class="sourceCode" id="cb78"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">rich_time</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 6 x 27
+<pre><code>## # A tibble: 6 × 27
 ## # Groups:   plot_id [6]
 ##   plot_id `1977` `1978` `1979` `1980` `1981` `1982` `1983` `1984` `1985` `1986`
 ##     &lt;dbl&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
@@ -884,7 +875,7 @@
 <div class="sourceCode" id="cb80"><pre class="downlit">
 <span class="va">rich_time</span> <span class="op">%&gt;%</span>
   <span class="fu">gather</span><span class="op">(</span><span class="va">year</span>, <span class="va">n_genera</span>, <span class="op">-</span><span class="va">plot_id</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 624 x 3
+<pre><code>## # A tibble: 624 × 3
 ## # Groups:   plot_id [24]
 ##    plot_id year  n_genera
 ##      &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
@@ -914,7 +905,7 @@
   <span class="fu">summarize</span><span class="op">(</span>mean_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">value</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">spread</span><span class="op">(</span><span class="va">measurement</span>, <span class="va">mean_value</span><span class="op">)</span></pre></div>
 <pre><code>## `summarise()` has grouped output by 'year', 'measurement'. You can override using the `.groups` argument.</code></pre>
-<pre><code>## # A tibble: 130 x 4
+<pre><code>## # A tibble: 130 × 4
 ## # Groups:   year [26]
 ##     year plot_type                 hindfoot_length weight
 ##    &lt;dbl&gt; &lt;chr&gt;                               &lt;dbl&gt;  &lt;dbl&gt;
@@ -964,7 +955,7 @@
 <pre><code>## Warning: The `path` argument of `write_csv()` is deprecated as of readr 1.4.0.
 ## Please use the `file` argument instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
 </div>
   </div>
 

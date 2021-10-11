@@ -75,9 +75,6 @@
       <a href="../articles/06_Exploration_Setup.html">Exploration</a>
     </li>
     <li>
-      <a href="../articles/07_Exploration_Hands_On.html">Exploration Hands-On</a>
-    </li>
-    <li>
       <a href="../articles/08_linear_models.html">Introduction to Linear Models: Building and Interpreting Linear Regressions</a>
     </li>
     <li>
@@ -90,19 +87,13 @@
       <a href="../articles/HomeworkFive.html">Homework Five</a>
     </li>
     <li>
-      <a href="../articles/HomeworkFour.html">Homework Three</a>
+      <a href="../articles/HomeworkFour.html">Homework Four</a>
     </li>
     <li>
       <a href="../articles/HomeworkThree.html">Homework Three</a>
     </li>
     <li>
       <a href="../articles/HomeworkTwo.html">Homework Two</a>
-    </li>
-    <li>
-      <a href="../articles/ProblemSession0.html">ProblemSession01</a>
-    </li>
-    <li>
-      <a href="../articles/ProblemSession1.html">ProblemSession1</a>
     </li>
     <li>
       <a href="../articles/ProjectOne.html">ProjectOne</a>
@@ -384,7 +375,7 @@
 <span class="co"># it comes installed with tidyverse, but needs to be loaded with library(broom) in the setup chunk.</span>
 <span class="co"># Gives coefficients in tidy form</span>
 <span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 2 x 5
+<pre><code>## # A tibble: 2 × 5
 ##   term            estimate std.error statistic   p.value
 ##   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 (Intercept)       -1.16    0.205       -5.63 6.09e-  8
@@ -392,7 +383,7 @@
 <div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="co"># Gives R^2 (and some other values, stay tuned!!!) in tidy form</span>
 <span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/glance.html">glance</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 1 x 12
+<pre><code>## # A tibble: 1 × 12
 ##   r.squared adj.r.squared sigma statistic   p.value    df logLik   AIC   BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     0.967         0.967 0.627     5746. 3.13e-148     1  -189.  385.  395.
@@ -400,7 +391,7 @@
 <div class="sourceCode" id="cb12"><pre class="downlit">
 <span class="co">## Gives a whoooole bunch of under-the-hood info in tidy form - tacked onto the data itself!!!</span>
 <span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">model_fit</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 200 x 8
+<pre><code>## # A tibble: 200 × 8
 ##    body_depth carapace_length .fitted   .resid .std.resid    .hat .sigma .cooksd
 ##         &lt;dbl&gt;           &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
 ##  1        7              16.1    6.46  0.540      0.875   0.0304   0.627 1.20e-2
@@ -437,7 +428,7 @@
 <span class="co">## first argument is the data itself, second is the model object</span>
 <span class="co">## output column `resid` contains the goods</span>
 <span class="fu">modelr</span><span class="fu">::</span><span class="fu"><a href="https://modelr.tidyverse.org/reference/add_residuals.html">add_residuals</a></span><span class="op">(</span><span class="va">crabs</span>, <span class="va">model_fit</span><span class="op">)</span></pre></div>
-<pre><code>## # A tibble: 200 x 8
+<pre><code>## # A tibble: 200 × 8
 ##    color sex   frontal_lobe rear_width carapace_length carapace_width body_depth
 ##    &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;      &lt;dbl&gt;
 ##  1 blue  M              8.1        6.7            16.1           19          7  
