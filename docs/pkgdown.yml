@@ -7,7 +7,7 @@ articles:
   02_Starting_with_Data: 02_Starting_with_Data.html
   03_Manipulating_Data: 03_Manipulating_Data.html
   04-plotting: 04-plotting.html
-  05-Functions: 05-Functions.html
+  05_Functions: 05_Functions.html
   06_Exploration_Setup: 06_Exploration_Setup.html
   08_linear_models: 08_linear_models.html
   09_Tree_of_life: 09_Tree_of_life.html
@@ -18,5 +18,5 @@ articles:
   HomeworkTwo: HomeworkTwo.html
   ProjectOne: ProjectOne.html
   ProjectTwo: ProjectTwo.html
-last_built: 2021-10-12T18:16Z
+last_built: 2021-10-13T18:03Z
 

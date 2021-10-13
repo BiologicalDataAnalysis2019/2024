@@ -69,7 +69,7 @@
       <a href="../articles/04-plotting.html">Data visualization with ggplot2</a>
     </li>
     <li>
-      <a href="../articles/05-Functions.html">Functions and repeatability</a>
+      <a href="../articles/05_Functions.html">Functions and repeatability</a>
     </li>
     <li>
       <a href="../articles/06_Exploration_Setup.html">Exploration</a>
@@ -138,7 +138,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rotl/">rotl</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rgbif">rgbif</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">leaflet</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/">leaflet</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></pre></div>
 <p>First, we’re going to try an example for one ant. We will query locality data and map it in a few ways. Then, you will figure out how to make the process of mapping data iterable over a set of taxa.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
@@ -153,9 +153,9 @@
   <span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span></pre></div>
 <p>And finally, we will plot the data using <code>leaflet</code></p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">leaflet</span><span class="fu">::</span><span class="fu">leaflet</span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">addTiles</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">addMarkers</span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, popup <span class="op">=</span> <span class="va">no_na</span><span class="op">$</span><span class="va">scientificName</span><span class="op">)</span></pre></div>
+<span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, popup <span class="op">=</span> <span class="va">no_na</span><span class="op">$</span><span class="va">scientificName</span><span class="op">)</span></pre></div>
 <p>This looks much like plotting with <code>ggplot</code> and tidyverse. That’s because leaflet is based on the same principles. We establish a canvas and the data in the first line, then we add tiles (the actual map we will use), and then we add our points. When we think about it, this is quite similar to establishing a ggplot canvas, the axes, and the points to plot.</p>
 <p>One point is easy. How often do we only want one point, though? Probably, we will want to plot several species. First, with a partner, work out how to get GBIF ids for a set of taxa.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
@@ -194,32 +194,32 @@
 <p>Now let’s take a peek at our results!</p>
 <div class="sourceCode" id="cb11"><pre class="downlit">
 <span class="co"># Plot the dataframe of observations</span>
-<span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">leaflet</span><span class="fu">::</span><span class="fu">leaflet</span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span>
-<span class="fu">addTiles</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-<span class="fu">addMarkers</span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, popup <span class="op">=</span> <span class="va">no_na</span><span class="op">$</span><span class="va">scientificName</span><span class="op">)</span></pre></div>
+<span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, popup <span class="op">=</span> <span class="va">no_na</span><span class="op">$</span><span class="va">scientificName</span><span class="op">)</span></pre></div>
 <div id="geospatial-choose-your-own-adventure" class="section level1">
 <h1 class="hasAnchor">
 <a href="#geospatial-choose-your-own-adventure" class="anchor"></a>GeoSpatial Choose Your Own Adventure</h1>
 <p>Below are six code snippets to do different types of map-based plotting. With a partner, discuss what you think would be interesting or important to view in these data. Choose a block of code to modify to accomplish your visualization. We will reconvene in about 30 minutes and do a Round Robin showing everyone’s maps. <em>Have Fun!</em></p>
 <div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu">leaflet</span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">addTiles</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">addCircles</span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addCircles</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span><span class="op">)</span></pre></div>
 <div id="draw-point-sizes-from-a-distribution" class="section level3">
 <h3 class="hasAnchor">
 <a href="#draw-point-sizes-from-a-distribution" class="anchor"></a>Draw point sizes from a distribution</h3>
 <div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu">leaflet</span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">addTiles</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">addCircleMarkers</span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, radius <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">4</span>, <span class="fl">10</span><span class="op">)</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'red'</span><span class="op">)</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addCircleMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, radius <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">4</span>, <span class="fl">10</span><span class="op">)</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'red'</span><span class="op">)</span><span class="op">)</span></pre></div>
 </div>
 <div id="cluster-observations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#cluster-observations" class="anchor"></a>Cluster observations</h3>
 <div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="fu">leaflet</span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">addTiles</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">addMarkers</span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, clusterOptions <span class="op">=</span> <span class="fu">markerClusterOptions</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="va">no_na</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, clusterOptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-options.html">markerClusterOptions</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></pre></div>
 </div>
 <div id="size-points-by-number-of-observations" class="section level3">
 <h3 class="hasAnchor">
@@ -228,27 +228,27 @@
 <span class="va">no_na</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">decimalLatitude</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>n_areas <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>  <span class="op">%&gt;%</span> 
-  <span class="fu">leaflet</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">addTiles</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">addCircleMarkers</span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, radius <span class="op">=</span> <span class="op">~</span><span class="va">n_areas</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'red'</span><span class="op">)</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addCircleMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, radius <span class="op">=</span> <span class="op">~</span><span class="va">n_areas</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'red'</span><span class="op">)</span><span class="op">)</span></pre></div>
 </div>
 <div id="color-points-by-species" class="section level3">
 <h3 class="hasAnchor">
 <a href="#color-points-by-species" class="anchor"></a>Color points by species</h3>
 <div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="va">pal</span> <span class="op">&lt;-</span> <span class="fu">colorBin</span><span class="op">(</span>
+<span class="va">pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/colorNumeric.html">colorBin</a></span><span class="op">(</span>
   palette <span class="op">=</span> <span class="st">"Blues"</span>,
   <span class="va">no_na</span><span class="op">$</span><span class="va">scientificName</span>,
   pretty <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="va">levs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">no_na</span><span class="op">$</span><span class="va">scientificName</span><span class="op">)</span>
-<span class="va">factpal</span> <span class="op">&lt;-</span> <span class="fu">colorFactor</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">topo.colors</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, <span class="va">levs</span><span class="op">)</span>
+<span class="va">factpal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/colorNumeric.html">colorFactor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">topo.colors</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, <span class="va">levs</span><span class="op">)</span>
 
 <span class="va">no_na</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">scientificName</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">leaflet</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">addTiles</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">addCircleMarkers</span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addCircleMarkers</a></span><span class="op">(</span>
     <span class="op">~</span><span class="va">decimalLongitude</span>, 
     <span class="op">~</span><span class="va">decimalLatitude</span>,
     color <span class="op">=</span> <span class="op">~</span><span class="fu">factpal</span><span class="op">(</span><span class="va">scientificName</span><span class="op">)</span>,
@@ -259,28 +259,28 @@
 <h3 class="hasAnchor">
 <a href="#set-view-width" class="anchor"></a>Set view Width</h3>
 <div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="va">pal</span> <span class="op">&lt;-</span> <span class="fu">colorBin</span><span class="op">(</span>
+<span class="va">pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/colorNumeric.html">colorBin</a></span><span class="op">(</span>
   palette <span class="op">=</span> <span class="st">"Blues"</span>,
   <span class="va">no_na</span><span class="op">$</span><span class="va">scientificName</span>,
   pretty <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="va">levs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">no_na</span><span class="op">$</span><span class="va">scientificName</span><span class="op">)</span>
-<span class="va">factpal</span> <span class="op">&lt;-</span> <span class="fu">colorFactor</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">topo.colors</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, <span class="va">levs</span><span class="op">)</span>
+<span class="va">factpal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/colorNumeric.html">colorFactor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">topo.colors</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, <span class="va">levs</span><span class="op">)</span>
 
 <span class="va">no_na</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">scientificName</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">leaflet</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">addTiles</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">addCircleMarkers</span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addCircleMarkers</a></span><span class="op">(</span>
     <span class="op">~</span><span class="va">decimalLongitude</span>, 
     <span class="op">~</span><span class="va">decimalLatitude</span>,
     color <span class="op">=</span> <span class="op">~</span><span class="fu">factpal</span><span class="op">(</span><span class="va">scientificName</span><span class="op">)</span>,
     stroke <span class="op">=</span> <span class="cn">FALSE</span>, fillOpacity <span class="op">=</span> <span class="fl">0.5</span>
   <span class="op">)</span> <span class="op">%&gt;%</span> 
-    <span class="fu">setView</span><span class="op">(</span> lng <span class="op">=</span> <span class="op">-</span><span class="fl">100</span>,
+    <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-methods.html">setView</a></span><span class="op">(</span> lng <span class="op">=</span> <span class="op">-</span><span class="fl">100</span>,
             lat <span class="op">=</span> <span class="fl">20</span>,
             zoom <span class="op">=</span> <span class="fl">11</span> <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">setMaxBounds</span><span class="op">(</span> lng1 <span class="op">=</span> <span class="op">-</span><span class="fl">100</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-methods.html">setMaxBounds</a></span><span class="op">(</span> lng1 <span class="op">=</span> <span class="op">-</span><span class="fl">100</span>,
                 lat1 <span class="op">=</span> <span class="fl">19.432241</span>,
                 lng2 <span class="op">=</span> <span class="op">-</span><span class="fl">98</span>,
                 lat2 <span class="op">=</span> <span class="fl">20</span> <span class="op">)</span></pre></div>

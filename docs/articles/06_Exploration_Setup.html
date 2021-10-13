@@ -69,7 +69,7 @@
       <a href="../articles/04-plotting.html">Data visualization with ggplot2</a>
     </li>
     <li>
-      <a href="../articles/05-Functions.html">Functions and repeatability</a>
+      <a href="../articles/05_Functions.html">Functions and repeatability</a>
     </li>
     <li>
       <a href="../articles/06_Exploration_Setup.html">Exploration</a>
@@ -144,7 +144,7 @@
 <span class="va">key</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rgbif/reference/name_suggest.html">name_suggest</a></span><span class="op">(</span>q<span class="op">=</span><span class="st">'Procyon lotor'</span>, rank<span class="op">=</span><span class="st">'species'</span><span class="op">)</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">key</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></pre></div>
 <p>Once we have done this, we are able to use the key to query the database for records pertaining to the raccoon. To do this, we are only going to take 100 records to keep the data manageable.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rgbif/reference/occ_search.html">occ_search</a></span><span class="op">(</span>taxonKey<span class="op">=</span><span class="va">key</span>, limit<span class="op">=</span><span class="fl">100</span><span class="op">)</span>
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rgbif/reference/occ_search.html">occ_search</a></span><span class="op">(</span>taxonKey<span class="op">=</span><span class="va">key</span>, limit<span class="op">=</span><span class="fl">500</span><span class="op">)</span>
 
 <span class="va">res</span></pre></div>
 <p>First, look at the data visually. Do we have the amount of observations and columns we should? We should have 220 columns. Try confirming this with the <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> command.</p>
@@ -153,24 +153,25 @@
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"leaflet"</span><span class="op">)</span></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">leaflet</span><span class="op">)</span>
-<span class="fu">leaflet</span><span class="fu">::</span><span class="fu">leaflet</span><span class="op">(</span><span class="va">small_data</span><span class="op">)</span> <span class="op">%&gt;%</span>
-<span class="fu">addTiles</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-<span class="fu">addMarkers</span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, popup <span class="op">=</span> <span class="va">scientificName</span><span class="op">)</span></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/">leaflet</a></span><span class="op">)</span>
+<span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="va">small_data</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, popup <span class="op">=</span> <span class="va">small_data</span><span class="op">$</span><span class="va">scientificName</span><span class="op">)</span></pre></div>
 <p>We can see that these data come from all over. Next, we will try to query some temperature data for these observations. NOAA can be a little tricky to work with. So the first thing we will do is download some information on weather stations:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="va">stats</span> <span class="op">&lt;-</span> <span class="fu">rnoaa</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rnoaa/reference/ghcnd_stations.html">ghcnd_stations</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <p>Look carefully at the GBIF data, and then the NOAA data. Are the column names for latitude and longitude the same? Are they recorded to the same precision? If no, briefly correct these errors.</p>
 <p>Next, we will try to join these data together. We can join in several ways. All follow the same fundmental syntax:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="va">results</span> <span class="op">%&gt;%</span>  <span class="fu">inner_join</span><span class="op">(</span><span class="va">stats</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"latitude"</span>, <span class="st">"longitude"</span><span class="op">)</span><span class="op">)</span></pre></div>
+<span class="va">joined</span> <span class="op">&lt;-</span> <span class="va">small_data</span> <span class="op">%&gt;%</span>  <span class="fu">inner_join</span><span class="op">(</span><span class="va">stats</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"latitude"</span>, <span class="st">"longitude"</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p>Take a look at this <a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">reference</a>, and try a couple different joins. No matter what we do, we seem to end up with many more rows than we had. Why is this?</p>
 <p>What we’ll do is remove duplicate coordinates:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="va">id_taxon</span> <span class="op">&lt;-</span> <span class="va">total</span> <span class="op">%&gt;%</span> 
+<span class="va">id_taxon</span> <span class="op">&lt;-</span> <span class="va">joined</span> <span class="op">%&gt;%</span> 
  <span class="fu">distinct</span><span class="op">(</span><span class="va">scientificName</span>, <span class="va">latitude</span>, <span class="va">longitude</span>,  .keep_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></pre></div>
 <p>We can see we still have the <code>id</code> column, which may be used to query weather. Which we will do now. The <code>ghcnd_search</code> function in the RNOAA package allows us to search data by weather station, temperature type, and date. The syntax looks like so:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>rnoaa<span class="op">::</span><span class="kw">ghcnd_search</span>(<span class="dt">stationid=</span> <span class="st">"AR000087078"</span>, <span class="dt">var =</span> <span class="st">"TAVG"</span>, <span class="dt">date_min=</span><span class="st">"2021-10-01"</span>, <span class="dt">date_max =</span> <span class="st">"2021-10-01"</span>)<span class="st">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="fu">rnoaa</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rnoaa/reference/ghcnd_search.html">ghcnd_search</a></span><span class="op">(</span>stationid<span class="op">=</span> <span class="st">"AR000087078"</span>, var <span class="op">=</span> <span class="st">"TAVG"</span>, date_min<span class="op">=</span><span class="st">"2021-10-01"</span>, date_max <span class="op">=</span> <span class="st">"2021-10-01"</span><span class="op">)</span></pre></div>
 <p>How can we query a whole column of data? Let’s take a moment and think about it.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="co">#We will fill this in during class</span></pre></div>
@@ -179,29 +180,20 @@
 <span class="co">#Try it out here.</span></pre></div>
 <p>Next, let’s take a look at these visually to see if this seems more normal.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">temp_data</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y<span class="op">=</span><span class="va">fahr</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> </pre></div>
-<p>And we fit a linear model to see if temperature was increasing over time:</p>
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">temp_join</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y<span class="op">=</span><span class="va">fahr</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> </pre></div>
+<p>And we fit a linear model to see if temperature was increasing with longitude:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">date</span><span class="op">~</span><span class="va">fahr</span>, data<span class="op">=</span><span class="va">temp_data</span><span class="op">)</span>
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">temp_data</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y<span class="op">=</span><span class="va">fahr</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span>method<span class="op">=</span><span class="st">'lm'</span><span class="op">)</span></pre></div>
-<p>The final thing we’ll do is output the data for the day. We’ll pick up Thursday with merging the datsets back together.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="fu">write_csv</span><span class="op">(</span>x <span class="op">=</span> <span class="va">id_taxon</span>, <span class="st">"data_output/raccoons.csv"</span><span class="op">)</span>
-
-<span class="fu">write_csv</span><span class="op">(</span>x <span class="op">=</span> <span class="va">temp_data</span>, <span class="st">"data_output/noaa_data.csv"</span><span class="op">)</span></pre></div>
-<p>We will want to merge these data with the data from our small_data data set to look at mammal size trends over time. Which means we need a column on which to merge.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="va">id_taxon</span> <span class="op">%&gt;%</span> <span class="fu">inner_join</span><span class="op">(</span><span class="va">temp_data</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">longitude</span><span class="op">~</span><span class="va">fahr</span>, data<span class="op">=</span><span class="va">temp_join</span><span class="op">)</span>
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">temp_join</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y<span class="op">=</span><span class="va">fahr</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span>method<span class="op">=</span><span class="st">'lm'</span><span class="op">)</span></pre></div>
 <p>Now, we’ll merge the two data sources. Have a look at the <code>merge</code> function. Try it.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit">
+<div class="sourceCode" id="cb14"><pre class="downlit">
 <span class="co">#noaa_data &lt;- read_csv("data_output/noaa_data.csv")</span>
-<span class="va">merged_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">temp_data</span> , <span class="va">id_taxon</span><span class="op">)</span></pre></div>
-<p>Next, plot an animal body size measure by temp. Is there a relationship? What about body size measures by date?</p>
-<div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">leaflet</span><span class="op">)</span>
-<span class="fu">leaflet</span><span class="fu">::</span><span class="fu">leaflet</span><span class="op">(</span><span class="va">merged_data</span><span class="op">)</span> <span class="op">%&gt;%</span>
-<span class="fu">addTiles</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-<span class="fu">addMarkers</span><span class="op">(</span><span class="op">~</span><span class="va">longitude</span>, <span class="op">~</span><span class="va">latitude</span>, popup <span class="op">=</span> <span class="va">merged_data</span><span class="op">$</span><span class="va">fahr</span><span class="op">)</span></pre></div>
+<span class="va">merged_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">stations</span> , <span class="va">small_data</span><span class="op">)</span></pre></div>
+</div>
+<div id="exploration-time" class="section level1">
+<h1 class="hasAnchor">
+<a href="#exploration-time" class="anchor"></a>Exploration time:</h1>
+<p>Pick one weather station and see if you can query multiple max temperature observations over time. Try plotting max temp as a function of time. Or, try plotting a different temperature measurement. Or querying more data from GBIF, or a specific locaclity.</p>
 </div>
   </div>
 
