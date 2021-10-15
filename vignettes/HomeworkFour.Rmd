@@ -1,65 +1,104 @@
 ---
-title: "Homework Four"
+title: "HomeworkFour"
+author: "April Wright"
+date: "10/15/2021"
 output: html_document
 ---
 
-# Homework Four: Due Oct. 22 at 5 pm.
-
-First, download your homework. In your RStudio, fill in the below command:
-
-```{r, eval = FALSE}
-download.file()
-
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Question One. 2 pts:
+# Plotting and choices
 
-Take a look at [this](https://github.com/ropensci/treedata.table/) package. Reading the documentation, what is the primary goal of this package? 
+## 10 points, due Oct. 22 at 5 PM
 
-```
-#Answer Here
-```
+0. Read in the surveys.csv daatset. Remove NAs from the datasets.
 
-# Question Two. 1 pts
+1. In this homework, we're going to explore how different ways of visualizing the same data. First, take a look at `geom_col()`. Group the surveys data by the species_id column and count how many of each species there are. Use this count data to make a bar plot of the counts per species. 
 
-Where in this package is the actual code stored? How do you know?
-
-```
-# Answer here
+```{r}
+#Answer here
 
 ```
+2. Take a look at the argument `fct_reorder`. It reorders variables on one or both axes. Try using this to plot the species in order from most to least members.
 
-# Question 3. 3 pts
-
-When you look into the code, are you able to understand any of it? What is one thing the authors could do to make the code more understandable?
-
-```
+```{r}
 # Answer here
 ```
 
-# Question 4. 2 pts
 
-What are the other directories in the package? What do they contain?
+3. What we canonically think of as a bar plot can also be made in R. These can have some interesting properties, such as being able to fill in bars by other aesthetics. Using the surveys dataset, try to plot the number of members of each species, with the bar filled in by sex.
+
+```{r, eval=FALSE}
+ggplot(______, mapping = aes(______, fill=____)) +
+  geom_bar()
 
 ```
-Answer here
 
-```
 
-# Question 4. 2 pts
-Do you trust this package? Why or why not? What about this package makes it trustworthy or untrustworthy?
+4. `geom_bar` accepts various arguments. Try `postion="dodge"` or position="stack". How does this change the plot and how you interpret it? 
+
 
 ```{r}
 
+#Answer here.
+```
+
+
+5. Even a simple histogram can lead to different interpretations. Make a histogram of hindfoot_lengths in the surveys dataset. Try choosing different binwidths. How does a high bindwith (like 100) this change your interpretation of how the data are distributed? 
+
+```{r}
+#Answer here.
+```
+
+
+6. Next, let's take a look at density plots. First, look at the help for `geom_density`. Density plots are like a smoothed histogram, mostly used for continuous data. But how density is calculated is done using what is called a kernel. To get a sense for what this means, try different kernel types. Some common ones are "triangular", "rectangular", and "gaussian." Try them out, and put the one you think best represents the data in the answer below.
+
+
+```{r, eval=FALSE}
+
+ggplot(______, aes(______)) +
+  geom_density(fill = "blue", binwidth = 10, kernel ="______")
 
 ```
 
-# Question 5. 2 pts.
+## Graduate Students:
 
-Have a look at [these](https://libguides.bc.edu/dataplan/best_practices) data storage best practices from Boston College. Are we doing a good job so far in class? Why or why not? What could be improved? 
+A common set of journal figure requirements several of you submitted include the following: 
 
-## Grad Students
++ PDF or PNG
++ At least 300 DPI
++ One column (80 mm) or two column (160mm) wide.
 
-Goal setting time! Ideally, each function you write should be in a .R file in your R directory. In your personal project directory (i.e., the one we made in class with your last name Wednesday), please make three .R files. Title each with the name of the function you will write.
-Ideally, these functions will do something that you need done for your dissertation. 
-Begin the documentation for each by writing the first documentation line - the line that is a one-sentence summary of what the function does. I'm going to take a look through these and make sure we're covering the right material for you to get your work done.
+For each of your plots on the above homework, save figures meeting all requirements in your lastname_directory in a directory called `output.`
+
+As a longer-term goal, you each picked a few figures. See if you can find the data that the authors used to make the figures. One of the best ways to learn to make good figures in your field is to copy from what's already published. 
+
+What data did the author's use? 
+
+```
+Answer here
+```
+
+Is the data you're using for class similar to these data? 
+
+
+```
+Answer here
+```
+
+Could you process your data to be similar to these data?
+
+```
+Answer here
+```
+
+Finally, in the final project in this class, you'll need to produce an R package with five functions: 
+ 
++ One or two for data cleaning and/or data manipulation
++ One or two for a statistical test (ANOVA, linear models, other specialized analyses)
++ One or two for plotting
++ One of your choice for funsies.
+
+In next week's homework, you'll be expected to pick and write one. So start thinking about one now.
