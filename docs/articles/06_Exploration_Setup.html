@@ -161,39 +161,58 @@
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="va">stats</span> <span class="op">&lt;-</span> <span class="fu">rnoaa</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rnoaa/reference/ghcnd_stations.html">ghcnd_stations</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <p>Look carefully at the GBIF data, and then the NOAA data. Are the column names for latitude and longitude the same? Are they recorded to the same precision? If no, briefly correct these errors.</p>
-<p>Next, we will try to join these data together. We can join in several ways. All follow the same fundmental syntax:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="va">joined</span> <span class="op">&lt;-</span> <span class="va">small_data</span> <span class="op">%&gt;%</span>  <span class="fu">inner_join</span><span class="op">(</span><span class="va">stats</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"latitude"</span>, <span class="st">"longitude"</span><span class="op">)</span><span class="op">)</span></pre></div>
+<span class="va">small_data</span> <span class="op">&lt;-</span> <span class="va">res</span><span class="op">$</span><span class="va">data</span> <span class="op">%&gt;%</span> 
+  <span class="fu">rename</span><span class="op">(</span>latitude <span class="op">=</span> <span class="va">decimalLatitude</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">rename</span><span class="op">(</span>longitude <span class="op">=</span> <span class="va">decimalLongitude</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">select</span><span class="op">(</span><span class="va">scientificName</span>, <span class="va">latitude</span>, <span class="va">longitude</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>latitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">latitude</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>longitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">longitude</span><span class="op">)</span><span class="op">)</span></pre></div>
+<p>Next, we will try to join these data together. We can join in several ways. All follow the same fundmental syntax:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+
+<span class="va">stations</span> <span class="op">&lt;-</span> <span class="va">stats</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>latitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">latitude</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>longitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">longitude</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">joined</span> <span class="op">&lt;-</span> <span class="va">small_data</span> <span class="op">%&gt;%</span>  <span class="fu">inner_join</span><span class="op">(</span><span class="va">stations</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"latitude"</span>, <span class="st">"longitude"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">joined</span></pre></div>
 <p>Take a look at this <a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">reference</a>, and try a couple different joins. No matter what we do, we seem to end up with many more rows than we had. Why is this?</p>
 <p>What we’ll do is remove duplicate coordinates:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="va">id_taxon</span> <span class="op">&lt;-</span> <span class="va">joined</span> <span class="op">%&gt;%</span> 
- <span class="fu">distinct</span><span class="op">(</span><span class="va">scientificName</span>, <span class="va">latitude</span>, <span class="va">longitude</span>,  .keep_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></pre></div>
-<p>We can see we still have the <code>id</code> column, which may be used to query weather. Which we will do now. The <code>ghcnd_search</code> function in the RNOAA package allows us to search data by weather station, temperature type, and date. The syntax looks like so:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="va">id_taxon</span> <span class="op">&lt;-</span> <span class="va">joined</span> <span class="op">%&gt;%</span> 
+ <span class="fu">distinct</span><span class="op">(</span><span class="va">scientificName</span>, <span class="va">latitude</span>, <span class="va">longitude</span>,  .keep_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">id_taxon</span></pre></div>
+<p>Here, we will pause and write out for posterity:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="fu">write_csv</span><span class="op">(</span><span class="va">id_taxon</span>, <span class="st">"merged_gbif_rnoa_raccoon.csv"</span><span class="op">)</span></pre></div>
+<p>We can see we still have the <code>id</code> column, which may be used to query weather. Which we will do now. The <code>ghcnd_search</code> function in the RNOAA package allows us to search data by weather station, temperature type, and date. The syntax looks like so:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit">
 <span class="fu">rnoaa</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rnoaa/reference/ghcnd_search.html">ghcnd_search</a></span><span class="op">(</span>stationid<span class="op">=</span> <span class="st">"AR000087078"</span>, var <span class="op">=</span> <span class="st">"TAVG"</span>, date_min<span class="op">=</span><span class="st">"2021-10-01"</span>, date_max <span class="op">=</span> <span class="st">"2021-10-01"</span><span class="op">)</span></pre></div>
 <p>How can we query a whole column of data? Let’s take a moment and think about it.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="co">#We will fill this in during class</span></pre></div>
-<p>You will notice two things: Firstly, that this is once again a list of objects. Secondly, you may notice that these temps look real, real odd. They are listed in tenths of a degree centigrade. We’ll convert the temperatures to Fahrenheit. Save this to your temp_data as column fahr.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="co">#Try it out here.</span></pre></div>
-<p>Next, let’s take a look at these visually to see if this seems more normal.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">temp_join</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y<span class="op">=</span><span class="va">fahr</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> </pre></div>
-<p>And we fit a linear model to see if temperature was increasing with longitude:</p>
+<span class="va">average_temps</span> <span class="op">&lt;-</span> <span class="fu">rnoaa</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rnoaa/reference/ghcnd_search.html">ghcnd_search</a></span><span class="op">(</span>stationid<span class="op">=</span> <span class="va">id_taxon</span><span class="op">$</span><span class="va">id</span>, var <span class="op">=</span> <span class="st">"TAVG"</span>, date_min<span class="op">=</span><span class="st">"2021-10-01"</span>, date_max <span class="op">=</span> <span class="st">"2021-10-01"</span><span class="op">)</span></pre></div>
+<p>You will notice two things: Firstly, that this is once again a list of objects. Secondly, you may notice that these temps look real, real odd. They are listed in tenths of a degree centigrade. We’ll convert the temperatures to Fahrenheit. Save this to your temp_data as column fahr.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">longitude</span><span class="op">~</span><span class="va">fahr</span>, data<span class="op">=</span><span class="va">temp_join</span><span class="op">)</span>
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">temp_join</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y<span class="op">=</span><span class="va">fahr</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span>method<span class="op">=</span><span class="st">'lm'</span><span class="op">)</span></pre></div>
-<p>Now, we’ll merge the two data sources. Have a look at the <code>merge</code> function. Try it.</p>
+<span class="va">temp_data</span> <span class="op">&lt;-</span> <span class="va">average_temps</span><span class="op">$</span><span class="va">tavg</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>fahr <span class="op">=</span> <span class="op">(</span><span class="va">tavg</span><span class="op">/</span><span class="fl">10</span><span class="op">)</span><span class="op">*</span><span class="fl">9</span><span class="op">/</span><span class="fl">5</span> <span class="op">+</span> <span class="fl">32</span><span class="op">)</span></pre></div>
+<p>Now that we have our averages in a more sensible format, let’s join them together.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="co">#noaa_data &lt;- read_csv("data_output/noaa_data.csv")</span>
-<span class="va">merged_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">stations</span> , <span class="va">small_data</span><span class="op">)</span></pre></div>
+<span class="va">joined_temps</span> <span class="op">&lt;-</span> <span class="va">temp_data</span> <span class="op">%&gt;%</span> <span class="fu">inner_join</span><span class="op">(</span><span class="va">id_taxon</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span>
+<span class="va">joined_temps</span></pre></div>
+<p>Next, let’s take a look at these visually to see if this seems more normal.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">joined_temps</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">latitude</span>, y<span class="op">=</span><span class="va">fahr</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> </pre></div>
+<p>And we fit a linear model to see if temperature was increasing with longitude:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">longitude</span><span class="op">~</span><span class="va">fahr</span>, data<span class="op">=</span><span class="va">joined_temps</span><span class="op">)</span>
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">joined_temps</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y<span class="op">=</span><span class="va">fahr</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span>method<span class="op">=</span><span class="st">'lm'</span><span class="op">)</span></pre></div>
 </div>
 <div id="exploration-time" class="section level1">
 <h1 class="hasAnchor">
 <a href="#exploration-time" class="anchor"></a>Exploration time:</h1>
-<p>Pick one weather station and see if you can query multiple max temperature observations over time. Try plotting max temp as a function of time. Or, try plotting a different temperature measurement. Or querying more data from GBIF, or a specific locaclity.</p>
+<p>Pick one weather station and see if you can query multiple max temperature observations over time. Try plotting max temp as a function of time. Or, try plotting a different temperature measurement. Or querying more data from GBIF, or a specific locality. Maybe a favorite animal!</p>
 </div>
   </div>
 

@@ -201,10 +201,9 @@
 <div id="assumption-of-linear-regressions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#assumption-of-linear-regressions" class="anchor"></a>Assumption of linear regressions</h2>
-<p>In this class, we will talk about two general (NOTE: this is a pun, because actually we are talking about “generalized linear models” - you should be aware that my language choice is actually really funny) types of linear models:</p>
 <ul>
-<li>“Linear regression”, which are used to model <strong>NUMERIC response variables</strong> (this document)</li>
-<li>“Logistic regression”, which are used to model <strong>BINARY (categorical) response variables</strong> (e.g., “Yes/No” categories) (a forthcoming document)</li>
+<li>“Linear regression”, which are used to model <strong>NUMERIC response variables</strong>
+</li>
 </ul>
 <p>These models make several key assumptions about the underlying predictors and response variable. These assumptions represent properties in the data itself which must be satisified in order for the models to be reliably interpreted. <strong>Linear regressions are only valid if these assumptions are met:</strong></p>
 <ul>
@@ -500,6 +499,7 @@
 <pre><code>##              Df Sum Sq Mean Sq F value Pr(&gt;F)
 ## sex           1   18.8   18.79   1.607  0.206
 ## Residuals   198 2315.3   11.69</code></pre>
+<p>In case anyone needs a reminder, DF is degrees of freedom, or the number of independent variables in the analysis. Mean square error is the sum of squares (how far points deviate from mean) divided by the degrees of freedom. F-statistic is the mean square of the residuals divided by mean square error. The P-Value is the value that we’d see an F-statistic of at least this extreme if there is no effect of the predictor variable.</p>
 </div>
 </div>
 <div id="lm-with-numeric-and-categorical-predictors" class="section level3">

@@ -100,10 +100,9 @@ In the three images below, we see three different ways this regression line coul
 
 ## Assumption of linear regressions
 
-In this class, we will talk about two general (NOTE: this is a pun, because actually we are talking about "generalized linear models" -  you should be aware that my language choice is actually really funny) types of linear models:
 
-+ "Linear regression", which are used to model **NUMERIC response variables** (this document)
-+ "Logistic regression", which are used to model **BINARY (categorical) response variables** (e.g., "Yes/No" categories) (a forthcoming document)
++ "Linear regression", which are used to model **NUMERIC response variables** 
+
 
 These models make several key assumptions about the underlying predictors and response variable. These assumptions represent properties in the data itself which must be satisified in order for the models to be reliably interpreted. **Linear regressions are only valid if these assumptions are met:**
 
@@ -397,6 +396,8 @@ For posterity, it can't hurt to see how this looks as a bonafide ANOVA table usi
 aov(model_fit) -> anova_model_fit
 summary(anova_model_fit)
 ```
+
+In case anyone needs a reminder, DF is degrees of freedom, or the number of independent variables in the analysis. Mean square error is the sum of squares (how far points deviate from mean) divided by the degrees of freedom. F-statistic is the mean square of the residuals divided by mean square error. The P-Value is the value that we'd see an F-statistic of at least this extreme if there is no effect of the predictor variable.
 
 ### LM with numeric and categorical predictors
 
