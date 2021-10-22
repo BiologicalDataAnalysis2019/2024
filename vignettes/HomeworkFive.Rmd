@@ -5,59 +5,56 @@ output: html_document
 
 # Homework Two: Due Oct. 29 at 5 pm.
 
-First, download your homework. In your RStudio, fill in the below command:
+For this first part of the exam, you can either use `surveys_complete.csv` or your own data. If you are using your own data, you must have data in which you think you have a numerical predictor variable and a numerical response variable. If you are using `surveys_complete`, you can use weight and hindfoot_length for this.
 
-```{r, eval = FALSE}
-download.file()
-
-```
-
-# Question One (1 pts):
-We're going to work with the NOAA data again. This time, I'm going to have you go to [the raw data](https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/access/) and download the data for USW00003145. Upload it to your data directory.  
-
-
-# Question Two (1 pts)
-
-Read in the data
+1) Load in your data. Which variable will you be using as a predictor, and which as a response? (2 pts)
 
 ```{r}
+# read in data here
+```
+
+```
+# Answer which column is predictor and which is response
+```
+
+2) Plot the two against each other with a scatter plot. Do the data appear to be related linearly? (2 pts)
+
+
+```{r}
+# Plot here
+```
+
+```
+#Answer here
+```
+
+
+3) Fit the linear model. View the summary. (2 pts)
+
+
+```{r}
+# Code here
+```
+
+4) Does the summary make sense? Does our model have good predictive power? Evaluate the residual standard error, intercept, and R-Squared in particular.  (2 pts)
+
+
+```
 # Answer here
-
-```
-
-# Question 3 (3 pts)
-
-Merge this dataframe to the NOAA dataframe we save from Monday's class. 
-
-Hint: You may need to specify "by" arguments. Possibly multiple.
-```{r}
-
-```
-
-# Question 4 (2 pts)
-
-Drop any rows for which the "TMAX_ATTRIUBTES" or "TMIN_ATTRIBUTES" contain an X
-```{r}
-```
-
-# Question 5 (1 pts)
-
-How many rows did we lose in this quality control? 
-
-```{r}
-
-```
-
-# Question 6 (2 points)
-
-Merge your filtered data to the surveys_complete dataset and try replotting it. Did this make a difference to our conclusions from Wednesday?
-
-```{r}
-
 ```
 
 
-## MS Students:
+5) Plot the model on the graph. Increase the size of the text so it is comfortably readable at 5 feet. (2 pts)
 
-For last week, I had you populate function templates in your personal directory. I'm going to update this homework Monday when I've had a chance to look at them.
+```
+# Code here
+```
+
+# MS Students
+
+I'm going to have you start outlining what will eventually be your final project. In homework four, I informed you that your final R package will need 5 functions in it. Now, I need you to start describing them. For your data cleaning and *either* plotting or statistical test, tell me the following. You may attach a dataset if needed:
+
++ Your data cleaning function: What does it need to do? What will be the expected input and output? For example, perhaps you have an Excel data set with multiple sheets, and you want to output one single dataframe with all the NAs removed.
++ Plotting: Which data columns are you looking to plot? Or, if it's not a dataframe you're looking to plot from, what other data are you plotting? What is the expected plot to be produced? Histogram? Map? + Statistical test: What is the hypothesis you'll be testing, and what data will you use? 
+
 

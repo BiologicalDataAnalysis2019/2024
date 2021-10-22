@@ -130,47 +130,41 @@
 <div id="homework-two-due-oct--29-at-5-pm-" class="section level1">
 <h1 class="hasAnchor">
 <a href="#homework-two-due-oct--29-at-5-pm-" class="anchor"></a>Homework Two: Due Oct. 29 at 5 pm.</h1>
-<p>First, download your homework. In your RStudio, fill in the below command:</p>
+<p>For this first part of the exam, you can either use <code>surveys_complete.csv</code> or your own data. If you are using your own data, you must have data in which you think you have a numerical predictor variable and a numerical response variable. If you are using <code>surveys_complete</code>, you can use weight and hindfoot_length for this.</p>
+<ol style="list-style-type: decimal">
+<li>Load in your data. Which variable will you be using as a predictor, and which as a response? (2 pts)</li>
+</ol>
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="op">)</span></pre></div>
+<span class="co"># read in data here</span></pre></div>
+<pre><code># Answer which column is predictor and which is response</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Plot the two against each other with a scatter plot. Do the data appear to be related linearly? (2 pts)</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co"># Plot here</span></pre></div>
+<pre><code>#Answer here</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Fit the linear model. View the summary. (2 pts)</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="co"># Code here</span></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Does the summary make sense? Does our model have good predictive power? Evaluate the residual standard error, intercept, and R-Squared in particular. (2 pts)</li>
+</ol>
+<pre><code># Answer here</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Plot the model on the graph. Increase the size of the text so it is comfortably readable at 5 feet. (2 pts)</li>
+</ol>
+<pre><code># Code here</code></pre>
 </div>
-<div id="question-one-1-pts" class="section level1">
+<div id="ms-students" class="section level1">
 <h1 class="hasAnchor">
-<a href="#question-one-1-pts" class="anchor"></a>Question One (1 pts):</h1>
-<p>We’re going to work with the NOAA data again. This time, I’m going to have you go to <a href="https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/access/">the raw data</a> and download the data for USW00003145. Upload it to your data directory.</p>
-</div>
-<div id="question-two-1-pts" class="section level1">
-<h1 class="hasAnchor">
-<a href="#question-two-1-pts" class="anchor"></a>Question Two (1 pts)</h1>
-<p>Read in the data</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># Answer here</span></pre></div>
-</div>
-<div id="question-3-3-pts" class="section level1">
-<h1 class="hasAnchor">
-<a href="#question-3-3-pts" class="anchor"></a>Question 3 (3 pts)</h1>
-<p>Merge this dataframe to the NOAA dataframe we save from Monday’s class.</p>
-<p>Hint: You may need to specify “by” arguments. Possibly multiple.</p>
-</div>
-<div id="question-4-2-pts" class="section level1">
-<h1 class="hasAnchor">
-<a href="#question-4-2-pts" class="anchor"></a>Question 4 (2 pts)</h1>
-<p>Drop any rows for which the “TMAX_ATTRIUBTES” or “TMIN_ATTRIBUTES” contain an X</p>
-</div>
-<div id="question-5-1-pts" class="section level1">
-<h1 class="hasAnchor">
-<a href="#question-5-1-pts" class="anchor"></a>Question 5 (1 pts)</h1>
-<p>How many rows did we lose in this quality control?</p>
-</div>
-<div id="question-6-2-points" class="section level1">
-<h1 class="hasAnchor">
-<a href="#question-6-2-points" class="anchor"></a>Question 6 (2 points)</h1>
-<p>Merge your filtered data to the surveys_complete dataset and try replotting it. Did this make a difference to our conclusions from Wednesday?</p>
-<div id="ms-students" class="section level2">
-<h2 class="hasAnchor">
-<a href="#ms-students" class="anchor"></a>MS Students:</h2>
-<p>For last week, I had you populate function templates in your personal directory. I’m going to update this homework Monday when I’ve had a chance to look at them.</p>
-</div>
+<a href="#ms-students" class="anchor"></a>MS Students</h1>
+<p>I’m going to have you start outlining what will eventually be your final project. In homework four, I informed you that your final R package will need 5 functions in it. Now, I need you to start describing them. For your data cleaning and <em>either</em> plotting or statistical test, tell me the following. You may attach a dataset if needed:</p>
+<ul>
+<li>Your data cleaning function: What does it need to do? What will be the expected input and output? For example, perhaps you have an Excel data set with multiple sheets, and you want to output one single dataframe with all the NAs removed.</li>
+<li>Plotting: Which data columns are you looking to plot? Or, if it’s not a dataframe you’re looking to plot from, what other data are you plotting? What is the expected plot to be produced? Histogram? Map? + Statistical test: What is the hypothesis you’ll be testing, and what data will you use?</li>
+</ul>
 </div>
   </div>
 
