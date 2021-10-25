@@ -481,7 +481,7 @@ themes.
 > Use what you just learned to create a plot that depicts how the average weight
 > of each species changes through the years.
 > 
-> ```{r average-weight-time-series, answer=TRUE, purl=FALSE}
+> 
 > yearly_weight <- surveys_complete %>%
 >                 group_by(year, species_id) %>%
 >                  summarize(avg_weight = mean(weight))
@@ -489,7 +489,7 @@ themes.
 >    geom_line() +
 >    facet_wrap(vars(species_id)) +
 >    theme_bw()
->```
+>
 
 
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE}

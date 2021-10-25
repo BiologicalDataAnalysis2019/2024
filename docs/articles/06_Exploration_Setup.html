@@ -114,7 +114,7 @@
 
       
 
-      </header><script src="06_Exploration_Setup_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><script src="06_Exploration_Setup_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Exploration</h1>
@@ -134,80 +134,80 @@
 <h1 class="hasAnchor">
 <a href="#rnoaa" class="anchor"></a>rNOAA</h1>
 <p>We are going to get some climate data from NOAA and we’ll be downloading animal occurrence data from a database called GBIF.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"rnoaa"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"rgbif"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"rnoaa"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"rgbif"</span><span class="op">)</span></code></pre></div>
 <p>Next, we will get an API key for accessing government data. Go to <a href="https://www.ncdc.noaa.gov/cdo-web/token">this</a> website to obtain one. We will save this key in a file called <code>.rprofile</code>. API keys are basically like passwords between ourselves and a website. They enable us to access data securely. We will do this step first because sometimes getting the key emailed to you takes a moment.</p>
 <p>We’re going to start with the animal data. So far in this class, we have been working with a dataset with all the animal names written out in a spreadsheet. In the wider world, however, there are tons of animals. Some have the same genus name. Some have the same species name. Some have the same binomial as a plant. Lovely stuff! And so, many databases implement a way to <em>globalize</em> names. Here, we are locating the unique key which connects to <em>Procyon lotor</em>, the common raccoon.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rgbif">rgbif</a></span><span class="op">)</span>
-<span class="va">key</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rgbif/reference/name_suggest.html">name_suggest</a></span><span class="op">(</span>q<span class="op">=</span><span class="st">'Procyon lotor'</span>, rank<span class="op">=</span><span class="st">'species'</span><span class="op">)</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">key</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rgbif">rgbif</a></span><span class="op">)</span>
+<span class="va">key</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rgbif/reference/name_suggest.html">name_suggest</a></span><span class="op">(</span>q<span class="op">=</span><span class="st">'Procyon lotor'</span>, rank<span class="op">=</span><span class="st">'species'</span><span class="op">)</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">key</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></code></pre></div>
 <p>Once we have done this, we are able to use the key to query the database for records pertaining to the raccoon. To do this, we are only going to take 100 records to keep the data manageable.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rgbif/reference/occ_search.html">occ_search</a></span><span class="op">(</span>taxonKey<span class="op">=</span><span class="va">key</span>, limit<span class="op">=</span><span class="fl">500</span><span class="op">)</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rgbif/reference/occ_search.html">occ_search</a></span><span class="op">(</span>taxonKey<span class="op">=</span><span class="va">key</span>, limit<span class="op">=</span><span class="fl">500</span><span class="op">)</span>
 
-<span class="va">res</span></pre></div>
+<span class="va">res</span></code></pre></div>
 <p>First, look at the data visually. Do we have the amount of observations and columns we should? We should have 220 columns. Try confirming this with the <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> command.</p>
 <p>Hoo-boy, this is an odd object. Use dollar sign indexing (<code>res$</code>) to look at some of these objects. See if you can find a way to assign the actual data table to a new object.</p>
 <p>We are going to be particularly interested in the scientificName, decimalLatitude, and decimal Longitude columns. Create a new dataset containing only these three columns. We’re going to take a quick look at a map of these data, just to get a feel for where these raccoons are. We’ll install a package called <code>leaflet</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"leaflet"</span><span class="op">)</span></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/">leaflet</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"leaflet"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/">leaflet</a></span><span class="op">)</span>
 <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="va">small_data</span><span class="op">)</span> <span class="op">%&gt;%</span>
 <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-<span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, popup <span class="op">=</span> <span class="va">small_data</span><span class="op">$</span><span class="va">scientificName</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span><span class="op">~</span><span class="va">decimalLongitude</span>, <span class="op">~</span><span class="va">decimalLatitude</span>, popup <span class="op">=</span> <span class="va">small_data</span><span class="op">$</span><span class="va">scientificName</span><span class="op">)</span></code></pre></div>
 <p>We can see that these data come from all over. Next, we will try to query some temperature data for these observations. NOAA can be a little tricky to work with. So the first thing we will do is download some information on weather stations:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="va">stats</span> <span class="op">&lt;-</span> <span class="fu">rnoaa</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rnoaa/reference/ghcnd_stations.html">ghcnd_stations</a></span><span class="op">(</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">stats</span> <span class="op">&lt;-</span> <span class="fu">rnoaa</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rnoaa/reference/ghcnd_stations.html">ghcnd_stations</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Look carefully at the GBIF data, and then the NOAA data. Are the column names for latitude and longitude the same? Are they recorded to the same precision? If no, briefly correct these errors.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="va">small_data</span> <span class="op">&lt;-</span> <span class="va">res</span><span class="op">$</span><span class="va">data</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">small_data</span> <span class="op">&lt;-</span> <span class="va">res</span><span class="op">$</span><span class="va">data</span> <span class="op">%&gt;%</span> 
   <span class="fu">rename</span><span class="op">(</span>latitude <span class="op">=</span> <span class="va">decimalLatitude</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">rename</span><span class="op">(</span>longitude <span class="op">=</span> <span class="va">decimalLongitude</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">select</span><span class="op">(</span><span class="va">scientificName</span>, <span class="va">latitude</span>, <span class="va">longitude</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">mutate</span><span class="op">(</span>latitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">latitude</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">mutate</span><span class="op">(</span>longitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">longitude</span><span class="op">)</span><span class="op">)</span></pre></div>
+  <span class="fu">mutate</span><span class="op">(</span>longitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">longitude</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Next, we will try to join these data together. We can join in several ways. All follow the same fundmental syntax:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 
 <span class="va">stations</span> <span class="op">&lt;-</span> <span class="va">stats</span> <span class="op">%&gt;%</span> 
   <span class="fu">mutate</span><span class="op">(</span>latitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">latitude</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">mutate</span><span class="op">(</span>longitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">longitude</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">joined</span> <span class="op">&lt;-</span> <span class="va">small_data</span> <span class="op">%&gt;%</span>  <span class="fu">inner_join</span><span class="op">(</span><span class="va">stations</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"latitude"</span>, <span class="st">"longitude"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">joined</span></pre></div>
+<span class="va">joined</span></code></pre></div>
 <p>Take a look at this <a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">reference</a>, and try a couple different joins. No matter what we do, we seem to end up with many more rows than we had. Why is this?</p>
 <p>What we’ll do is remove duplicate coordinates:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="va">id_taxon</span> <span class="op">&lt;-</span> <span class="va">joined</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">id_taxon</span> <span class="op">&lt;-</span> <span class="va">joined</span> <span class="op">%&gt;%</span> 
  <span class="fu">distinct</span><span class="op">(</span><span class="va">scientificName</span>, <span class="va">latitude</span>, <span class="va">longitude</span>,  .keep_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">id_taxon</span></pre></div>
+<span class="va">id_taxon</span></code></pre></div>
 <p>Here, we will pause and write out for posterity:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="fu">write_csv</span><span class="op">(</span><span class="va">id_taxon</span>, <span class="st">"merged_gbif_rnoa_raccoon.csv"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">write_csv</span><span class="op">(</span><span class="va">id_taxon</span>, <span class="st">"merged_gbif_rnoa_raccoon.csv"</span><span class="op">)</span></code></pre></div>
 <p>We can see we still have the <code>id</code> column, which may be used to query weather. Which we will do now. The <code>ghcnd_search</code> function in the RNOAA package allows us to search data by weather station, temperature type, and date. The syntax looks like so:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="fu">rnoaa</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rnoaa/reference/ghcnd_search.html">ghcnd_search</a></span><span class="op">(</span>stationid<span class="op">=</span> <span class="st">"AR000087078"</span>, var <span class="op">=</span> <span class="st">"TAVG"</span>, date_min<span class="op">=</span><span class="st">"2021-10-01"</span>, date_max <span class="op">=</span> <span class="st">"2021-10-01"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">rnoaa</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rnoaa/reference/ghcnd_search.html">ghcnd_search</a></span><span class="op">(</span>stationid<span class="op">=</span> <span class="st">"AR000087078"</span>, var <span class="op">=</span> <span class="st">"TAVG"</span>, date_min<span class="op">=</span><span class="st">"2021-10-01"</span>, date_max <span class="op">=</span> <span class="st">"2021-10-01"</span><span class="op">)</span></code></pre></div>
 <p>How can we query a whole column of data? Let’s take a moment and think about it.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="va">average_temps</span> <span class="op">&lt;-</span> <span class="fu">rnoaa</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rnoaa/reference/ghcnd_search.html">ghcnd_search</a></span><span class="op">(</span>stationid<span class="op">=</span> <span class="va">id_taxon</span><span class="op">$</span><span class="va">id</span>, var <span class="op">=</span> <span class="st">"TAVG"</span>, date_min<span class="op">=</span><span class="st">"2021-10-01"</span>, date_max <span class="op">=</span> <span class="st">"2021-10-01"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">average_temps</span> <span class="op">&lt;-</span> <span class="fu">rnoaa</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rnoaa/reference/ghcnd_search.html">ghcnd_search</a></span><span class="op">(</span>stationid<span class="op">=</span> <span class="va">id_taxon</span><span class="op">$</span><span class="va">id</span>, var <span class="op">=</span> <span class="st">"TAVG"</span>, date_min<span class="op">=</span><span class="st">"2021-10-01"</span>, date_max <span class="op">=</span> <span class="st">"2021-10-01"</span><span class="op">)</span></code></pre></div>
 <p>You will notice two things: Firstly, that this is once again a list of objects. Secondly, you may notice that these temps look real, real odd. They are listed in tenths of a degree centigrade. We’ll convert the temperatures to Fahrenheit. Save this to your temp_data as column fahr.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="va">temp_data</span> <span class="op">&lt;-</span> <span class="va">average_temps</span><span class="op">$</span><span class="va">tavg</span> <span class="op">%&gt;%</span> 
-  <span class="fu">mutate</span><span class="op">(</span>fahr <span class="op">=</span> <span class="op">(</span><span class="va">tavg</span><span class="op">/</span><span class="fl">10</span><span class="op">)</span><span class="op">*</span><span class="fl">9</span><span class="op">/</span><span class="fl">5</span> <span class="op">+</span> <span class="fl">32</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">temp_data</span> <span class="op">&lt;-</span> <span class="va">average_temps</span><span class="op">$</span><span class="va">tavg</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>fahr <span class="op">=</span> <span class="op">(</span><span class="va">tavg</span><span class="op">/</span><span class="fl">10</span><span class="op">)</span><span class="op">*</span><span class="fl">9</span><span class="op">/</span><span class="fl">5</span> <span class="op">+</span> <span class="fl">32</span><span class="op">)</span></code></pre></div>
 <p>Now that we have our averages in a more sensible format, let’s join them together.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="va">joined_temps</span> <span class="op">&lt;-</span> <span class="va">temp_data</span> <span class="op">%&gt;%</span> <span class="fu">inner_join</span><span class="op">(</span><span class="va">id_taxon</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span>
-<span class="va">joined_temps</span></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">joined_temps</span> <span class="op">&lt;-</span> <span class="va">temp_data</span> <span class="op">%&gt;%</span> <span class="fu">inner_join</span><span class="op">(</span><span class="va">id_taxon</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span>
+<span class="va">joined_temps</span></code></pre></div>
 <p>Next, let’s take a look at these visually to see if this seems more normal.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">joined_temps</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">latitude</span>, y<span class="op">=</span><span class="va">fahr</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> </pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">joined_temps</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">latitude</span>, y<span class="op">=</span><span class="va">fahr</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> </code></pre></div>
 <p>And we fit a linear model to see if temperature was increasing with longitude:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">longitude</span><span class="op">~</span><span class="va">fahr</span>, data<span class="op">=</span><span class="va">joined_temps</span><span class="op">)</span>
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">joined_temps</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y<span class="op">=</span><span class="va">fahr</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span>method<span class="op">=</span><span class="st">'lm'</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">longitude</span><span class="op">~</span><span class="va">fahr</span>, data<span class="op">=</span><span class="va">joined_temps</span><span class="op">)</span>
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">joined_temps</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y<span class="op">=</span><span class="va">fahr</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span>method<span class="op">=</span><span class="st">'lm'</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="exploration-time" class="section level1">
 <h1 class="hasAnchor">

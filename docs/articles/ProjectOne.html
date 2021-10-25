@@ -114,7 +114,7 @@
 
       
 
-      </header><script src="ProjectOne_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><script src="ProjectOne_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ProjectOne</h1>
@@ -139,8 +139,8 @@
 <li><p>(5 pts) Create a directory called <code>projects</code>, and in it, a subdirectory called <code>project_one</code>. Use <code>download.files</code> to get <a href="https://github.com/BiologicalDataAnalysis2019/2021/blob/master/projects/project_one/ProjectOneUndergrads.Rmd">this file</a>, and <a href="https://github.com/BiologicalDataAnalysis2019/2021/blob/master/projects/project_one/data/FossilAnts.csv">this one</a>.</p></li>
 <li><p>5 pts. Import the <code>tidyverse</code> package and load the data. The data for this part of the practical is located in the data directory. Save the data in a variable called <code>project_dat</code>. Print the data to the screen to ensure it loaded correctly.</p></li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="co">#Enter Your Answer Here</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Enter Your Answer Here</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>(5pts) Check the datatypes of each column. There is a column called reference number. This is a static identifier - it should not be changed, and is an indexer used to identify this specimen uniquely. Do we want to treat it as an integer (this is an opinion question - answers may vary).</li>
 </ol>
@@ -148,8 +148,8 @@
 <ol start="3" style="list-style-type: decimal">
 <li>(5 pts) Change the datatype of the reference number column to character. Take a peek at the function as.character().</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="co">#Answer Here</span></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Answer Here</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>(5 pts) Look at your data. What are the missing data values? In particular, have a look at the <code>Tribe</code> column. In your opinion, are these intelligent missing values for the dataset? Why or why not? If not, how would you like to change them?</li>
 </ol>
@@ -162,13 +162,13 @@
 <ol start="7" style="list-style-type: decimal">
 <li>(5pts) Please look at the help page for the <code>separate</code> function.</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="co"># Show how you would pull up the help</span></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Show how you would pull up the help</span></code></pre></div>
 <ol start="7" style="list-style-type: decimal">
 <li>(10 pts) How could you separate one column into two?</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="co">#Answer here</span></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Answer here</span></code></pre></div>
 <p>Next, we will test a hypothesis. Your hypthesis is that there are more specimens in the 75 million years ago (mya) - 100 mya interval than the 30 mya to the present interval.</p>
 <ol start="8" style="list-style-type: decimal">
 <li>(5 pts) Write out the steps you would take to address this question. Will you need to split up the data? Will you need to group the data based on the values in some column?</li>
@@ -177,8 +177,8 @@
 <ol start="9" style="list-style-type: decimal">
 <li>(15 pts) Perform the operations you described in (8).</li>
 </ol>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="co">#Answer here</span></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Answer here</span></code></pre></div>
 <ol start="10" style="list-style-type: decimal">
 <li>(5 pts) Do the results of your code support the hypothesis?</li>
 </ol>
@@ -186,13 +186,13 @@
 <ol start="11" style="list-style-type: decimal">
 <li>(10 pts) Save the dataframe with the split columns into a new directory called <code>project_one_data_output</code>. Save it as a csv file called “column_separated.csv”</li>
 </ol>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="co"># Answer here</span></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Answer here</span></code></pre></div>
 <ol start="12" style="list-style-type: decimal">
 <li>(10 pts) Produce a histogram of the number of specimens by minimum age. Look at the geom_histogram() help.</li>
 </ol>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="co">#Answer here</span></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Answer here</span></code></pre></div>
 <ol start="13" style="list-style-type: decimal">
 <li><p>(5 pts) Change the font size on your histogram so that it can be read comfortably on your computer screen from five feet away. Save the file as “large_font.pdf”.</p></li>
 <li><p>Finally, produce a histogram of counts for each subfamily.</p></li>

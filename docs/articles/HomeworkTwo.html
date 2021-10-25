@@ -114,7 +114,7 @@
 
       
 
-      </header><script src="HomeworkTwo_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><script src="HomeworkTwo_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Homework Two</h1>
@@ -131,9 +131,9 @@
 <h1 class="hasAnchor">
 <a href="#homework-two-due-oct--1-at-5-pm-" class="anchor"></a>Homework Two: Due Oct. 1 at 5 pm.</h1>
 <p>First, we will use a modified version of surveys.csv, which has some strange values entered for NAs. Download like so:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2021/master/homeworks/HomeworkTwo.Rmd"</span>, destfile <span class="op">=</span> <span class="st">"/cloud/project/homeworks/HomeworkTwo.Rmd"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2021/master/homeworks/HW2_data/surveys_odd_NA_values.csv"</span>, destfile <span class="op">=</span> <span class="st">"/cloud/project/data/surveys_odd_NA_values.csv"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2021/master/homeworks/HomeworkTwo.Rmd"</span>, destfile <span class="op">=</span> <span class="st">"/cloud/project/homeworks/HomeworkTwo.Rmd"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2021/master/homeworks/HW2_data/surveys_odd_NA_values.csv"</span>, destfile <span class="op">=</span> <span class="st">"/cloud/project/data/surveys_odd_NA_values.csv"</span><span class="op">)</span></code></pre></div>
 <p>In your RStudio interface, you will note that there is now a “Homeworks” directory. In it, you will find “HomeworkTwo.Rmd”. In your RStudio instance, open it.</p>
 <p>Each question will direct you to perform a task. Each question that expects code as an answer will have a space for you to enter the code.</p>
 <p>You are welcome, and even encouraged, to work with a partner. I do ask, though, that every member submits their own homework. To submit your homework, simply save it. I will see it.</p>
@@ -141,29 +141,29 @@
 <h2 class="hasAnchor">
 <a href="#question-one---1-point-" class="anchor"></a>Question One - 1 point.</h2>
 <p>Load in the <code>surveys.csv</code> data file that is located in your homework folder, and save it to a variable called <code>surveys</code>. Use the read_csv function in the <code>tidyverse</code> package to do this.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co">#Enter your answer for Question 1 here</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Enter your answer for Question 1 here</span></code></pre></div>
 </div>
 <div id="question-two---1-point" class="section level2">
 <h2 class="hasAnchor">
 <a href="#question-two---1-point" class="anchor"></a>Question Two - 1 point</h2>
 <p>Have a look at the copy of <code>surveys.csv</code>. You will notice that there are some unusual NA values. Particularly, the “species_id” column has some odd values. Look at the help page for <code>read_csv</code>. Can you find a way to read these unusual values as NAs? Are you able to process both NA and the odd value as NAs? Try it out.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="co">#Enter your answer for Question 2 here</span></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Enter your answer for Question 2 here</span></code></pre></div>
 </div>
 <div id="question-three---1-point" class="section level2">
 <h2 class="hasAnchor">
 <a href="#question-three---1-point" class="anchor"></a>Question Three - 1 point</h2>
 <p>Remove the NA values from the <code>hindfoot_length</code> column using a pipe and a filter.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="co">#Enter your answer for Question 3 here</span></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Enter your answer for Question 3 here</span></code></pre></div>
 </div>
 <div id="question-four---2-points" class="section level2">
 <h2 class="hasAnchor">
 <a href="#question-four---2-points" class="anchor"></a>Question Four - 2 points</h2>
 <p>Verify that the NA values were removed. Don’t do this by looking at the column - use code.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="co">#Enter your answer for Question 4 here</span></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Enter your answer for Question 4 here</span></code></pre></div>
 </div>
 <div id="question-five---1-point" class="section level2">
 <h2 class="hasAnchor">

@@ -3,6 +3,10 @@ title: "GBIF And Spatial Data"
 output: html_document
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
+```
+
 This week, we will be starting with geospatial data and mapping. Today, we will begin with locality data in GBIF. GBIF is a website for aggregating location data from other sources.
 
 We will work with two packages today. One is [RGBIF](https://www.gbif.org/tool/81747/rgbif), an interface to [GBIF](https://www.gbif.org/) data maintained by the [ROpenSci](https://ropensci.org/) group.

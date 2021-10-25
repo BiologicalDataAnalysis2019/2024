@@ -40,7 +40,7 @@ key <- name_suggest(q='Procyon lotor', rank='species')$data$key[1]
 Once we have done this, we are able to use the key to query the database for records pertaining to the raccoon. To do this, we are only going to take 100 records to keep the data manageable.
 
 ```{r}
-res <- occ_search(taxonKey=key, limit=100)
+res <- occ_search(taxonKey=key, limit=500)
 
 res
 ```
@@ -61,7 +61,7 @@ install.packages("leaflet")
 library(leaflet)
 leaflet::leaflet(small_data) %>%
 addTiles() %>%
-addMarkers(~decimalLongitude, ~decimalLatitude, popup = scientificName)
+addMarkers(~decimalLongitude, ~decimalLatitude, popup = small_data$scientificName)
 ```
 We can see that these data come from all over. Next, we will try to query some temperature data for these observations. NOAA can be a little tricky to work with. So the first thing we will do is download some information on weather stations:
 
@@ -71,12 +71,27 @@ stats <- rnoaa::ghcnd_stations()
 
 Look carefully at the GBIF data, and then the NOAA data. Are the column names for latitude and longitude the same? Are they recorded to the same precision? If no, briefly correct these errors.
 
+```{r}
+small_data <- res$data %>% 
+  rename(latitude = decimalLatitude) %>% 
+  rename(longitude = decimalLongitude) %>% 
+  select(scientificName, latitude, longitude) %>% 
+  mutate(latitude = round(latitude)) %>% 
+  mutate(longitude = round(longitude))
+
+```
 
 Next, we will try to join these data together. We can join in several ways. All follow the same fundmental syntax:
 
 ```{r}
-results %>%  inner_join(stats, by = c("latitude", "longitude"))
+library(tidyverse)
 
+stations <- stats %>% 
+  mutate(latitude = round(latitude)) %>% 
+  mutate(longitude = round(longitude))
+
+joined <- small_data %>%  inner_join(stations, by = c("latitude", "longitude"))
+joined
 ```
 
 Take a look at this [reference](https://dplyr.tidyverse.org/reference/mutate-joins.html), and try a couple different joins. No matter what we do, we seem to end up with many more rows than we had. Why is this? 
@@ -85,8 +100,16 @@ What we'll do is remove duplicate coordinates:
 
 ```{r}
 
-id_taxon <- total %>% 
+id_taxon <- joined %>% 
  distinct(scientificName, latitude, longitude,  .keep_all = TRUE)
+id_taxon
+```
+
+Here, we will pause and write out for posterity:
+
+```{r}
+write_csv(id_taxon, "merged_gbif_rnoa_raccoon.csv")
+
 ```
 
 We can see we still have the `id` column, which may be used to query weather. Which we will do now.
@@ -94,14 +117,13 @@ The `ghcnd_search` function in the RNOAA package allows us to search data by wea
 
 
 ```{r, eval = FALSE}
-rnoaa::ghcnd_search(stationid= "AR000087078", var = "TAVG", date_min="2021-10-01", date_max = "2021-10-01")```
+rnoaa::ghcnd_search(stationid= "AR000087078", var = "TAVG", date_min="2021-10-01", date_max = "2021-10-01")
 ```
 
 How can we query a whole column of data? Let's take a moment and think about it.
 
 ```{r}
-
-#We will fill this in during class
+average_temps <- rnoaa::ghcnd_search(stationid= id_taxon$id, var = "TAVG", date_min="2021-10-01", date_max = "2021-10-01")
 
 ```
 
@@ -109,58 +131,41 @@ You will notice two things: Firstly, that this is once again a list of objects. 
 
 ```{r}
 
-#Try it out here.
+temp_data <- average_temps$tavg %>% 
+  mutate(fahr = (tavg/10)*9/5 + 32)
 
 ```
 
+Now that we have our averages in a more sensible format, let's join them together.
+
+
+```{r}
+
+joined_temps <- temp_data %>% inner_join(id_taxon, by = "id")
+joined_temps
+```
 
 Next, let's take a look at these visually to see if this seems more normal. 
 
 ```{r, eval = FALSE}
 
-ggplot(temp_data, mapping = aes(x = date, y=fahr)) + geom_point() 
+ggplot(joined_temps, mapping = aes(x = latitude, y=fahr)) + geom_point() 
 ```
 
 
-And we fit a linear model to see if temperature was increasing over time:
+And we fit a linear model to see if temperature was increasing with longitude:
 
 ```{r, eval = FALSE}
 
-lm(date~fahr, data=temp_data)
-ggplot(temp_data, mapping = aes(x = date, y=fahr)) + geom_line() + geom_smooth(method='lm')
-```
-
-The final thing we'll do is output the data for the day. We'll pick up Thursday with merging the datsets back together.
-
-```{r}
-write_csv(x = id_taxon, "data_output/raccoons.csv")
-
-write_csv(x = temp_data, "data_output/noaa_data.csv")
-```
-
-We will want to merge these data with the data from our small_data data set to look at mammal size trends over time. Which means we need a column on which to merge. 
-```{r}
-id_taxon %>% inner_join(temp_data, by = "id")
-```
-
-
-Now, we'll merge the two data sources. Have a look at the `merge` function. Try it.
-
-```{r}
-#noaa_data <- read_csv("data_output/noaa_data.csv")
-merged_data <- merge(temp_data , id_taxon)
+lm(longitude~fahr, data=joined_temps)
+ggplot(joined_temps, mapping = aes(x = longitude, y=fahr)) + geom_line() + geom_smooth(method='lm')
 ```
 
 
 
-Next, plot an animal body size measure by temp. Is there a relationship? What about body size measures by date?
 
-```{r}
-library(leaflet)
-leaflet::leaflet(merged_data) %>%
-addTiles() %>%
-addMarkers(~longitude, ~latitude, popup = merged_data$fahr)
-```
+# Exploration time:
 
+Pick one weather station and see if you can query multiple max temperature observations over time. Try plotting max temp as a function of time. Or, try plotting a different temperature measurement. Or querying more data from GBIF, or a specific locality. Maybe a favorite animal!
 
 
