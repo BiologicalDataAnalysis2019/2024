@@ -127,16 +127,76 @@
 
     
     
+<div id="a-quick-wrap-up-of-the-git-stuff-from-last-time" class="section level2">
+<h2 class="hasAnchor">
+<a href="#a-quick-wrap-up-of-the-git-stuff-from-last-time" class="anchor"></a>A quick wrap-up of the git stuff from last time</h2>
+<p>We’ll install a package called <code>usethis</code>, which contains some helpful programming tools for the weeks ahead:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"usethis"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Installing package into '/private/var/folders/54/9kd8nf1x4fnft0ymvb11qmc80000gn/T/RtmpNhkAQz/temp_libpath583741b376f8'
+## (as 'lib' is unspecified)</code></pre>
+<pre><code>## 
+##   There is a binary version available but the source version is later:
+##         binary source needs_compilation
+## usethis  2.1.0  2.1.2             FALSE</code></pre>
+<pre><code>## installing the source package 'usethis'</code></pre>
+<p>We’ll use this to create a personal access token for github. This ensures we don’t have to retype our password every time we need to access GitHub.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/github-token.html">create_github_token</a></span><span class="op">(</span><span class="op">)</span> </code></pre></div>
+<pre><code>## • Call `gitcreds::gitcreds_set()` to register this token in the local Git credential store
+##   It is also a great idea to store this token in any password-management software that you use</code></pre>
+<pre><code>## • Open URL 'https://github.com/settings/tokens/new?scopes=repo,user,gist,workflow&amp;description=DESCRIBE THE TOKEN\'S USE CASE'</code></pre>
+<p>And we will use this token to access our account via RStudio.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">credentials</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/credentials/reference/set_github_pat.html">set_github_pat</a></span><span class="op">(</span><span class="st">"PAT here"</span><span class="op">)</span></code></pre></div>
+<p>Now, refresh your R session.</p>
+<p>Once this is done, we can check that this worked like so:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/git_sitrep.html">git_sitrep</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## Git config (global)</code></pre>
+<pre><code>## • Name: 'April Wright'</code></pre>
+<pre><code>## • Email: 'wright.aprilm@gmail.com'</code></pre>
+<pre><code>## • Global (user-level) gitignore file: &lt;unset&gt;</code></pre>
+<pre><code>## • Vaccinated: FALSE</code></pre>
+<pre><code>## ℹ See `?git_vaccinate` to learn more</code></pre>
+<pre><code>## ℹ Defaulting to 'https' Git protocol</code></pre>
+<pre><code>## • Default Git protocol: 'https'</code></pre>
+<pre><code>## • Default initial branch name: &lt;unset&gt;</code></pre>
+<pre><code>## GitHub</code></pre>
+<pre><code>## • Default GitHub host: 'https://github.com'</code></pre>
+<pre><code>## x The PAT discovered for 'vignettes/https:/github.com' has the wrong structure.</code></pre>
+<pre><code>## Error: GitHub PAT must have one of these forms:
+##   * 40 hexadecimal digits (older PATs)
+##   * A 'ghp_' prefix followed by 36 to 251 more characters (newer PATs)</code></pre>
+<pre><code>## Git repo for current project</code></pre>
+<pre><code>## • Active usethis project: '/Users/april/Documents/2021'</code></pre>
+<pre><code>## • Default branch: 'main'</code></pre>
+<pre><code>## • Current local branch -&gt; remote tracking branch:
+##   'main' -&gt; 'origin/main'</code></pre>
+<pre><code>## GitHub remote configuration</code></pre>
+<pre><code>## • Type = 'maybe_ours_or_theirs'</code></pre>
+<pre><code>## • Host = 'https://github.com'</code></pre>
+<pre><code>## • Config supports a pull request = NA</code></pre>
+<pre><code>## • origin = 'BiologicalDataAnalysis2019/2021'</code></pre>
+<pre><code>## • upstream = &lt;not configured&gt;</code></pre>
+<pre><code>## • Desc = 'origin' is a GitHub repo and 'upstream' is either not configured or is not a GitHub repo.
+##   
+##   We may be offline or you may need to configure a GitHub personal access
+##   token. `gh_token_help()` can help with that.
+##   
+##   Read more about what this GitHub remote configurations means at:
+##   'https://happygitwithr.com/common-remote-setups.html'</code></pre>
+</div>
 <div id="the-tree-of-life" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-tree-of-life" class="anchor"></a>The Tree of Life</h2>
 <p>First, we need to do some installs.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">"devtools"</span>)<span class="dv">1</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"ropensci/rotl"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"ropensci/traits"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="dt">repo=</span><span class="st">'ropensci/phylotaR'</span>, <span class="dt">build_vignettes=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">"devtools"</span>)<span class="dv">1</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"ropensci/rotl"</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"ropensci/traits"</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="dt">repo=</span><span class="st">'ropensci/phylotaR'</span>, <span class="dt">build_vignettes=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <p>Now, load your packages:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rotl/">rotl</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/phylotaR">phylotaR</a></span><span class="op">)</span></code></pre></div>
 </div>
@@ -144,7 +204,7 @@
 <h2 class="hasAnchor">
 <a href="#open-tree" class="anchor"></a>Open Tree</h2>
 <p>First, we’re going to look for some data. Discuss with your neighbor a clade you like and want to build a tree of. For example, perhaps I really like hominids.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">apes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Pongo"</span>, <span class="st">"Pan"</span>, <span class="st">"Gorilla"</span>, <span class="st">"Hoolock"</span>, <span class="st">"Homo"</span><span class="op">)</span>
 <span class="op">(</span><span class="va">resolved_names</span> <span class="op">&lt;-</span> <span class="fu">rotl</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rotl/reference/tnrs_match_names.html">tnrs_match_names</a></span><span class="op">(</span><span class="va">apes</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##   search_string unique_name approximate_match ott_id is_synonym          flags
@@ -160,7 +220,7 @@
 ## 4              1
 ## 5              1</code></pre>
 <p>Put the names of five genera into the function. If you want, you can use mine below, or pick new ones you prefer.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ants</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Martialis"</span>, <span class="st">"Atta"</span>, <span class="st">"Ectatomma"</span>, <span class="st">"Tatuidris"</span>, <span class="st">"Aneuretus"</span>, <span class="st">"Xymmer"</span>, <span class="st">"Aenictus"</span><span class="op">)</span>
 <span class="op">(</span><span class="va">resolved_names</span> <span class="op">&lt;-</span> <span class="fu">rotl</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rotl/reference/tnrs_match_names.html">tnrs_match_names</a></span><span class="op">(</span><span class="va">ants</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##   search_string unique_name approximate_match  ott_id is_synonym flags
@@ -180,7 +240,7 @@
 ## 6              1
 ## 7              1</code></pre>
 <p>Try to view them on a tree:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rotl/reference/tol_induced_subtree.html">tol_induced_subtree</a></span><span class="op">(</span>ott_ids <span class="op">=</span> <span class="fu"><a href="https://docs.ropensci.org/rotl/reference/taxonomy-methods.html">ott_id</a></span><span class="op">(</span><span class="va">resolved_names</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 Progress [----------------------------------] 0/43 (  0) ?s
@@ -202,9 +262,9 @@ Progress [================================] 43/43 (100)  0s
 ## mrcaott98886ott152924, mrcaott152924ott452719, mrcaott152924ott739132,
 ## mrcaott152924ott503313, mrcaott503313ott928530, mrcaott928530ott6280946,
 ## Martialinae ott334635</code></pre>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">tr</span><span class="op">)</span></code></pre></div>
-<p><img src="09_Tree_of_life_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<p><img src="09_Tree_of_life_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 <p>I’m a little surprised by this tree.</p>
 </div>
 <div id="looking-for-data" class="section level2">
@@ -212,16 +272,16 @@ Progress [================================] 43/43 (100)  0s
 <a href="#looking-for-data" class="anchor"></a>Looking for data</h2>
 <p>We’re going to try to build a tree of these taxa from GenBank Data. Much like accessing NOAA data, we will need to make an API Key. Go <a href="https://www.ncbi.nlm.nih.gov/account/">here</a> and register.</p>
 <p>Now that we have that key, we can access NCBI:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rentrez/">rentrez</a></span><span class="op">)</span>
 <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_search.html">entrez_search</a></span><span class="op">(</span>db <span class="op">=</span> <span class="st">"Nucleotide"</span>, term<span class="op">=</span><span class="st">"Ectatomma"</span>, api_key <span class="op">=</span><span class="st">"96b569c049fe3d3055c5b747112dfec84308"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Entrez search result with 679 hits (object contains 20 IDs and no web_history object)
 ##  Search term (as translated):  "Ectatomma"[Organism] OR Ectatomma[All Fields]</code></pre>
 <p>Holy moley that’s a lot of data. If we do that for every taxon, we’ll end up with a mess. Why don’t we try to filter it a bit.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Ectatomma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_search.html">entrez_search</a></span><span class="op">(</span>db <span class="op">=</span> <span class="st">"Nucleotide"</span>, term<span class="op">=</span><span class="st">"Ectatomma AND 2018:2019[PDAT]"</span>, retmax <span class="op">=</span> <span class="fl">100</span>, api_key <span class="op">=</span><span class="st">"96b569c049fe3d3055c5b747112dfec84308"</span><span class="op">)</span></code></pre></div>
 <p>So there is a good amount of data for our Ectatomma ants. We’re going to download some. And this gets a little tricky. First, I want you to run each line in the loop and get a feel for what each does. What does <code>entrez_fetch</code> do? Waht does <code>cat</code> do? Feel free to look at documentation.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">for</span><span class="op">(</span> <span class="va">seq_start</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">50</span>,<span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
      <span class="va">recs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_fetch.html">entrez_fetch</a></span><span class="op">(</span>db<span class="op">=</span><span class="st">"nuccore"</span>, id <span class="op">=</span> <span class="va">Ectatomma</span><span class="op">$</span><span class="va">ids</span>,
                           rettype<span class="op">=</span><span class="st">"fasta"</span>, retmax<span class="op">=</span><span class="fl">50</span><span class="op">)</span>
@@ -232,7 +292,7 @@ Progress [================================] 43/43 (100)  0s
 <p>Now, let’s look at this file. What do we notice about it? What information is in this file?</p>
 <p>Before we move on, we’re going to try one other thing. Try modifying one of the two chunks above (HINT: you will have to rerun both) in order to only get data from the mitochondrial COI gene.</p>
 <p>All right, let’s move on to trying to write a function that will return all IDs for all of the ants.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">search_year</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ant</span><span class="op">)</span><span class="op">{</span>
     <span class="va">query</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">ant</span>, <span class="st">" AND "</span>, <span class="st">"2016:2019[PDAT]"</span><span class="op">)</span>
     <span class="va">search_returns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_search.html">entrez_search</a></span><span class="op">(</span>db<span class="op">=</span><span class="st">"Nucleotide"</span>, term<span class="op">=</span><span class="va">query</span>, retmax<span class="op">=</span><span class="fl">20</span>,api_key <span class="op">=</span><span class="st">"96b569c049fe3d3055c5b747112dfec84308"</span><span class="op">)</span><span class="op">)</span>
@@ -245,7 +305,7 @@ Progress [================================] 43/43 (100)  0s
 <span class="va">labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">ants</span>,<span class="va">search_year</span>,  USE.NAMES <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
 <p>Have a look at ?sapply. Talk to a partner and see if you can figure out what sapply does.</p>
 <p>So what is the problem with this output? It’s hard to parse - let’s make it easier to pull data for one taxon at a time.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">search_year</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ant</span><span class="op">)</span><span class="op">{</span>
     <span class="va">search_returns</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
     <span class="va">query</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">ant</span>, <span class="st">" AND "</span>, <span class="st">"2016:2019[PDAT]"</span><span class="op">)</span>
@@ -258,10 +318,10 @@ Progress [================================] 43/43 (100)  0s
 
 <span class="va">labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">ants</span>,<span class="va">search_year</span>,  USE.NAMES <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
 <p>There’s one remaining problem, though. Have a look at your outputs. How do you think we can fix this one? Let’s have a look at when papers related to Xymmer were published:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">xymmer_papers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_fetch.html">entrez_fetch</a></span><span class="op">(</span>db<span class="op">=</span><span class="st">"pmc"</span>, term<span class="op">=</span><span class="st">"Xymmer"</span>, id <span class="op">=</span> <span class="va">xymmer_papers</span><span class="op">$</span><span class="va">ids</span>, retmax<span class="op">=</span><span class="fl">20</span>, rettype<span class="op">=</span> <span class="st">"text"</span>, api_key <span class="op">=</span><span class="st">"96b569c049fe3d3055c5b747112dfec84308"</span><span class="op">)</span></code></pre></div>
 <p>Does this give you a hint about something that needs to change to get more data? Make the change in the below code:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">search_year</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ant</span><span class="op">)</span><span class="op">{</span>
     <span class="va">search_returns</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
     <span class="va">query</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">ant</span>, <span class="st">" AND "</span>, <span class="st">"HINT HINT HINT:2019[PDAT]"</span><span class="op">)</span>
@@ -274,7 +334,7 @@ Progress [================================] 43/43 (100)  0s
 
 <span class="va">labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">ants</span>,<span class="va">search_year</span>,  USE.NAMES <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
 <p>Now, we’re going to get the genetic data.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">search_seq</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">labels</span><span class="op">)</span><span class="op">{</span>
      <span class="va">recs</span><span class="op">[</span><span class="va">ant</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_fetch.html">entrez_fetch</a></span><span class="op">(</span>db<span class="op">=</span><span class="st">"nuccore"</span>, id <span class="op">=</span> <span class="va">labels</span>,
                           rettype<span class="op">=</span><span class="st">"fasta"</span>, retmax<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
@@ -290,14 +350,14 @@ Progress [================================] 43/43 (100)  0s
 <h2 class="hasAnchor">
 <a href="#just-for-fun" class="anchor"></a>Just for fun</h2>
 <p>Take a quick look at this output - it’s a little neat. We’re not going to go into building phylogenetic trees - that’s a topic for Systematics. Here’s a quick look at these data.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ape"</span><span class="op">)</span></code></pre></div>
-<pre><code>## Installing package into '/private/var/folders/54/9kd8nf1x4fnft0ymvb11qmc80000gn/T/RtmpoIManv/temp_libpath104648e18b88'
+<pre><code>## Installing package into '/private/var/folders/54/9kd8nf1x4fnft0ymvb11qmc80000gn/T/RtmpNhkAQz/temp_libpath583741b376f8'
 ## (as 'lib' is unspecified)</code></pre>
 <pre><code>## 
 ## The downloaded binary packages are in
-##  /var/folders/54/9kd8nf1x4fnft0ymvb11qmc80000gn/T//RtmpxQ1itd/downloaded_packages</code></pre>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+##  /var/folders/54/9kd8nf1x4fnft0ymvb11qmc80000gn/T//RtmpYoWZMK/downloaded_packages</code></pre>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">coi</span> <span class="op">&lt;-</span> <span class="fu">ape</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/read.dna.html">read.dna</a></span><span class="op">(</span><span class="st">"Ants.seqs.fasta"</span>, format<span class="op">=</span><span class="st">"fasta"</span><span class="op">)</span></code></pre></div>
 </div>
   </div>
