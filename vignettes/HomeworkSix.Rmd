@@ -30,3 +30,12 @@ Make three .R files in your R_package_Lastname folder. Title each one with what 
 Choose the dataset you'd like to work with. Place it in the data directory.
 
 Add, commit, and push the three functions and the data to GitHub. 
+
+
+# MS Students
+
+You're doing five functions. As we discussed, try to make a final determination of what data you'd like to use and upload it to the data directory.
+
+# H-Option
+
+I will be uploading your data. **Do not commit the log files to GitHub. They are too big.** You'll be working on your posterior predictive simulations. You'll need to have a function to extract data from the posterior trace, one to run the simulations, and one to compare the original values from the posterior trace to the simulated data sets. You might also consider a function to make some sort of visual.
