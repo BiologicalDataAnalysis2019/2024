@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Homework Three • compbio2020</title>
+<title>HomeworkSix • compbio2020</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Homework Three">
+<script src="../pkgdown.js"></script><meta property="og:title" content="HomeworkSix">
 <meta property="og:description" content="compbio2020">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -117,62 +117,43 @@
 
       
 
-      </header><script src="HomeworkThree_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><script src="HomeworkSix_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Homework Three</h1>
+      <h1 data-toc-skip>HomeworkSix</h1>
+                        <h4 class="author">April Wright</h4>
             
+            <h4 class="date">10/29/2021</h4>
       
       
-      <div class="hidden name"><code>HomeworkThree.Rmd</code></div>
+      <div class="hidden name"><code>HomeworkSix.Rmd</code></div>
 
     </div>
 
     
     
-<div id="homework-three-due-oct--15-at-5-pm-" class="section level1">
+<div id="plotting-and-choices" class="section level1">
 <h1 class="hasAnchor">
-<a href="#homework-three-due-oct--15-at-5-pm-" class="anchor"></a>Homework Three: Due Oct. 15 at 5 pm.</h1>
-<p>First, download your homework. In your RStudio, fill in the below command:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<a href="#plotting-and-choices" class="anchor"></a>Plotting and choices</h1>
+<div id="points-due-nov--5-at-5-pm" class="section level2">
+<h2 class="hasAnchor">
+<a href="#points-due-nov--5-at-5-pm" class="anchor"></a>10 points, due Nov. 5 at 5 PM</h2>
+<p>For your final project in this class, you will be making an R Package. It will consist of 3 functions that do the following:</p>
+<ul>
+<li>One to clean up data, such as removing NAs or renaming columns</li>
+<li>One to plot data</li>
+<li>One of some sort of statistical test</li>
+</ul>
+<p>(Master’s and H-Option students see below)</p>
+<p>You may work with any of the data sets we’ve worked with this semester, the ants, the surveys, NOAA/GBIF. Your choice.</p>
 </div>
-<div id="question-one" class="section level1">
-<h1 class="hasAnchor">
-<a href="#question-one" class="anchor"></a>Question One:</h1>
-<p>Take a look at <a href="https://github.com/ropensci/treedata.table">this</a> package. Reading the documentation, what is the primary goal of this package?</p>
-<pre><code>#Answer Here</code></pre>
 </div>
-<div id="question-two" class="section level1">
+<div id="for-this-week" class="section level1">
 <h1 class="hasAnchor">
-<a href="#question-two" class="anchor"></a>Question Two</h1>
-<p>Where in this package is the actual code stored? How do you know?</p>
-<pre><code># Answer here
-</code></pre>
-</div>
-<div id="question-3" class="section level1">
-<h1 class="hasAnchor">
-<a href="#question-3" class="anchor"></a>Question 3</h1>
-<p>When you look into the code, are you able to understand any of it? What is one thing the authors could do to make the code more understandable?</p>
-<pre><code># Answer here</code></pre>
-</div>
-<div id="question-4" class="section level1">
-<h1 class="hasAnchor">
-<a href="#question-4" class="anchor"></a>Question 4</h1>
-<p>What are the other directories in the package? What do they contain?</p>
-<pre><code>Answer here
-</code></pre>
-</div>
-<div id="question-5" class="section level1">
-<h1 class="hasAnchor">
-<a href="#question-5" class="anchor"></a>Question 5</h1>
-<p>Do you trust that this package does what it says it is doing? Why or why not?</p>
-<pre><code>Answer here</code></pre>
-</div>
-<div id="question-6" class="section level1">
-<h1 class="hasAnchor">
-<a href="#question-6" class="anchor"></a>Question 6</h1>
-<p>Have a look at <a href="https://libguides.bc.edu/dataplan/best_practices">these</a> data storage best practices from Boston College. Have this read by Tuesday, Oct. 7 as we will use this in an activity.</p>
+<a href="#for-this-week" class="anchor"></a>For this week:</h1>
+<p>Make three .R files in your R_package_Lastname folder. Title each one with what it will do. For example, if your function will make a histogram, title it “HistogramPlot.R” or something.</p>
+<p>Choose the dataset you’d like to work with. Place it in the data directory.</p>
+<p>Add, commit, and push the three functions and the data to GitHub.</p>
 </div>
   </div>
 

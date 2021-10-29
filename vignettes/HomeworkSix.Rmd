@@ -1,0 +1,32 @@
+---
+title: "HomeworkSix"
+author: "April Wright"
+date: "10/29/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Plotting and choices
+
+## 10 points, due Nov. 5 at 5 PM
+
+For your final project in this class, you will be making an R Package. It will consist of 3 functions that do the following:
+
++ One to clean up data, such as removing NAs or renaming columns
++ One to plot data
++ One of some sort of statistical test
+
+(Master's and H-Option students see below)
+
+You may work with any of the data sets we've worked with this semester, the ants, the surveys, NOAA/GBIF. Your choice.
+
+# For this week:
+
+Make three .R files in your R_package_Lastname folder. Title each one with what it will do. For example, if your function will make a histogram, title it "HistogramPlot.R" or something. 
+
+Choose the dataset you'd like to work with. Place it in the data directory.
+
+Add, commit, and push the three functions and the data to GitHub. 

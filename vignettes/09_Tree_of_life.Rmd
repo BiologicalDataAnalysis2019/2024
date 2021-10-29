@@ -7,6 +7,35 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## A quick wrap-up of the git stuff from last time
+
+We'll install a package called `usethis`, which contains some helpful programming tools for the weeks ahead:
+
+```{r, eval=FALSE}
+install.packages("usethis")
+```
+
+We'll use this to create a personal access token for github. This ensures we don't have to retype our password every time we need to access GitHub.
+
+```{r, eval=FALSE}
+usethis::create_github_token() 
+```
+
+And we will use this token to access our account via RStudio.
+
+```{r, eval=FALSE}
+credentials::set_github_pat("PAT here")
+
+```
+
+Now, refresh your R session.
+
+Once this is done, we can check that this worked like so:
+
+```{r, eval=FALSE}
+usethis::git_sitrep()
+```
+
 ## The Tree of Life
 
 First, we need to do some installs.
