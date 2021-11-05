@@ -4,7 +4,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval=TRUE)
 ```
 
 This week, we will be starting with geospatial data and mapping. Today, we will begin with locality data in GBIF. GBIF is a website for aggregating location data from other sources.
@@ -129,7 +129,7 @@ addMarkers(~decimalLongitude, ~decimalLatitude, popup = no_na$scientificName)
 
 Below are six code snippets to do different types of map-based plotting. With a partner, discuss what you think would be interesting or important to view in these data. Choose a block of code to modify to accomplish your visualization. We will reconvene in about 30 minutes and do a Round Robin showing everyone's maps. *Have Fun!* 
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 
 leaflet(no_na) %>% 
   addTiles() %>% 
@@ -139,7 +139,7 @@ leaflet(no_na) %>%
 
 ### Draw point sizes from a distribution
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 
 leaflet(no_na) %>% 
   addTiles() %>% 
@@ -149,7 +149,7 @@ leaflet(no_na) %>%
 
 ### Cluster observations
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 
 leaflet(no_na) %>%
   addTiles() %>% 
@@ -159,7 +159,7 @@ leaflet(no_na) %>%
 ### Size points by number of observations
 
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 no_na %>% 
   group_by(decimalLatitude) %>% 
   mutate(n_areas = n())  %>% 
@@ -172,7 +172,7 @@ no_na %>%
 
 ### Color points by species
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 
 pal <- colorBin(
   palette = "Blues",
@@ -199,7 +199,7 @@ no_na %>%
 
 ### Set view Width
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 
 pal <- colorBin(
   palette = "Blues",
@@ -238,7 +238,7 @@ https://rstudio.github.io/leaflet/basemaps.html
 
 We will need one package we haven't used yet, Liam Revell's Phytools.
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 devtools::install_github("liamrevell/phytools")
 ```
 
@@ -266,14 +266,14 @@ split_up
 ```
 Try indexing this object. What do you need to do to access data? Now, with a partner, make this iterable across every row in the `scientificName` column. Then, unite the split objects into one new column called `genusSpecies`.
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 split_names <- no_na %>% 
 mutate(genus = map_chr(scientificName, function(s) strsplit(s, " ")[[1]][1]))%>% mutate(species = map_chr(scientificName, function(s) strsplit(s, " ")[[1]][2])) %>% 
 unite(col = genusSpecies, genus, species)
 ```
 
 If you look at the data, there are some obviously mistaken values in there. For example, BOLD is not an ant species. Let's drop that. 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 
 # Use ROTL to resolve names
 
@@ -283,7 +283,7 @@ no_bold <- split_names[ grep("BOLD", split_names$genusSpecies, invert = TRUE) , 
 
 We also ended up with far more ant taxa than I thought. What a nice problem to have! But let's filter down to, say, five of them:
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 a_couple_ants <- c("Martialis_heureka", "Atta_mexicana", "Atta_cephalotes", "Atta_sexdens", "Atta_Fabricius")
 subset_data <- no_bold %>% 
     filter(genusSpecies %in% a_couple_ants)
@@ -291,7 +291,7 @@ subset_data <- no_bold %>%
 ```
 
 Now, let's use ROTL to make sure we don't have spelling errors.
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 reconciled_names <- rotl::tnrs_match_names(unique(subset_data$genusSpecies))
 good_names <-  reconciled_names %>%
   drop_na()
@@ -309,7 +309,7 @@ tree <- rotl::tol_induced_subtree(good_names$ott_id, label="name")
 
 Now, we must combine our GBIF data and our taxon names into a matrix, a two-dimensional data structure with fewer neat data parsing features than a dataframe or tibble. These structures are often preferred when speed is an issue. Matrices can only be one type, which means we must add the row names after generating the object.
 
-```{r eval=FALSE, include=FALSE}
+```{r eval=TRUE, include=FALSE}
 
 only_lat_long <- subset_data %>% 
   select(decimalLatitude, decimalLongitude) %>% 

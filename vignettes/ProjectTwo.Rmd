@@ -2,135 +2,104 @@
 title: "Project Two"
 output: html_document
 ---
+## Due Nov. 12 at Midnight.
+## Complete this activity in your R_package_lastname project.
 
-Due Nov. 5 at Midnight. 
+Please have a look at [this](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/1365-2656.12373) paper. It explains the relationship between air temperature, butterfly emergence, and plant flowering.
 
-For this first part of the exam, you can either use `surveys_complete.csv` or your own data. If you are using your own data, you must have data in which you think you have a numerical predictor variable and a numerical response variable. If you are using `surveys_complete`, you can use weight and hindfoot_length for this.
 
-1) Load in your data. Which variable will you be using as a predictor, and which as a response? (5 pts)
+##  Phenology 
+
+Phenology is the study of when events happen in organisms' life cycles. For example, the first flowering of a plant for the year, or the emergence of forager bees. Typically, organisms take cues from their environment. Commonly, these are changes such as photoperiod (how much light there is per day) or temperature. 
+
+When organisms that rely on one another fall out of sync, it can be a problem. For example, if a plant starts to flower when the soil is warm enough, this will often occur after a period of warmer air temperatures because soil has a higher heat capacity than air. What happens to the bees when they emerge and don't find any food? This is called *ecological mismatch*. Originally described in 2004 by Winder and Schindler, ecological mismatch can mean that one or both species don't have their needs met by the environment. 
+
+What we're going to do today is look at some historical and present-day ecological data. What were the temperatures historically? And when did butterflies erupt from their cocoons? Butterflies need to be warm to incubate, exit the coccoon and go into flight. 
+
+Before trying the test, make sure you've read the Kharouba and Vellend paper and understand the hypotheses they were testing.
+
+# Project Two
+
+## Part One. 55 points.
 
 ```{r}
-# read in data here
+download.file(url = "https://raw.githubusercontent.com/Paleantology/GBIO153H/master/data/Butterfly_data.csv", destfile = "data/Butterfly_data.csv")
+download.file(url = "https://raw.githubusercontent.com/Paleantology/GBIO153H/master/data/Phenology_data.csv", destfile = "data/Phenology_data.csv")
 ```
 
-```
-# Answer which column is predictor and which is response
-```
-
-2) Plot the two against each other with a scatter plot. Do the data appear to be related linearly? (5 pts)
-
+## Next, let's read in both the butterfly and phenology datasets. 5 pts.
 
 ```{r}
-# Plot here
+# Code
+```
+
+
+1) How many unique species of butterly are in the dataset? (5pts)
+
+
+```{r, eval=FALSE}
+
+```
+
+2) Check out the relationship between temperature and time. First, let's plot it. Choose an approriate plot type, and plot the year vs. temperature. (5 pts)
+```{r, eval = FALSE}
+# Code
+```
+
+
+3. It looks like there might be a relationship between these two things. We'll check this with a *linear regression*. Use `stat_smooth` to add a regression to the plot. (5 pts)
+
+
+```{r, eval = FALSE}
+#Code
+```
+
+## Let's take a look at the actual butterflies.
+
+4) If butterflies emerge based on temperature, what would we expect to be the relationship between Spring temperature and day of emergence? Summer temperature and day of emergence? Year and day? Test all three out below. Which predictor (day, spring temp, summer temp) you think is most relevant? (10 points)
+
+```{r, eval=FALSE}
+#Code
+```
+
+5) Is there a significant linear relationship between any predictors and the response? (10 pts)
+
+```{r}
+# code here
 ```
 
 ```
 #Answer here
 ```
 
+6) It looks like different animals might have different relationships to the predictor variables. Try plotting them out as a facets (5 pts).
 
-3) Fit the linear model. View the summary. (5 pts)
+
+```{r, eval=FALSE}
+#Code
+```
+
+7) Join our two datasets together and remake the facet plot above. Does this change your opinion of the relatedness of variables? (5 pts)
 
 
 ```{r}
-# Code here
+#Code
 ```
 
-4) Does the summary make sense? Does our model have good precitive power? Evaluate the residual standard error, intercept, and R-Squared in particular.  (10 pts)
-
-
-```
-# Answer here
-```
-
-
-5) Plot the model on the graph. Increase the size of the text so it is comfortably readable at 5 feet. (5 pts)
-
-```
-# Code here
-```
-
-
-6) Check the normality of the residuals. Do they look OK? Are we violating assumptions? (5 pts)
-
-```{r}
-
-#Code here
-
-```
+8) Wrap up: What is the relationship between temperature (remember that we looked at 3 kinds of temperature) and day of emergence? Is it the same for all species? How does this relate back to Kharouba and Vellend's hypotheses? (10 pts)
 
 
 ```{r}
-
-#Answer here
+#Answer here.
 ```
 
-7) If you are using `surveys_complete`: Is there interspecific variation in the linear model? Hint: look at our prior work with facet plots. (15 pts) 
+# Part Two. 30 points.
 
-If you are *not* using  `surveys_complete`: Do you think there are groupings within your data that may have a separate linear model? Try grouping the data by that variable and redoing the lm. (15 pts)
+For each of your function files, add to the .R:
 
-```{r}
-#code here
-```
++ Expected function inputs. For example, if you will be plotting a histogram, do you want a data frame as input? A dataframe and the name of the column you want to plot? 
++ Expected outputs. Will your function return a plot? A single number? A vector of numbers? 
 
-## Part Two
+# Part Three. 15 points
 
-In this portion, you are free to use your own data if you have a categorical predictor variable and a response variable. Otherwise, you may use the columns sex and weight in `surveys_complete`
-
-1) First, plot the data grouped by sex (5 pts)
-
-```{r}
-
-# plot code here
-```
-
-2) Try an ANOVA of this data (5 pt)
-
-```{r}
-# ANOVA code here
-```
-
-3) How about a linear model? What information does this give you that an ANOVA can't? (5 pts)
-
-
-```{r}
-
-#Code here
-```
-
-```
-#Answer here
-```
-
-3) Plot the lm with the data, with points colored by sex. (10 pts)
-
-
-```{r}
-
-#Plot code here
-```
-
-## Part Three
-
-
-1) Add and commit this document (5 pts)
-
-```
-#Commands here
-```
-
-2) Push your changes to github (10 pts)
-
-```
-#Commands here
-```
-
-3) Make a pull request on my repo so I'm notified. *Do this last, when you are done and ready for me to see it* (10pts)
-
-
-
-# MS students
-
-My expectation is that you'll do this with your own data. If any part of this doesn't make sense with your data, please get in touch ASAP so we can work it out.
-
-In addition, please take one of the statistical tests we tried, and write it as a function in the `R/` folder of your last name directory. Write appropriate documentation with it. Add, commit, and push it to Github. I'll view it there.
+Add, commit, and push this file to your R_Package_LastName GitHub repo. Place this file in vignettes. Place the data in data/.
