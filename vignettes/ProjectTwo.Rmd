@@ -22,7 +22,7 @@ Before trying the test, make sure you've read the Kharouba and Vellend paper and
 
 ## Part One. 55 points.
 
-```{r}
+```{r, eval=FALSE}
 download.file(url = "https://raw.githubusercontent.com/Paleantology/GBIO153H/master/data/Butterfly_data.csv", destfile = "data/Butterfly_data.csv")
 download.file(url = "https://raw.githubusercontent.com/Paleantology/GBIO153H/master/data/Phenology_data.csv", destfile = "data/Phenology_data.csv")
 ```

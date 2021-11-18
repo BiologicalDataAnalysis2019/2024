@@ -19,9 +19,9 @@ Lectures will be posted the day before they are given by 5 pm.
 | Week of Oct. 18 |  [Linear Models and Revision Management](https://biologicaldataanalysis2019.github.io/2021/articles/08_linear_models.html) |  [Homework 5](https://biologicaldataanalysis2019.github.io/2021/articles/HomeworkFive.html) | [Homework 4](https://biologicaldataanalysis2019.github.io/2021/articles/HomeworkFour.html)  | 
 | Week of Oct. 25 | [Tree Of Life](https://biologicaldataanalysis2019.github.io/2021/articles/09_Tree_of_life.html) | [Homework Six](https://biologicaldataanalysis2019.github.io/2021/articles/HomeworkSix.html) | [Homework 5](https://biologicaldataanalysis2019.github.io/2021/articles/HomeworkFive.html) | 
 | Week of Nov. 1 | [Genetic Data](https://biologicaldataanalysis2019.github.io/2021/articles/09_Tree_of_life.html) and [Mapping exploration](https://biologicaldataanalysis2019.github.io/2021/articles/10_GBIF_and_Location.html)  | [Project II](https://biologicaldataanalysis2019.github.io/2021/articles/ProjectTwo.html) | [Homework Six](https://biologicaldataanalysis2019.github.io/2021/articles/HomeworkSix.html) |
-| Week of Nov. 8 | Diversity Curves and Project Worktime | Project III | [Project II](https://biologicaldataanalysis2019.github.io/2021/articles/ProjectTwo.html) |
-| Week of Nov. 15 | Code shareability & R Packages  | Nothing | Nothing |
+| Week of Nov. 8 | Diversity Curves and Project Worktime | [Project III](https://biologicaldataanalysis2019.github.io/2021/articles/ProjectThree.html) | [Project II](https://biologicaldataanalysis2019.github.io/2021/articles/ProjectTwo.html) |
+| Week of Nov. 15 |  R Packages & [Diversity Curves](https://biologicaldataanalysis2019.github.io/2021/articles/11_iNEXT.Rmd)  | Nothing | Nothing |
 | Week of Nov. 22 | Project Work Time/Thanksgiving | Nothing | Nothing |  
-| Week of Nov. 29  | Final grab bag | Final Instructions | Project III - Nov. 30 | 
+| Week of Nov. 29  | Final grab bag | Final Instructions | [Project III - Nov. 30](https://biologicaldataanalysis2019.github.io/2021/articles/ProjectThree.html) | 
 | Week of Dec 6, we will present final presentations | | | 
 
