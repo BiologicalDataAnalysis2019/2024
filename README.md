@@ -22,6 +22,6 @@ Lectures will be posted the day before they are given by 5 pm.
 | Week of Nov. 8 | Diversity Curves and Project Worktime | [Project III](https://biologicaldataanalysis2019.github.io/2021/articles/ProjectThree.html) | [Project II](https://biologicaldataanalysis2019.github.io/2021/articles/ProjectTwo.html) |
 | Week of Nov. 15 |  R Packages & [Diversity Curves](https://biologicaldataanalysis2019.github.io/2021/articles/11_iNEXT.Rmd)  | Nothing | Nothing |
 | Week of Nov. 22 | Project Work Time/Thanksgiving | Nothing | Nothing |  
-| Week of Nov. 29  | Final grab bag | Final Instructions | [Project III - Nov. 30](https://biologicaldataanalysis2019.github.io/2021/articles/ProjectThree.html) | 
+| Week of Nov. 29  | Final grab bag | [Final Instructions](https://biologicaldataanalysis2019.github.io/2021/articles/ProjectFinal.html) | [Project III - Nov. 30](https://biologicaldataanalysis2019.github.io/2021/articles/ProjectThree.html) | 
 | Week of Dec 6, we will present final presentations | | | 
 
