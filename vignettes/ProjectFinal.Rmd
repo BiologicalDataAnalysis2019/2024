@@ -12,13 +12,13 @@ output: html_document
 Much easier on this one:
 
 + Write a tutorial for your R Package
-  + The R package must be installable by other members of the class and installation instructions must be included in the tutorial
+  + The R package must be installable by other members of the class and installation instructions must be included in the tutorial (30%)
   + If data are required for your tutorial, instructions to download the data must be included
-  + An example of each function must be included
-  + Tutorial must be in RMarkdown format
-  + Tutorial should explain what the function does, and why this is a useful good, or interesting thing to do
+  + An example of each function must be included (20%)
+  + Tutorial must be in RMarkdown format (5%)
+  + Tutorial should explain what the function does, and why this is a useful good, or interesting thing to do (15%)
 
-+ Render the tutorial and upload it to the package website (instructions for this will be given in class 12-2-21)
++ Render the tutorial and upload it to the package website (20%) 
 
-+ During class:
++ During class (10%):
   + Make a good faith effort to follow along with other's tutorials
