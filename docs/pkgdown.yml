@@ -1,5 +1,5 @@
-pandoc: 2.10.1
-pkgdown: 1.6.1
+pandoc: '2.18'
+pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   00_Syllabus_and_Expectations: 00_Syllabus_and_Expectations.html
@@ -22,5 +22,5 @@ articles:
   ProjectOne: ProjectOne.html
   ProjectThree: ProjectThree.html
   ProjectTwo: ProjectTwo.html
-last_built: 2021-12-05T19:37Z
+last_built: 2022-08-08T14:09Z
 
