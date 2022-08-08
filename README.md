@@ -9,8 +9,8 @@ Lectures will be posted the day before they are given by 5 pm.
 
 | Week | Topic | Posted | Due |
 |:----:|-------|--------|-----|
-| Week of Aug. 15 | [Introduction to RStudio](https://biologicaldataanalysis2019.github.io/2022/articles/00_Syllabus_and_Expectations.html) [and R](https://biologicaldataanalysis2019.github.io/2022/articles/01_Getting_Started_with_R.html)| Homework One | How to do homework |
-| Week of Aug. 22 |  [Working with Data I](https://biologicaldataanalysis2019.github.io/2022/articles/02_Starting_with_Data.html) | Homework Two | Homework One | 
+| Week of Aug. 15 | [Introduction to RStudio](https://biologicaldataanalysis2019.github.io/2022/articles/00_Syllabus_and_Expectations.html) [and R](https://biologicaldataanalysis2019.github.io/2022/articles/01_Getting_Started_with_R.html)| [Homework One](https://biologicaldataanalysis2019.github.io/2022/articles/homework_0.html) | [How to do homework](https://biologicaldataanalysis2019.github.io/2022/articles/homework_0.html) |
+| Week of Aug. 22 |  [Working with Data I](https://biologicaldataanalysis2019.github.io/2022/articles/02_Starting_with_Data.html) | Homework Two | [Homework One](https://biologicaldataanalysis2019.github.io/2022/articles/homework_0.html) | 
 | Week of Aug. 29 | [Working with Data II](https://biologicaldataanalysis2019.github.io/2022/articles/03_Manipulating_Data.html) | Homework Three |  Homework Two | 
 | Week of Sept. 5 | [Working with Data II continued](https://biologicaldataanalysis2019.github.io/2022/articles/03_Manipulating_Data.html) | Project One | Homework Three |
 | Week of Sept. 12| [Visualization](https://biologicaldataanalysis2019.github.io/2022/articles/04-plotting.html) | Homework Four | Project One |
