@@ -7,12 +7,11 @@ output: html_document
 # Data Project One
 
 ## 100 points
-#DUE Oct 8 at Midnight
+#DUE Sept 9 at 11:59 PM
 
 Below are the questions for the first data practical assignment. This project uses the "FossilAnts.csv" file, located in the data directory for the project. The point value of each question is denoted next to it. A blank cell is below each for your answer; feel free to create more blank cells as needed.
 
-0. (5 pts) Create a directory called `projects`, and in it, a subdirectory called `project_one`. Use `download.files` to get [this file](https://github.com/BiologicalDataAnalysis2019/2021/blob/master/projects/project_one/ProjectOneUndergrads.Rmd), and [this one](https://github.com/BiologicalDataAnalysis2019/2021/blob/master/projects/project_one/data/FossilAnts.csv).
-
+0. (5 pts) Create a directory called `projects`, and in it, a subdirectory called `project_one`. Use `download.files` to get [this file]("https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/ProjectOne.Rmd"), and [this one](https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2021/main/projects/project_one/data/FossilAnts.csv).
 
 
 1. 5 pts. Import the `tidyverse` package and load the data. The data for this part of the practical is located in the data directory. Save the data in a variable called `project_dat`. Print the data to the screen to ensure it loaded correctly.
@@ -108,4 +107,11 @@ Next, we will test a hypothesis. Your hypthesis is that there are more specimens
 
 
 ```
+
+
+# Graduate Students
+
+1. You will do the above steps with the classroom dataset.
+2. Next, you will choose three data steps from above to perform with your own data. This could be grouping, mutating, cleaning NA values, visualization, or any combination of the three. 
+3. Why did you choose these steps? What function does this serve for your thesis and/or other research projects? 
 

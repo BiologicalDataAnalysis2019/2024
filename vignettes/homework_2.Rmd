@@ -3,16 +3,14 @@ title: "Homework Two"
 output: html_document
 ---
 
-# Homework Two: Due Oct. 1 at 5 pm.
+# Homework Two: Due Sept. 2 at 5 pm.
 
 First, we will use a modified version of surveys.csv, which has some strange values entered for NAs. Download like so: 
 
 ```{r, eval=FALSE}
-download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2021/master/homeworks/HomeworkTwo.Rmd", destfile = "/cloud/project/homeworks/HomeworkTwo.Rmd")
-download.file("https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2021/master/homeworks/HW2_data/surveys_odd_NA_values.csv", destfile = "/cloud/project/data/surveys_odd_NA_values.csv")
+download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/homework_2.Rmd", destfile = "/cloud/project/homeworks/homework_2.Rmd")
 ```
 
-In your RStudio interface, you will note that there is now a "Homeworks" directory. In it, you will find "HomeworkTwo.Rmd". In your RStudio instance, open it.
 
 Each question will direct you to perform a task. Each question that expects code as an answer will have a space for you to enter the code. 
 

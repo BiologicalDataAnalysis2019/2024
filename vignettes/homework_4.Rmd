@@ -1,14 +1,14 @@
 ---
-title: "Homework Three"
+title: "Homework Four"
 output: html_document
 ---
 
-# Homework Three: Due Oct. 15 at 5 pm.
+# Homework Four: Due Oct. 15 at 5 pm.
 
 First, download your homework. In your RStudio, fill in the below command:
 
 ```{r, eval = FALSE}
-download.file()
+download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/homework_3.Rmd", destfile = "")
 
 ```
 

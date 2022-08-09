@@ -40,7 +40,7 @@ Each homework will contain a link to download the homework. It will look like th
 
 ```{r, eval=FALSE}
 
-download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/master/homeworks/Homework_0.Rmd", destfile = "/cloud/project/homeworks/Homework_0.Rmd")
+download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/homework_0.Rmd", destfile = "/cloud/project/homeworks/Homework_0.Rmd")
 ```
 
 **You will run this cell once and only once.** If you run it again without changing the destfile, it will overwrite your file. You will note that the destfile specifies that we will be downloading the file into a folder called homework. We created this in class; if you did not please do so now.

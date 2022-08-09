@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ProjectOne • compbio2020</title>
+<title>Homework Three • compbio2020</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="ProjectOne">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Homework Three">
 <meta property="og:description" content="compbio2020">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -131,129 +131,124 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>ProjectOne</h1>
+      <h1 data-toc-skip>Homework Three</h1>
+                        <h4 data-toc-skip class="author">April
+Wright</h4>
             
+            <h4 data-toc-skip class="date">10/15/2021</h4>
       
       
-      <div class="hidden name"><code>ProjectOne.Rmd</code></div>
+      <div class="hidden name"><code>homework_3.Rmd</code></div>
 
     </div>
 
     
     
 <div class="section level2">
-<h2 id="data-project-one">Data Project One<a class="anchor" aria-label="anchor" href="#data-project-one"></a>
+<h2 id="plotting-and-choices">Plotting and choices<a class="anchor" aria-label="anchor" href="#plotting-and-choices"></a>
 </h2>
 <div class="section level3">
-<h3 id="points">100 points<a class="anchor" aria-label="anchor" href="#points"></a>
+<h3 id="points-due-sept--16-at-5-pm">10 points, due Sept. 16 at 5 PM<a class="anchor" aria-label="anchor" href="#points-due-sept--16-at-5-pm"></a>
 </h3>
-<p>#DUE Sept 9 at 11:59 PM</p>
-<p>Below are the questions for the first data practical assignment. This
-project uses the “FossilAnts.csv” file, located in the data directory
-for the project. The point value of each question is denoted next to it.
-A blank cell is below each for your answer; feel free to create more
-blank cells as needed.</p>
-<ol start="0" style="list-style-type: decimal">
-<li><p>(5 pts) Create a directory called <code>projects</code>, and in
-it, a subdirectory called <code>project_one</code>. Use
-<code>download.files</code> to get <a href="%22https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/ProjectOne.Rmd%22" class="external-link">this
-file</a>, and <a href="https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2021/main/projects/project_one/data/FossilAnts.csv" class="external-link">this
-one</a>.</p></li>
-<li><p>5 pts. Import the <code>tidyverse</code> package and load the
-data. The data for this part of the practical is located in the data
-directory. Save the data in a variable called <code>project_dat</code>.
-Print the data to the screen to ensure it loaded correctly.</p></li>
-</ol>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Enter Your Answer Here</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/homework_3.Rmd"</span>, destfile <span class="op">=</span> <span class="st">"/cloud/project/homeworks/homework_3.Rmd"</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## Warning in download.file(url = "https://raw.githubusercontent.com/</span>
+<span class="co">## BiologicalDataAnalysis2019/2022/main/vignettes/homework_3.Rmd", : URL https://</span>
+<span class="co">## raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/</span>
+<span class="co">## homework_3.Rmd: cannot open destfile '/cloud/project/homeworks/homework_3.Rmd',</span>
+<span class="co">## reason 'No such file or directory'</span></code></pre>
+<pre><code><span class="co">## Warning in download.file(url = "https://raw.githubusercontent.com/</span>
+<span class="co">## BiologicalDataAnalysis2019/2022/main/vignettes/homework_3.Rmd", : download had</span>
+<span class="co">## nonzero exit status</span></code></pre>
+<ol start="0" style="list-style-type: decimal">
+<li><p>Read in the surveys.csv dataset. Remove NAs from the
+datasets.</p></li>
+<li><p>In this homework, we’re going to explore how different ways of
+visualizing the same data. First, take a look at
+<code>geom_col()</code>. Group the surveys data by the species_id column
+and count how many of each species there are. Use this count data to
+make a bar plot of the counts per species.</p></li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Answer here</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li>(5pts) Check the datatypes of each column. There is a column called
-reference number. This is a static identifier - it should not be
-changed, and is an indexer used to identify this specimen uniquely. Do
-we want to treat it as an integer (this is an opinion question - answers
-may vary).</li>
+<li>Take a look at the argument <code>fct_reorder</code>. It reorders
+variables on one or both axes. Try using this to plot the species in
+order from most to least members.</li>
 </ol>
-<pre><code><span class="co"># Answer here</span></code></pre>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Answer here</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
-<li>(5 pts) Change the datatype of the reference number column to
-character. Take a peek at the function as.character().</li>
+<li>What we canonically think of as a bar plot can also be made in R.
+These can have some interesting properties, such as being able to fill
+in bars by other aesthetics. Using the surveys dataset, try to plot the
+number of members of each species, with the bar filled in by sex.</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Answer Here</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(______, <span class="at">mapping =</span> <span class="fu">aes</span>(______, <span class="at">fill=</span>____)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
-<li>(5 pts) Look at your data. What are the missing data values? In
-particular, have a look at the <code>Tribe</code> column. In your
-opinion, are these intelligent missing values for the dataset? Why or
-why not? If not, how would you like to change them?</li>
-</ol>
-<pre><code><span class="co">#Answer here</span></code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>(5 points) Are there any columns in your dataset that contain two
-pieces of data? If so, identify them.</li>
-</ol>
-<pre><code><span class="co"># Answer here</span></code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>(5pts) Please look at the help page for the <code>separate</code>
-function.</li>
-</ol>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Show how you would pull up the help</span></code></pre></div>
-<ol start="7" style="list-style-type: decimal">
-<li>(10 pts) How could you separate one column into two?</li>
+<li>
+<code>geom_bar</code> accepts various arguments. Try
+<code>postion="dodge"</code> or position=“stack”. How does this change
+the plot and how you interpret it?</li>
 </ol>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Answer here</span></code></pre></div>
-<p>Next, we will test a hypothesis. Your hypthesis is that there are
-more specimens in the 75 million years ago (mya) - 100 mya interval than
-the 30 mya to the present interval.</p>
-<ol start="8" style="list-style-type: decimal">
-<li>(5 pts) Write out the steps you would take to address this question.
-Will you need to split up the data? Will you need to group the data
-based on the values in some column?</li>
-</ol>
-<p>#Answer Here</p>
-<ol start="9" style="list-style-type: decimal">
-<li>(15 pts) Perform the operations you described in (8).</li>
+<code class="sourceCode R"><span class="co">#Answer here.</span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>Even a simple histogram can lead to different interpretations. Make
+a histogram of hindfoot_lengths in the surveys dataset. Try choosing
+different binwidths. How does a high bindwith (like 100) this change
+your interpretation of how the data are distributed?</li>
 </ol>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Answer here</span></code></pre></div>
-<ol start="10" style="list-style-type: decimal">
-<li>(5 pts) Do the results of your code support the hypothesis?</li>
+<code class="sourceCode R"><span class="co">#Answer here.</span></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li>Next, let’s take a look at density plots. First, look at the help
+for <code>geom_density</code>. Density plots are like a smoothed
+histogram, mostly used for continuous data. But how density is
+calculated is done using what is called a kernel. To get a sense for
+what this means, try different kernel types. Some common ones are
+“triangular”, “rectangular”, and “gaussian.” Try them out, and put the
+one you think best represents the data in the answer below.</li>
 </ol>
-<pre><code><span class="co">#Answer here</span></code></pre>
-<ol start="11" style="list-style-type: decimal">
-<li>(10 pts) Save the dataframe with the split columns into a new
-directory called <code>project_one_data_output</code>. Save it as a csv
-file called “column_separated.csv”</li>
-</ol>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Answer here</span></code></pre></div>
-<ol start="12" style="list-style-type: decimal">
-<li>(10 pts) Produce a histogram of the number of specimens by minimum
-age. Look at the geom_histogram() help.</li>
-</ol>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Answer here</span></code></pre></div>
-<ol start="13" style="list-style-type: decimal">
-<li><p>(5 pts) Change the font size on your histogram so that it can be
-read comfortably on your computer screen from five feet away. Save the
-file as “large_font.pdf”.</p></li>
-<li><p>Finally, produce a histogram of counts for each
-subfamily.</p></li>
-</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(______, <span class="fu">aes</span>(______)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">binwidth =</span> <span class="dv">10</span>, <span class="at">kernel =</span><span class="st">"______"</span>)</span></code></pre></div>
 </div>
+<div class="section level3">
+<h3 id="graduate-students">Graduate Students:<a class="anchor" aria-label="anchor" href="#graduate-students"></a>
+</h3>
+<p>A common set of journal figure requirements several of you submitted
+include the following:</p>
+<ul>
+<li>PDF or PNG</li>
+<li>At least 300 DPI</li>
+<li>One column (80 mm) or two column (160mm) wide.</li>
+</ul>
+<p>For each of your plots on the above homework, save figures meeting
+all requirements in your lastname_directory in a directory called
+<code>output.</code></p>
+<p>As a longer-term goal, you each picked a few figures. See if you can
+find the data that the authors used to make the figures. One of the best
+ways to learn to make good figures in your field is to copy from what’s
+already published.</p>
+<p>What data did the author’s use?</p>
+<pre><code>Answer here</code></pre>
+<p>Is the data you’re using for class similar to these data?</p>
+<pre><code>Answer here</code></pre>
+<p>Could you process your data to be similar to these data?</p>
+<pre><code>Answer here</code></pre>
+<p>Finally, in the final project in this class, you’ll need to produce
+an R package with five functions:</p>
+<ul>
+<li>One or two for data cleaning and/or data manipulation</li>
+<li>One or two for a statistical test (ANOVA, linear models, other
+specialized analyses)</li>
+<li>One or two for plotting</li>
+<li>One of your choice for funsies.</li>
+</ul>
+<p>In next week’s homework, you’ll be expected to pick and write one. So
+start thinking about one now.</p>
 </div>
-<div class="section level2">
-<h2 id="graduate-students">Graduate Students<a class="anchor" aria-label="anchor" href="#graduate-students"></a>
-</h2>
-<ol style="list-style-type: decimal">
-<li>You will do the above steps with the classroom dataset.</li>
-<li>Next, you will choose three data steps from above to perform with
-your own data. This could be grouping, mutating, cleaning NA values,
-visualization, or any combination of the three.</li>
-<li>Why did you choose these steps? What function does this serve for
-your thesis and/or other research projects?</li>
-</ol>
 </div>
   </div>
 
