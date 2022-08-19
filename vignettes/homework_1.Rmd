@@ -18,7 +18,16 @@ Can you find where the file downloaded to? Look at the help entry for `download.
 Open the file and answer these two questions: 
 
 1. (1pt) What does `download.file` do? 
+
+```
+Enter your answer here!
+```
+
 2. (1pt) Where did your HW1.Rmd file download to? 
+
+```
+Enter your answer here!
+```
 
 Next, we're going to try to execute some code in an RMarkdown document. Press the green triangle.
 
@@ -34,6 +43,13 @@ We can also embed plots in RMarkdown. The below code should embed a barplot. Not
 
 ```{r}
 barplot(names.arg=animals, height=weights)
+```
+
+Did the plot show up OK?
+
+```
+Answer yes or no here
+
 ```
 
 ## Getting to know you all
