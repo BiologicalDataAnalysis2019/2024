@@ -417,9 +417,9 @@ of the data frame:
 sex <- surveys$sex
 head(sex)
 levels(sex)
+sex <- addNA(sex)
+sex
 levels(sex)[1] <- "undetermined"
-levels(sex)
-head(sex)
 ```
 
 
@@ -430,9 +430,9 @@ head(sex)
 >  barplot such that "undetermined" is last (after "male")?
 >
 > ```{r, answer=TRUE, purl=FALSE}
-> levels(sex)[2:3] <- c("female", "male")
-> sex <- factor(sex, levels = c("female", "male", "undetermined"))
-> plot(sex)
+>levels(sex)[1:2] <- c("female", "male")
+>sex <- factor(sex, levels = c("undetermined", "female", "male"))
+>plot(sex)
 > ``` 
 
 

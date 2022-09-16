@@ -3,12 +3,12 @@ title: "Homework Four"
 output: html_document
 ---
 
-# Homework Four: Due Oct. 15 at 5 pm.
+# Homework Four: Due Oct. 23 at 5 pm.
 
 First, download your homework. In your RStudio, fill in the below command:
 
 ```{r, eval = FALSE}
-download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/homework_3.Rmd", destfile = "")
+download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/homework_4.Rmd", destfile = "")
 
 ```
 
@@ -56,4 +56,8 @@ Answer here
 
 # Question 6
 
-Have a look at [these](https://libguides.bc.edu/dataplan/best_practices) data storage best practices from Boston College. Have this read by Tuesday, Oct. 7 as we will use this in an activity.
+Have a look at [these](https://libguides.bc.edu/dataplan/best_practices) data storage best practices from Boston College. Have this read by Sept. 27 as we will use this in an activity.
+
+## Master's Students
+
+Find a package that does something you'd like to do for your dissertation. Apply the steps above to this package to evaluate its reliability.

@@ -250,7 +250,7 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length, c
 
 We can use boxplots to visualize the distribution of weight within each species:
 
-```{r boxplot, purl=FALSE}
+```{r purl=FALSE}
 ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
     geom_boxplot()
 ```
@@ -650,3 +650,179 @@ Note: The parameters `width` and `height` also determine the font size in the sa
 ##  https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf
 ```
 
+## Error Bars 
+
+Error bars represent some measure of variability in the data. Common types of error bars are one standard deviation uncertainty, one standard error, or a 95% confidence interval.
+
+Let's first take a look at plotting error bars as one standard deviation from the mean. This is typically a two-step process. The first step is to calculate our standard deviation, then to add this to the plot.
+
+```{r}
+
+surveys_sd <- surveys_complete %>% 
+  group_by(sex) %>%
+  summarize(mean=mean(hindfoot_length),
+            sd=sd(hindfoot_length))
+
+```
+
+If you need to recall,
+
+the calculation of the mean, \bar{X}, looks like so: 
+
+ $\bar{X} = \frac{\sum Observations}{N}$
+ 
+ and standard deviation (a measure of the distance between observations, \mu, and the mean, \bar{X}): 
+ 
+ $\sigma = \sqrt{\frac{1}{N} \sum{(\bar{X} - \mu}^2)} $
+
+
+Here is what the standard deviation will look like on a plot by sex. 
+```{r}
+
+ggplot(surveys_sd, aes(x=sex, y=mean, fill=sex)) + 
+   geom_bar(stat="identity", color="black", 
+            position=position_dodge()) +
+   geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width=.2,
+                 position=position_dodge(.9)) 
+
+```
+
+It's a little more interesting if we peek at the sex by species id interaction.
+
+```{r}
+
+surveys_sd <- surveys_complete %>% 
+  group_by(sex, species_id) %>%
+  summarize(mean=mean(hindfoot_length),
+            sd=sd(hindfoot_length))
+
+```
+What do we think it means that the 
+```{r}
+
+ggplot(surveys_sd, aes(x=species_id, y=mean, fill=sex)) + 
+   geom_bar(stat="identity", color="black", 
+            position=position_dodge()) +
+   geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width=.2,
+                 position=position_dodge(.9)) 
+
+```
+
+We can also do this with the standard error of the mean. Standard error of the mean is a little different than standard deviation, typically defined as 
+
+$se = \frac{\sigma}{\sqrt{N}}$
+
+We'll need to install a package to compute the standard error:
+
+```{r}
+install.packages("plotrix")
+library(plotrix)
+```
+
+We could also write one, but for expediency today, we won't be.
+
+```{r}
+
+surveys_se <- surveys_complete %>% 
+  group_by(sex, species_id) %>%
+  summarize(mean=mean(hindfoot_length),
+            se=std.error(hindfoot_length))
+
+```
+
+We can think of this measure as being a measure of dispersion around a mean. Because N is in the denominator here, SE will tend to decrease as sample sizes increase. Thus, we see on this plot that SE is very low, even when standard deviation is fairly high.
+```{r}
+
+ggplot(surveys_se, aes(x=species_id, y=mean, fill=sex)) + 
+   geom_bar(stat="identity", color="black", 
+            position=position_dodge()) +
+   geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width=.2,
+                 position=position_dodge(.9)) 
+
+```
+
+To explain this visually, let's take a quick look at the barplots for these animals again. Many have fairly low variance around the mean. 
+
+```{r boxplot, purl=FALSE}
+ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
+    geom_boxplot()
+```
+
+We'll discuss confidence intervals in a couple weeks when we look at regression.
+
+
+### Challenge
+
+The relationship between mean, standard devitation and standard error is confusing. Look at the equations above. What information is shared between equations, and what information is different. In what types of situations do you think you'd want to use each one? 
+
+
+## Annotation
+
+Sometimes we want to add additional information or context to our plots. This can come in several forms: we may want to add or modify legends. We may also want to add text directly to the plot.
+
+Here are a few examples. Warm up with a quick jitter plot. Hindfoot_length vs weight.
+
+
+```{r}
+surveys_reduced <- surveys_complete %>% 
+  filter(genus == "Dipodomys")
+ggplot(data = surveys_reduced, mapping = aes(x = weight, y = hindfoot_length, color = sex)) +
+    geom_jitter(alpha = 0.5)
+
+```
+We can label individual points. I'm not sure how much I recommend this, but we want to get familiar with the concept here, not necessarily the specific use case:
+
+```{r}
+
+ggplot(data = surveys_reduced, mapping = aes(x = weight, y = hindfoot_length, label=species_id)) +
+    geom_jitter(alpha = 0.5) +
+    geom_text(hjust=-1,vjust=1)
+
+```
+
+So that's how we label points. Lets say we want to label one or a couple points:
+
+
+```{r}
+surveys_labeled <- surveys_reduced %>% 
+  mutate(TF = record_id == 257)
+
+ggplot(data = surveys_labeled, mapping = aes(x = weight, y = hindfoot_length)) +
+    geom_jitter(alpha = 0.5) +
+    geom_point(data=surveys_labeled[surveys_labeled$TF == "TRUE",],color="pink",size=2) 
+    
+```
+
+Or you can color based on this:
+
+```{r}
+ggplot(data = surveys_labeled, mapping = aes(x = weight, y = hindfoot_length)) +
+    geom_point(aes(color=TF)) 
+```
+The difficulty with this way is that you can lose your point in overplotting.
+  
+```{r}
+library(ggrepel)
+
+ggplot(data = surveys_labeled, mapping = aes(x = weight, y = hindfoot_length)) +
+    geom_jitter(alpha = 0.5) +
+    geom_point(data=surveys_labeled[surveys_labeled$TF == "TRUE",],color="pink",size=2) +
+    geom_text_repel(data=surveys_labeled[surveys_labeled$TF == "TRUE",], aes(label=species_id, color = "pink"))
+```
+
+## Challenge 
+
+Try labeling a cluster of points out of the whole surveys_complete. Perhaps choose a favorite species and label all the points of that species.
+
+## Pretty tables 
+
+
+```{r}
+
+transform_table <- surveys_complete %>%
+  filter(year ==2000 ) %>% 
+  filter(genus == "Dipodomys") %>% 
+  group_by(sex, species_id)
+pretty_table <- knitr::kable(transform_table, caption = "Observations of Dipodomys in 2000")
+pretty_table
+```
