@@ -149,4 +149,42 @@ est_shrub_mass_dim <- function(length, width, height){
 est_shrub_mass_dim(0.8, 1.6, 2.0)
 ```
 
+## Consistency 
 
+We ran into some trouble Tuesday. I had defined each of my functions a couple times. And in so doing, I ended up with extra arguments to some functions and none to others.
+
+
+```{r}
+
+calc_vol <- function(len = 1, width = 10, height = 1){
+volume <- len * width * height
+return(volume)
+}
+
+
+calc_mass <- function(vol){
+mass <- 2.65 * vol^.9
+return(mass)
+}
+
+calc_den <- function(len, width, height){
+vol <-  calc_vol(len, width, height)
+mass <- calc_mass(len)
+density <- mass/vol
+return(density)
+}
+
+calc_den(len = 2, width = 3, height = 4 )
+
+```
+
+## Testing
+
++ How can we know what we've done is good? 
++ How could you verify that a number is right?
+  + What about our density? What must be true of it? 
+  + Generic vs. specific
++ What about non-numerics?
+  + Write some function to clean data.
+
+## Homework + ROpenSci
