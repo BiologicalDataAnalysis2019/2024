@@ -379,8 +379,42 @@ functions and none to others.</p>
 </ul>
 </div>
 <div class="section level2">
-<h2 id="homework-ropensci">Homework + ROpenSci<a class="anchor" aria-label="anchor" href="#homework-ropensci"></a>
+<h2 id="functions-from-class">Functions from class<a class="anchor" aria-label="anchor" href="#functions-from-class"></a>
 </h2>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">calc_density</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">length</span>, <span class="va">width</span>, <span class="va">height</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">volume</span> <span class="op">&lt;-</span> <span class="fu">calc_vol</span><span class="op">(</span><span class="va">length</span>, <span class="va">width</span>, <span class="va">height</span><span class="op">)</span>
+  <span class="va">mass</span> <span class="op">&lt;-</span> <span class="fu">calc_mass</span><span class="op">(</span><span class="va">volume</span><span class="op">)</span>
+  <span class="va">density</span> <span class="op">&lt;-</span> <span class="va">mass</span><span class="op">/</span><span class="va">volume</span> 
+  <span class="kw">if</span> <span class="op">(</span><span class="va">density</span> <span class="op">&lt;</span> <span class="va">volume</span><span class="op">)</span><span class="op">{</span>
+      <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"Density impossibly large! Check your math."</span><span class="op">)</span>
+  <span class="op">}</span>
+<span class="op">}</span>
+
+<span class="va">calc_density</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">length</span>, <span class="va">width</span>, <span class="va">height</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">volume</span> <span class="op">&lt;-</span> <span class="fu">calc_vol</span><span class="op">(</span><span class="va">length</span>, <span class="va">width</span>, <span class="va">height</span><span class="op">)</span>
+  <span class="va">mass</span> <span class="op">&lt;-</span> <span class="fu">calc_mass</span><span class="op">(</span><span class="va">volume</span><span class="op">)</span>
+  <span class="va">density</span> <span class="op">&lt;-</span> <span class="va">mass</span><span class="op">/</span><span class="va">volume</span> 
+  <span class="va">density</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">density</span>, <span class="fl">3</span><span class="op">)</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/double.html" class="external-link">is.double</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"Density impossibly large! Check your math."</span><span class="op">)</span>
+  <span class="op">}</span>
+<span class="op">}</span>
+
+<span class="va">data_cleaning</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">filepath</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">data_raw</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="va">filepath</span><span class="op">)</span>
+  <span class="va">data_clean</span> <span class="op">&lt;-</span> <span class="va">data_raw</span> <span class="op">%&gt;%</span> 
+    <span class="fu">drop_na</span><span class="op">(</span><span class="op">)</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">d_c</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">{</span>
+    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">data_clean</span><span class="op">)</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"NAs still present!"</span><span class="op">)</span>
+  <span class="op">}</span>
+<span class="op">}</span> </code></pre></div>
 </div>
   </div>
 

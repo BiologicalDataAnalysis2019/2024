@@ -15,9 +15,9 @@ Lectures will be posted the day before they are given by 5 pm.
 | Week of Sept. 5 | [Visualization](https://biologicaldataanalysis2019.github.io/2022/articles/04-plotting.html) | [Project One](https://biologicaldataanalysis2019.github.io/2022/articles/ProjectOne.html) | [Homework Three](https://biologicaldataanalysis2019.github.io/2022/articles/homework_3.html)  |
 | Week of Sept. 12| [Visualization](https://biologicaldataanalysis2019.github.io/2022/articles/04-plotting.html) | [Homework Four](https://biologicaldataanalysis2019.github.io/2022/articles/homework_4.html) | [Project One](https://biologicaldataanalysis2019.github.io/2022/articles/ProjectOne.html) |
 | Week of Sept. 18 | [Programming I](https://biologicaldataanalysis2019.github.io/2022/articles/05_Functions.html) | Homework Five |  [Homework Four](https://biologicaldataanalysis2019.github.io/2022/articles/homework_4.html) |
-| Week of Sept. 26 | [Project Structuring](https://biologicaldataanalysis2019.github.io/2022/articles/06_Exploration_Setup.html) | Homework Six | Homework Five | 
+| Week of Sept. 26 | Revision Management | Homework Six | Homework Five | 
 | Week of Oct. 3 |  [Linear Models and Stats ](https://biologicaldataanalysis2019.github.io/2022/articles/08_linear_models.html) |  Project Two | Homework Six  | 
-| Week of Oct. 10 | Revision Management| None | Project Two | 
+| Week of Oct. 10 | [Project Structuring](https://biologicaldataanalysis2019.github.io/2022/articles/06_Exploration_Setup.html) | None | Project Two | 
 | Week of Oct. 17 | [Genetic Data](https://biologicaldataanalysis2019.github.io/2022/articles/09_Tree_of_life.html) and [Mapping exploration](https://biologicaldataanalysis2019.github.io/2022/articles/10_GBIF_and_Location.html)  | Homework Seven | None |
 | Week of Oct. 24 | Maps and Spatial Data | [Project III](https://biologicaldataanalysis2019.github.io/2022/articles/ProjectThree.html) | Homework Seven |
 | Week of Oct. 31 |  R Packages & [Ecology](https://biologicaldataanalysis2019.github.io/2022/articles/11_iNEXT.html)  | Homework Eight | Homework Seven |

@@ -187,4 +187,41 @@ calc_den(len = 2, width = 3, height = 4 )
 + What about non-numerics?
   + Write some function to clean data.
 
-## Homework + ROpenSci
+## Functions from class
+
+```{r}
+
+calc_density <- function(length, width, height){
+  volume <- calc_vol(length, width, height)
+  mass <- calc_mass(volume)
+  density <- mass/volume 
+  if (density < volume){
+      return(density)
+  } else {
+    print("Density impossibly large! Check your math.")
+  }
+}
+
+calc_density <- function(length, width, height){
+  volume <- calc_vol(length, width, height)
+  mass <- calc_mass(volume)
+  density <- mass/volume 
+  density <- round(density, 3)
+  if (is.double(density)){
+    return(density)
+  } else {
+    print("Density impossibly large! Check your math.")
+  }
+}
+
+data_cleaning <- function(filepath){
+  data_raw <- read_csv(filepath)
+  data_clean <- data_raw %>% 
+    drop_na()
+  if (sum(is.na(d_c)) == 0){
+    return(data_clean)
+  } else {
+    print("NAs still present!")
+  }
+} 
+```
