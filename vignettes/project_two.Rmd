@@ -11,6 +11,7 @@ For this first part of the exam, you can either use `surveys_complete.csv` or yo
 
 Save this file in your `projects` directory. You can either save it in a project two subdirectory, or just put it in projects. Either way is fine.
 
+
 1) Load in your data. Which variable will you be using as a predictor, and which as a response? (5 pts)
 
 ```{r}
