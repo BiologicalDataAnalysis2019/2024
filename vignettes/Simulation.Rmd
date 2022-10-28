@@ -8,6 +8,11 @@ redirect: false
 bibliography: references.bib
 ---
 
+## Activity One
+
+See Moodle for the paper and link for the discussion activity.
+
+
 ## Overview 
 
 This tutorial introduces the basic principles of simulations. The goal of simulations is multifold, as we covered in the paper. Today, we'll begin with the goal of assessing the fit between data generated from a model and data by answering the following question: __Could the model we've assumed plausibly have produced the data we observed?__
@@ -132,8 +137,11 @@ ks.test(birds, mx_norm)
 
 Can you reject the null that these data were drawn from the dual normal? 
 
-## A more practical example
+# Final activity
 
+For next week, we will be beginning to look at R packages and documentation. Therefore, we will need to have at least one function in our packages written. 
+
+Do it now. Show it to Basanta before you leave.
 
 
 

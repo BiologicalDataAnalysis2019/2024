@@ -71,44 +71,32 @@ This looks much like plotting with `ggplot` and tidyverse. That's because leafle
 One point is easy. How often do we only want one point, though? Probably, we will want to plot several species. First, with a partner, work out how to get GBIF ids for a set of taxa.
 
 ```{r}
-ants <- c("Martialis", "Atta", "Ectatomma", "Tatuidris", "Aneuretus", "Xymmer", "Aenictus")
-
-#Get GBIF ids for our vector of species.
-
-
-ids <-c()
-  for (ant in ants){
-   print(ant)
-   raw <- name_suggest(ant)
-   print(raw)
-   ids[ant] <- c(raw$data$key)
-}
+ants <- c("Martialis", "Atta", "Ectatomma", "Tatuidris", "Aneuretus", "Xymmer")
 
 ```
 
 Now, we will get the actual specimen occurrences for these ants. Practice using an apply function to do this. Inspect the object you've queried when you've completed your loop. Have we dealt with an object like this before?
 
-```{r, eval=FALSE}
-ids <-c()
-  for (ant in ants){
-   raw <- name_suggest(ant)
-   occ_search(taxonKey = raw$data$key, limit = 10)
-}
+```{r}
+search_results <- list()
+for (ant in ants){
+   query <- name_suggest(ant, rank = "genus")
+   search <- occ_search(taxonKey = query$data$key, limit = 10)
+   search_results[[ant]]<- search$data
+ }
 ```
 
 This is a vector or dataframes. Each individual query made it's own dataframe. For simplicity, lets combine them into one dataframe object.
 
-```{r, eval=FALSE}
+```{r}
 #Combine the resultant dataframes into one large dataframe
-mega_df <- bind_rows(.id = "column_label")
-  for (ant in ants){
-   print(df$ant$data)
-}
+mega_df <- bind_rows(search_results, .id = "column_label")
+
 ```
 
 Since we will be plotting these with a map, we need complete data in both columns - lat and long. Let's drop any columns without data in both.
 
-```{r, eval=FALSE}
+```{r}
 #Drop rows with NA values in the lat and long
 no_na <- mega_df %>%
 select(scientificName, decimalLatitude, decimalLongitude) %>%
@@ -118,7 +106,7 @@ drop_na()
 
 Now let's take a peek at our results!
 
-```{r, eval=FALSE}
+```{r}
 # Plot the dataframe of observations
 k <- leaflet::leaflet(no_na) %>%
 addTiles() %>%
@@ -268,14 +256,14 @@ split_up
 ```
 Try indexing this object. What do you need to do to access data? Now, with a partner, make this iterable across every row in the `scientificName` column. Then, unite the split objects into one new column called `genusSpecies`.
 
-```{r, eval=TRUE}
+```{r}
 split_names <- no_na %>% 
 mutate(genus = map_chr(scientificName, function(s) strsplit(s, " ")[[1]][1]))%>% mutate(species = map_chr(scientificName, function(s) strsplit(s, " ")[[1]][2])) %>% 
 unite(col = genusSpecies, genus, species)
 ```
 
 If you look at the data, there are some obviously mistaken values in there. For example, BOLD is not an ant species. Let's drop that. 
-```{r, eval=TRUE}
+```{r}
 
 # Use ROTL to resolve names
 
@@ -285,15 +273,15 @@ no_bold <- split_names[ grep("BOLD", split_names$genusSpecies, invert = TRUE) , 
 
 We also ended up with far more ant taxa than I thought. What a nice problem to have! But let's filter down to, say, five of them:
 
-```{r, eval=TRUE}
-a_couple_ants <- c("Martialis_heureka", "Atta_mexicana", "Atta_cephalotes", "Atta_sexdens", "Atta_Fabricius")
+```{r}
+a_couple_ants <- c("Martialis_heureka", "Ectatomma_ruidum", "Ectatomma_tuberculatum", "Aneuretus_simoni", "Ectatomma_opaciventre")
 subset_data <- no_bold %>% 
     filter(genusSpecies %in% a_couple_ants)
 
 ```
 
 Now, let's use ROTL to make sure we don't have spelling errors.
-```{r, eval=TRUE}
+```{r}
 reconciled_names <- rotl::tnrs_match_names(unique(subset_data$genusSpecies))
 good_names <-  reconciled_names %>%
   drop_na()
@@ -303,15 +291,16 @@ good_names <-  reconciled_names %>%
 
 Now, we will query our tree from OpenTree.
 
-```{r, eval=FALSE}
+```{r }
 
 tree <- rotl::tol_induced_subtree(good_names$ott_id, label="name")
+plot(tree)
 ```
 
 
 Now, we must combine our GBIF data and our taxon names into a matrix, a two-dimensional data structure with fewer neat data parsing features than a dataframe or tibble. These structures are often preferred when speed is an issue. Matrices can only be one type, which means we must add the row names after generating the object.
 
-```{r eval=TRUE, include=FALSE}
+```{r }
 
 only_lat_long <- subset_data %>% 
   select(decimalLatitude, decimalLongitude) %>% 
@@ -320,16 +309,22 @@ only_lat_long <- subset_data %>%
 rownames(only_lat_long) <- subset_data$genusSpecies
 ```
 
+Lastly, let's pick some colors for each species:
+
+```{r}
+
+library(viridis)
+color_selection <- setNames(sample(viridis(n=Ntip(tree))),
+    tree$tip.label)
+```
+
 
 And the big reveal! Let's overlay our OpenTree with our map:
 
 ```{r, eval=FALSE}
 
-library(viridis)
-cols<-setNames(sample(viridis(n=Ntip(tree))),
-    tree$tip.label)
-
 obj<-phylo.to.map(tree,only_lat_long, plot=FALSE, direction="rightwards")
+plot(obj)
 
 ```
 
@@ -348,7 +343,7 @@ This tree has several quirks. Have a look at the object and see if you can spot 
 
 First, let's resolve the polytomy issue. We will do this using Ape's `multi2di` function, which arbitrarily resolves polytomies. In real life, you would probably want to think about this a little more.:
 
-```{r eval=FALSE, include=FALSE}
+```{r}
 
 library(ape)
 tree <- multi2di(tree)
@@ -358,7 +353,7 @@ We'll also need to add some branch lengths. In our case, we will draw them from 
 
 In our case, we will use `rexp` to make the draws, and we will map them to a new attribute `edge.length` that is a standard attribute of the tree object. In reality, you would likely not want to do this for a publication quality analysis, and would want to estimate branch lengths from data. But being able to rescale branch lengths is a good skill for sensitivity and other similar analyses.
 
-```{r, eval=FALSE}
+```{r}
 tree$edge.length <- rexp(tree$Nnode*2)
 tree$edge.length
 
@@ -367,17 +362,15 @@ tree$edge.length
 
 Now let's try that map again. 
 
-```{r, eval=FALSE}
-plot_object<-phylo.to.map(tree,only_lat_long, plot=FALSE, direction="rightwards")
-
+```{r}
+plot_object <- phylo.to.map(tree, only_lat_long, plot=FALSE)
+plot_object
 ```
 
 
 Finally, we will actually plot to space.
 
-```{r, eval=FALSE}
-
-plot(plot_object,direction="rightwards",colors=cols,cex.points=c(0,1),
-    lwd=c(3,1),ftype="i")
+```{r}
+plot(plot_object,direction="rightwards",colors=color_selection, cex.points=c(0,1), lwd=c(3,1), ftype="off")
 
 ```

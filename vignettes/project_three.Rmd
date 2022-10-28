@@ -6,7 +6,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-#DUE Nov. 22 at 5 PM.
+# DUE Nov. 22 at 5 PM.
 
 The goal of project three is to get you to make significant progress on the coding aspects of the Final Project. I don't want people waiting until the last second to try coding it all the night before. That would be bad for everyone involved.
 
