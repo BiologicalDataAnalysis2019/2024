@@ -62,6 +62,8 @@ k <- leaflet::leaflet(no_na) %>%
   addTiles() %>% 
   addMarkers(~decimalLongitude, ~decimalLatitude, popup = no_na$scientificName)
 
+k
+
 ```
 
 This looks much like plotting with `ggplot` and tidyverse. That's because leaflet is based on the same principles. We establish a canvas and the data in the first line, then we add tiles (the actual map we will use), and then we add our points. When we think about it, this is quite similar to establishing a ggplot canvas, the axes, and the points to plot.

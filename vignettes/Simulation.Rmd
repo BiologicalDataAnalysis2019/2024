@@ -132,4 +132,9 @@ ks.test(birds, mx_norm)
 
 Can you reject the null that these data were drawn from the dual normal? 
 
+## A more practical example
+
+
+
+
 # References
