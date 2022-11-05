@@ -1,6 +1,6 @@
 ---
 title: "Camera Trap Data Analysis"
-author: "Teague O'Mara, Southeastern Louisiana University"
+author: "Teague O'Mara and April Wright"
 date: "10/22/2020"
 output: html_document
 ---
@@ -58,7 +58,8 @@ cam$Subproject <- str_replace_all(cam$Subproject, "/", ".") #there is one subpro
 I want to start summarizing some of the data into counts of each species type per subproject (or forest type). I only need a few of the columns, so I'm going to select those first so that I can count up the number of species found in each subproject. This will give a table with species as rows and Subprojects as columns. I have set it up this way because the package that we'll use to analyze diversity `iNEXT` requires this format.
 
 ```{r}
-speciesCount <- cam %>% dplyr::select(Common.Name, Count, Subproject) %>% 
+speciesCount <- cam %>% 
+  select(Common.Name, Count, Subproject) %>% 
   group_by(Common.Name, Subproject) %>% #Here I group the data by species and the subproject
   summarize(totalCount = sum(Count)) %>% #This now gives the sum of the count of each species per subproject
   spread(Subproject, totalCount) #Now I need to change the orientation so that species are rows and subprojects are columns. This pivots the table to do that. More explanation here: https://rpubs.com/bradleyboehmke/data_wrangling
@@ -77,7 +78,8 @@ In this exercise we'll calculate different diversity metrics to understand how m
 #### Abundance
 First, we'll calculate simple **Abundance** for each Subproject / Forest Type 
 ```{r}
-abundance <- cam %>% group_by(Subproject) %>% 
+abundance <- cam %>% 
+  group_by(Subproject) %>% 
   filter(!is.na(Species.Name)) %>%  #filter out any NAs in the species name, just in case
   summarize(SpeciesAbundance = length(unique(Species.Name)))
 abundance
@@ -193,6 +195,80 @@ deployCount_sf <- deployCount %>% st_as_sf(coords = c("Actual.Lon", "Actual.Lat"
 
 camMap <- mapview(deployCount_sf, zcol="Subproject", cex="totalCount", layer.name = "Habitat Type")
 camMap
+```
+
+
+# NMDS
+
+A better way to look at these data rather than a simple plot might be the non-metric multidimensional scaling (NMDS). NMDS is used for situations with many dimensions of variation. We can make univariate comparsions between populations easily. In fact, you just saw this - most of our diversity indices collapse all the information associated with diversity into a single value.
+
+We might be interested, however, in how community compositions themselves change. This inherently involves looking at more data and more variables, and involves what we might call 'multivariate comparisons'. By their nature, these are more complex comparisons, but there are some tools for making these comparisons that aren't too unituitive.
+
+NMDS is one such technique. We can compute raw abundances for our data. We can also rank which species are the most abundant per community. Doing so has the effect of making the NMDS more robust to missing data. NMDS also does not assume a Euclidean distance (as PCA might), making it flexible to different kinds of dissimilarity metrics between populations. 
+
+What we'll be doing in this lesson is using our data from the previous steps to construct an NMDS plot. Broadly, this will involve defining where communities sit in composition space by themselves and in relation to one another, and then quantifying the goodness of fit of the model to the data (stress).
+
+
+One of the most famous packages for doing this is `vegan`.
+```{r}
+#install.packages("vegan")
+library(vegan)
+```
+Vegan takes community compositions as a matrix. We can modify our command from earlier. Vegan will expect the species names to be the columns and the site to be the row:
+
+```{r}
+speciesCount <- cam %>% 
+  select(Common.Name, Count, Subproject) %>% 
+  group_by(Common.Name, Subproject) %>% #Here I group the data by species and the subproject
+  summarize(totalCount = sum(Count)) %>% #This now gives the sum of the count of each species per subproject
+  spread(Common.Name, totalCount, fill = 0) 
+
+speciesMatrix <- data.matrix(speciesCount, rownames.force = unique(cam$Subproject))
+
+```
+Next, we perform the NMDS:
+
+```{r}
+cam_trap_NMDS <- metaMDS(speciesMatrix)
+
+```
+You will notice this tells us some output. The first is that the differences between communities is calculated by the Bray-Curtis distance. This is a popular distance because it is not affected by changes in unit, it isn't affected if one species is present or absent in one community, it can scale to multiple populations, and it can react to differences in raw abunances even if relative abundance change. It looks like this:
+
+{\displaystyle BC_{ij}=1-{\frac {2C_{ij}}{S_{i}+S_{j}}}}
+
+In which C is the sum of the least common species abundance in populations i and j. For example, if each population has two species, the less abundant count would be summed for both populations. $S_i$ is the number of individuals in population 1 and $S_j$ is this quantity for population 2. If, in our two populations there are 10 robins and 5 cardinals in population one, and 5 robins and 8 cardinals in population 2, this will be
+
+{\displaystyle BC_{ij}=1-{\frac {5+5}{15+13}}}
+
+Next, you will note that the calculation tells us there is no stress associated with our calculation, and that this is a bad thing. You might think no stress is a *good* thing. But actually, when we go from three-dimensional data to two dimensional data, we lose information. Think about going from a globe to a map.
+
+If we have no stress, that means there is no loss of information. This indicates we probably don't have much information in the data. We can view this on a plot.
+
+```{r}
+
+
+stressplot(cam_trap_NMDS)
+
+
+```
+Here, all of our points (blue circles) are right on the red line. Our $R^2$ is very high, indicating good fit. So we can fit the model, but there's little information in it - we might not have widely generalizeable results from these data.
+
+```{r}
+
+ordiplot(cam_trap_NMDS,type="n")
+orditorp(cam_trap_NMDS,display="species",col="red",air=0.01)
+orditorp(cam_trap_NMDS,display="sites",cex=1.25,air=0.01)
+
+```
+Oh, that's hideous. What this is showing us is similarity between populations - the closer together they are, the more similar the species compositions. The species that characterize these communities is printed in red, but it is hard to see.
+
+```{r}
+cols <- c('red', 'black', 'blue', 'green', 'orange')
+groups <- seq(length(speciesCount$Subproject))
+
+ordiplot(cam_trap_NMDS,type="text")
+orditorp(cam_trap_NMDS,display="sites",cex=1.25,air=0.01)
+text(cam_trap_NMDS, display = 'sites')
 ```
 
 
