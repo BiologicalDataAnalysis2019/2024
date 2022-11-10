@@ -20,9 +20,9 @@ Lectures will be posted the day before they are given by 5 pm.
 | Week of Oct. 10 | [Project Structuring](https://biologicaldataanalysis2019.github.io/2022/articles/06_Project_Structuring.html) | None | None | 
 | Week of Oct. 17 | [Genetic Data](https://biologicaldataanalysis2019.github.io/2022/articles/09_Tree_of_life.html) and   | [Homework Seven](https://biologicaldataanalysis2019.github.io/2022/articles/homework_7.html)  | [Project Two](https://biologicaldataanalysis2019.github.io/2022/articles/project_two.html) |
 | Week of Oct. 24 | [Mapping exploration](https://biologicaldataanalysis2019.github.io/2022/articles/10_GBIF_and_Location.html) | Project III | [Homework Seven](https://biologicaldataanalysis2019.github.io/2022/articles/homework_7.html)  |
-| Week of Oct. 31 |  [Simulations](https://biologicaldataanalysis2019.github.io/2022/articles/Simualtion.html)  | None | Homework Seven |
+| Week of Oct. 31 |  [Simulations](https://biologicaldataanalysis2019.github.io/2022/articles/Simulation.html)  | None | Homework Seven |
 | Week of Nov. 7: | R Packages & [Ecology](https://biologicaldataanalysis2019.github.io/2022/articles/11_iNEXT.html) | None | None |  
-| Week of Nov. 14  | [NMDS and Population Biology]((https://biologicaldataanalysis2019.github.io/2022/articles/11_iNEXT.html) | [Final Instructions](https://biologicaldataanalysis2019.github.io/2022/articles/ProjectFinal.html) | None | 
+| Week of Nov. 14  | [NMDS and Population Biology](https://biologicaldataanalysis2019.github.io/2022/articles/11_iNEXT.html) | [Final Instructions](https://biologicaldataanalysis2019.github.io/2022/articles/ProjectFinal.html) | None | 
 | Week of Nov. 21, | Final project worktime | Nothing |[Project III - Nov. 22](https://biologicaldataanalysis2019.github.io/2022/articles/project_three.html) | 
 | Week of Nov. 28 | Final Project Presentations | | | 
 
