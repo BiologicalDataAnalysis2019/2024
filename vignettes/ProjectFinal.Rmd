@@ -8,6 +8,8 @@ output: html_document
 # Final Project
 # Due Dec. 9 at class time
 
+# Presentations will be Nov. 29 and Dec. 1
+
 
 Much easier on this one:
 
