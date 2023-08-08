@@ -43,7 +43,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -71,6 +71,9 @@
       <a href="../articles/06_Exploration_Setup.html">Exploration</a>
     </li>
     <li>
+      <a href="../articles/06_Project_Structuring.html">Project Structuring</a>
+    </li>
+    <li>
       <a href="../articles/08_linear_models.html">Introduction to Linear Models: Building and Interpreting Linear Regressions</a>
     </li>
     <li>
@@ -89,16 +92,7 @@
       <a href="../articles/HomeworkSix.html">HomeworkSix</a>
     </li>
     <li>
-      <a href="../articles/ProjectFinal.html">Project: Final</a>
-    </li>
-    <li>
-      <a href="../articles/ProjectOne.html">ProjectOne</a>
-    </li>
-    <li>
-      <a href="../articles/ProjectThree.html">Project Three</a>
-    </li>
-    <li>
-      <a href="../articles/ProjectTwo.html">Project Two</a>
+      <a href="../articles/Simulation.html">Simulations</a>
     </li>
     <li>
       <a href="../articles/homework_0.html">How to Do Homework</a>
@@ -114,6 +108,27 @@
     </li>
     <li>
       <a href="../articles/homework_4.html">Homework Four</a>
+    </li>
+    <li>
+      <a href="../articles/homework_5.html">Homework Five: Functions</a>
+    </li>
+    <li>
+      <a href="../articles/homework_6.html">HomeworkSix.Rmd</a>
+    </li>
+    <li>
+      <a href="../articles/homework_7.html">HomeworkSix</a>
+    </li>
+    <li>
+      <a href="../articles/project_final.html">Project: Final</a>
+    </li>
+    <li>
+      <a href="../articles/project_one.html">ProjectOne</a>
+    </li>
+    <li>
+      <a href="../articles/project_three.html">ProjectThree</a>
+    </li>
+    <li>
+      <a href="../articles/project_two.html">Project Two</a>
     </li>
   </ul>
 </li>
@@ -145,23 +160,24 @@
 <h2 id="homework-one">Homework One<a class="anchor" aria-label="anchor" href="#homework-one"></a>
 </h2>
 <div class="section level3">
-<h3 id="due-aug--26th-at-5pm--simply-write-your-answers-in-and-save-in-the-homeworks-folder-in-your-rstudio-">Due Aug. 26th at 5pm. Simply write your answers in and save in the
-homeworks folder in your Rstudio.<a class="anchor" aria-label="anchor" href="#due-aug--26th-at-5pm--simply-write-your-answers-in-and-save-in-the-homeworks-folder-in-your-rstudio-"></a>
+<h3 id="due-aug--25th-at-5pm--simply-write-your-answers-in-and-save-in-the-homeworks-folder-in-your-rstudio-">Due Aug. 25th at 5pm. Simply write your answers in and save in the
+homeworks folder in your Rstudio.<a class="anchor" aria-label="anchor" href="#due-aug--25th-at-5pm--simply-write-your-answers-in-and-save-in-the-homeworks-folder-in-your-rstudio-"></a>
 </h3>
 <p>This is going to be a low-stakes effort to get you comfortable with
 RStudio and RMarkdown. First, you’re going to download the RMarkdown
 Document for this homework. Copy and paste this command into the console
 of your RStudio instance.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/homework_1.Rmd"</span>, destfile <span class="op">=</span> <span class="st">"/cloud/project/homeworks/homework_1.Rmd"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Warning in download.file(url = "https://raw.githubusercontent.com/</span>
-<span class="co">## BiologicalDataAnalysis2019/2022/main/vignettes/homework_1.Rmd", : URL https://</span>
-<span class="co">## raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/</span>
-<span class="co">## homework_1.Rmd: cannot open destfile '/cloud/project/homeworks/homework_1.Rmd',</span>
-<span class="co">## reason 'No such file or directory'</span></code></pre>
-<pre><code><span class="co">## Warning in download.file(url = "https://raw.githubusercontent.com/</span>
-<span class="co">## BiologicalDataAnalysis2019/2022/main/vignettes/homework_1.Rmd", : download had</span>
-<span class="co">## nonzero exit status</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/vignettes/homework_1.Rmd"</span>, destfile <span class="op">=</span> <span class="st">"/cloud/project/homeworks/homework_1.Rmd"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning in download.file(url =</span></span>
+<span><span class="co">## "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/vignettes/homework_1.Rmd",</span></span>
+<span><span class="co">## : URL</span></span>
+<span><span class="co">## https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/vignettes/homework_1.Rmd:</span></span>
+<span><span class="co">## cannot open destfile '/cloud/project/homeworks/homework_1.Rmd', reason 'No such</span></span>
+<span><span class="co">## file or directory'</span></span></code></pre>
+<pre><code><span><span class="co">## Warning in download.file(url =</span></span>
+<span><span class="co">## "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/vignettes/homework_1.Rmd",</span></span>
+<span><span class="co">## : download had nonzero exit status</span></span></code></pre>
 <p>Can you find where the file downloaded to? Look at the help entry for
 <code>download.file</code> if you aren’t sure.</p>
 <p>Open the file and answer these two questions:</p>
@@ -176,17 +192,17 @@ of your RStudio instance.</p>
 <p>Next, we’re going to try to execute some code in an RMarkdown
 document. Press the green triangle.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">animals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cat"</span>, <span class="st">"rat"</span>, <span class="st">"dog"</span><span class="op">)</span>
-<span class="va">weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">1</span>, <span class="fl">120</span><span class="op">)</span>
-<span class="va">animals</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">]</span></code></pre></div>
-<pre><code><span class="co">## [1] "cat" "dog"</span></code></pre>
+<code class="sourceCode R"><span><span class="va">animals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cat"</span>, <span class="st">"rat"</span>, <span class="st">"dog"</span><span class="op">)</span></span>
+<span><span class="va">weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">1</span>, <span class="fl">120</span><span class="op">)</span></span>
+<span><span class="va">animals</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "cat" "dog"</span></span></code></pre>
 <p>What just happened? Annotate the above code with two comments (each
 worth one point) explaining the code.</p>
 <p>We can also embed plots in RMarkdown. The below code should embed a
 barplot. Not very useful, but let me know if you don’t see one show up
 in your file.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span>names.arg<span class="op">=</span><span class="va">animals</span>, height<span class="op">=</span><span class="va">weights</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span>names.arg<span class="op">=</span><span class="va">animals</span>, height<span class="op">=</span><span class="va">weights</span><span class="op">)</span></span></code></pre></div>
 <p><img src="homework_1_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <p>Did the plot show up OK?</p>
 <pre><code>Answer yes or no here
@@ -227,8 +243,7 @@ interested to see?</p></li>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

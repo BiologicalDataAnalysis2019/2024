@@ -5,7 +5,7 @@ date: "2022-09-30"
 output: html_document
 ---
 
-## Due: October 7, 5 PM
+## Due: October 6, 5 PM
 
 This homework is 'simple'. 
 

@@ -122,10 +122,7 @@ spreadsheets from your hard drive (or the web).
 A data frame is the representation of data in the format of a table where the
 columns are vectors that all have the same length. Because columns are
 vectors, each column must contain a single type of data (e.g., characters, integers,
-factors). For example, here is a figure depicting a data frame comprising a
-numeric, a character, and a logical vector.
-
-![](/cloud/project/img/data-frame.svg)
+factors). 
 
 
 We can see this when inspecting the <b>str</b>ucture of a data frame
@@ -212,7 +209,7 @@ that different ways of specifying these coordinates lead to results with
 different classes.
 
 
-```{r, purl=FALSE}
+```{r, results = FALSE}
 # first element in the first column of the data frame (as a vector)
 surveys[1, 1]   
 # first element in the 6th column (as a vector)
@@ -234,14 +231,14 @@ or decreasing order, test `1:10` and `10:1` for instance.
 
 You can also exclude certain indices of a data frame using the "`-`" sign:
 
-```{r, purl=FALSE}
+```{r, results=FALSE}
 surveys[, -1]          # The whole data frame, except the first column
 surveys[-c(7:34786), ] # Equivalent to head(surveys)
 ```
 
 Data frames can be subset by calling indices (as shown previously), but also by calling their column names directly:
 
-```{r, eval = FALSE, purl=FALSE}
+```{r, eval = FALSE, results=FALSE}
 surveys["species_id"]       # Result is a data.frame
 surveys[, "species_id"]     # Result is a vector
 surveys[["species_id"]]     # Result is a vector
@@ -527,7 +524,7 @@ surveys$plot_type <- factor(surveys$plot_type)
 >                                   has_kangaroo = c(FALSE, FALSE, FALSE, 1))
 >    ```
 >
->    ```{text_answer, echo=FALSE, purl=FALSE}
+>    ```{echo=FALSE, purl=FALSE}
 >    * missing quotations around the names of the animals
 >    * missing one entry in the `feel` column (probably for one of the furry animals)
 >    * missing one comma in the `weight` column
@@ -594,13 +591,13 @@ str(my_date)
 Now we apply this function to the surveys dataset. Create a character vector from the `year`, `month`, and `day` columns of
 `surveys` using `paste()`:
 
-```{r, purl=FALSE}
+```{r, purl=FALSE, results=FALSE}
 paste(surveys$year, surveys$month, surveys$day, sep = "-")
 ```
 
 This character vector can be used as the argument for `ymd()`:
 
-```{r, purl=FALSE}
+```{r, purl=FALSE, results=FALSE}
 ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
 ```
 

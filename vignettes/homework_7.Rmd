@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Plotting and choices
 
-## 10 points, due Oct. 28 at 5 PM
+## 10 points, due Oct. 20 at 5 PM
 
 For your final project in this class, you will be making an R Package. It will consist of 3 functions that do the following:
 

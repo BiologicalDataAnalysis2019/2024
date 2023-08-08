@@ -1,5 +1,5 @@
-pandoc: '2.18'
-pkgdown: 2.0.2
+pandoc: 2.19.2
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   00_Syllabus_and_Expectations: 00_Syllabus_and_Expectations.html
@@ -9,20 +9,25 @@ articles:
   04-plotting: 04-plotting.html
   05_Functions: 05_Functions.html
   06_Exploration_Setup: 06_Exploration_Setup.html
+  06_Project_Structuring: 06_Project_Structuring.html
   08_linear_models: 08_linear_models.html
   09_Tree_of_life: 09_Tree_of_life.html
   10_GBIF_and_Location: 10_GBIF_and_Location.html
   11_iNEXT: 11_iNEXT.html
   HomeworkFive: HomeworkFive.html
   HomeworkSix: HomeworkSix.html
-  ProjectFinal: ProjectFinal.html
-  ProjectOne: ProjectOne.html
-  ProjectThree: ProjectThree.html
-  ProjectTwo: ProjectTwo.html
+  Simulation: Simulation.html
   homework_0: homework_0.html
   homework_1: homework_1.html
   homework_2: homework_2.html
   homework_3: homework_3.html
   homework_4: homework_4.html
-last_built: 2022-08-09T01:40Z
+  homework_5: homework_5.html
+  homework_6: homework_6.html
+  homework_7: homework_7.html
+  project_final: project_final.html
+  project_one: project_one.html
+  project_three: project_three.html
+  project_two: project_two.html
+last_built: 2023-08-08T16:17Z
 

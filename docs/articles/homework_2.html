@@ -43,7 +43,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -71,6 +71,9 @@
       <a href="../articles/06_Exploration_Setup.html">Exploration</a>
     </li>
     <li>
+      <a href="../articles/06_Project_Structuring.html">Project Structuring</a>
+    </li>
+    <li>
       <a href="../articles/08_linear_models.html">Introduction to Linear Models: Building and Interpreting Linear Regressions</a>
     </li>
     <li>
@@ -89,16 +92,7 @@
       <a href="../articles/HomeworkSix.html">HomeworkSix</a>
     </li>
     <li>
-      <a href="../articles/ProjectFinal.html">Project: Final</a>
-    </li>
-    <li>
-      <a href="../articles/ProjectOne.html">ProjectOne</a>
-    </li>
-    <li>
-      <a href="../articles/ProjectThree.html">Project Three</a>
-    </li>
-    <li>
-      <a href="../articles/ProjectTwo.html">Project Two</a>
+      <a href="../articles/Simulation.html">Simulations</a>
     </li>
     <li>
       <a href="../articles/homework_0.html">How to Do Homework</a>
@@ -114,6 +108,27 @@
     </li>
     <li>
       <a href="../articles/homework_4.html">Homework Four</a>
+    </li>
+    <li>
+      <a href="../articles/homework_5.html">Homework Five: Functions</a>
+    </li>
+    <li>
+      <a href="../articles/homework_6.html">HomeworkSix.Rmd</a>
+    </li>
+    <li>
+      <a href="../articles/homework_7.html">HomeworkSix</a>
+    </li>
+    <li>
+      <a href="../articles/project_final.html">Project: Final</a>
+    </li>
+    <li>
+      <a href="../articles/project_one.html">ProjectOne</a>
+    </li>
+    <li>
+      <a href="../articles/project_three.html">ProjectThree</a>
+    </li>
+    <li>
+      <a href="../articles/project_two.html">Project Two</a>
     </li>
   </ul>
 </li>
@@ -142,12 +157,12 @@
     
     
 <div class="section level2">
-<h2 id="homework-two-due-sept--2-at-5-pm-">Homework Two: Due Sept. 2 at 5 pm.<a class="anchor" aria-label="anchor" href="#homework-two-due-sept--2-at-5-pm-"></a>
+<h2 id="homework-two-due-sept--1-at-5-pm-">Homework Two: Due Sept. 1 at 5 pm.<a class="anchor" aria-label="anchor" href="#homework-two-due-sept--1-at-5-pm-"></a>
 </h2>
 <p>First, we will use a modified version of surveys.csv, which has some
 strange values entered for NAs. Download like so:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/homework_2.Rmd"</span>, destfile <span class="op">=</span> <span class="st">"/cloud/project/homeworks/homework_2.Rmd"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/vignettes/homework_2.Rmd"</span>, destfile <span class="op">=</span> <span class="st">"/cloud/project/homeworks/homework_2.Rmd"</span><span class="op">)</span></span></code></pre></div>
 <p>Each question will direct you to perform a task. Each question that
 expects code as an answer will have a space for you to enter the
 code.</p>
@@ -162,7 +177,7 @@ your homework folder, and save it to a variable called
 <code>surveys</code>. Use the read_csv function in the
 <code>tidyverse</code> package to do this.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Enter your answer for Question 1 here</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#Enter your answer for Question 1 here</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="question-two---1-point">Question Two - 1 point<a class="anchor" aria-label="anchor" href="#question-two---1-point"></a>
@@ -174,7 +189,7 @@ column has some odd values. Look at the help page for
 as NAs? Are you able to process both NA and the odd value as NAs? Try it
 out.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Enter your answer for Question 2 here</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#Enter your answer for Question 2 here</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="question-three---1-point">Question Three - 1 point<a class="anchor" aria-label="anchor" href="#question-three---1-point"></a>
@@ -182,7 +197,7 @@ out.</p>
 <p>Remove the NA values from the <code>hindfoot_length</code> column
 using a pipe and a filter.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Enter your answer for Question 3 here</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#Enter your answer for Question 3 here</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="question-four---2-points">Question Four - 2 points<a class="anchor" aria-label="anchor" href="#question-four---2-points"></a>
@@ -190,7 +205,7 @@ using a pipe and a filter.</p>
 <p>Verify that the NA values were removed. Don’t do this by looking at
 the column - use code.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Enter your answer for Question 4 here</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#Enter your answer for Question 4 here</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="question-five---1-point">Question Five - 1 point<a class="anchor" aria-label="anchor" href="#question-five---1-point"></a>
@@ -239,8 +254,7 @@ sizes are decreasing over time?</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

@@ -5,7 +5,7 @@ output:
   html_document: default
 ---
 
-Due Oct. 21 at 11:59 PM. 
+Due Oct. 13 at 11:59 PM. 
 
 For this first part of the exam, you can either use `surveys_complete.csv` or your own data. If you are using your own data, you must have data in which you think you have a numerical predictor variable and a numerical response variable. If you are using `surveys_complete`, you can use weight and hindfoot_length for this.
 

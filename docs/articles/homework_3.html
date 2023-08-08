@@ -43,7 +43,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -71,6 +71,9 @@
       <a href="../articles/06_Exploration_Setup.html">Exploration</a>
     </li>
     <li>
+      <a href="../articles/06_Project_Structuring.html">Project Structuring</a>
+    </li>
+    <li>
       <a href="../articles/08_linear_models.html">Introduction to Linear Models: Building and Interpreting Linear Regressions</a>
     </li>
     <li>
@@ -89,16 +92,7 @@
       <a href="../articles/HomeworkSix.html">HomeworkSix</a>
     </li>
     <li>
-      <a href="../articles/ProjectFinal.html">Project: Final</a>
-    </li>
-    <li>
-      <a href="../articles/ProjectOne.html">ProjectOne</a>
-    </li>
-    <li>
-      <a href="../articles/ProjectThree.html">Project Three</a>
-    </li>
-    <li>
-      <a href="../articles/ProjectTwo.html">Project Two</a>
+      <a href="../articles/Simulation.html">Simulations</a>
     </li>
     <li>
       <a href="../articles/homework_0.html">How to Do Homework</a>
@@ -114,6 +108,27 @@
     </li>
     <li>
       <a href="../articles/homework_4.html">Homework Four</a>
+    </li>
+    <li>
+      <a href="../articles/homework_5.html">Homework Five: Functions</a>
+    </li>
+    <li>
+      <a href="../articles/homework_6.html">HomeworkSix.Rmd</a>
+    </li>
+    <li>
+      <a href="../articles/homework_7.html">HomeworkSix</a>
+    </li>
+    <li>
+      <a href="../articles/project_final.html">Project: Final</a>
+    </li>
+    <li>
+      <a href="../articles/project_one.html">ProjectOne</a>
+    </li>
+    <li>
+      <a href="../articles/project_three.html">ProjectThree</a>
+    </li>
+    <li>
+      <a href="../articles/project_two.html">Project Two</a>
     </li>
   </ul>
 </li>
@@ -151,33 +166,34 @@ Wright</h4>
 <h3 id="points-due-sept--9-at-5-pm">10 points, due Sept. 9 at 5 PM<a class="anchor" aria-label="anchor" href="#points-due-sept--9-at-5-pm"></a>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/homework_3.Rmd"</span>, destfile <span class="op">=</span> <span class="st">"/cloud/project/homeworks/homework_3.Rmd"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Warning in download.file(url = "https://raw.githubusercontent.com/</span>
-<span class="co">## BiologicalDataAnalysis2019/2022/main/vignettes/homework_3.Rmd", : URL https://</span>
-<span class="co">## raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/</span>
-<span class="co">## homework_3.Rmd: cannot open destfile '/cloud/project/homeworks/homework_3.Rmd',</span>
-<span class="co">## reason 'No such file or directory'</span></code></pre>
-<pre><code><span class="co">## Warning in download.file(url = "https://raw.githubusercontent.com/</span>
-<span class="co">## BiologicalDataAnalysis2019/2022/main/vignettes/homework_3.Rmd", : download had</span>
-<span class="co">## nonzero exit status</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/homework_3.Rmd"</span>, destfile <span class="op">=</span> <span class="st">"/cloud/project/homeworks/homework_3.Rmd"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning in download.file(url =</span></span>
+<span><span class="co">## "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/homework_3.Rmd",</span></span>
+<span><span class="co">## : URL</span></span>
+<span><span class="co">## https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/homework_3.Rmd:</span></span>
+<span><span class="co">## cannot open destfile '/cloud/project/homeworks/homework_3.Rmd', reason 'No such</span></span>
+<span><span class="co">## file or directory'</span></span></code></pre>
+<pre><code><span><span class="co">## Warning in download.file(url =</span></span>
+<span><span class="co">## "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/vignettes/homework_3.Rmd",</span></span>
+<span><span class="co">## : download had nonzero exit status</span></span></code></pre>
 <ol start="0" style="list-style-type: decimal">
 <li><p>Read in the surveys.csv dataset. Remove NAs from the
 datasets.</p></li>
 <li><p>In this homework, we’re going to explore how different ways of
 visualizing the same data. First, take a look at
-<code>geom_col()</code>. Group the surveys data by the species_id column
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col()</a></code>. Group the surveys data by the species_id column
 and count how many of each species there are. Use this count data to
 make a bar plot of the counts per species.</p></li>
 </ol>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Answer here</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#Answer here</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Take a look at the argument <code>fct_reorder</code>. It reorders
 variables on one or both axes. Try using this to plot the species in
 order from most to least members.</li>
 </ol>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Answer here</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Answer here</span></span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>What we canonically think of as a bar plot can also be made in R.
 These can have some interesting properties, such as being able to fill
@@ -193,7 +209,7 @@ number of members of each species, with the bar filled in by sex.</li>
 the plot and how you interpret it?</li>
 </ol>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Answer here.</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#Answer here.</span></span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Even a simple histogram can lead to different interpretations. Make
 a histogram of hindfoot_lengths in the surveys dataset. Try choosing
@@ -201,7 +217,7 @@ different binwidths. How does a high bindwith (like 100) this change
 your interpretation of how the data are distributed?</li>
 </ol>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Answer here.</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#Answer here.</span></span></code></pre></div>
 <ol start="6" style="list-style-type: decimal">
 <li>Next, let’s take a look at density plots. First, look at the help
 for <code>geom_density</code>. Density plots are like a smoothed
@@ -269,8 +285,7 @@ start thinking about one now.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

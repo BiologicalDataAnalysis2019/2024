@@ -43,7 +43,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -92,16 +92,7 @@
       <a href="../articles/HomeworkSix.html">HomeworkSix</a>
     </li>
     <li>
-      <a href="../articles/ProjectFinal.html">Project: Final</a>
-    </li>
-    <li>
-      <a href="../articles/ProjectOne.html">ProjectOne</a>
-    </li>
-    <li>
-      <a href="../articles/ProjectThree.html">Project Three</a>
-    </li>
-    <li>
-      <a href="../articles/ProjectTwo.html">Project Two</a>
+      <a href="../articles/Simulation.html">Simulations</a>
     </li>
     <li>
       <a href="../articles/homework_0.html">How to Do Homework</a>
@@ -123,6 +114,21 @@
     </li>
     <li>
       <a href="../articles/homework_6.html">HomeworkSix.Rmd</a>
+    </li>
+    <li>
+      <a href="../articles/homework_7.html">HomeworkSix</a>
+    </li>
+    <li>
+      <a href="../articles/project_final.html">Project: Final</a>
+    </li>
+    <li>
+      <a href="../articles/project_one.html">ProjectOne</a>
+    </li>
+    <li>
+      <a href="../articles/project_three.html">ProjectThree</a>
+    </li>
+    <li>
+      <a href="../articles/project_two.html">Project Two</a>
     </li>
   </ul>
 </li>
@@ -190,28 +196,26 @@ example, you might know you will need tidyverse. Go nuts. Install
 whatever.</p>
 <p>Lastly, we’ll be setting git up. Follow the below instructions.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"usethis"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## </span>
-<span class="co">##   There is a binary version available but the source version is later:</span>
-<span class="co">##         binary source needs_compilation</span>
-<span class="co">## usethis  2.1.5  2.1.6             FALSE</span></code></pre>
-<pre><code><span class="co">## installing the source package 'usethis'</span></code></pre>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://usethis.r-lib.org" class="external-link">usethis</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"usethis"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## The downloaded binary packages are in</span></span>
+<span><span class="co">##  /var/folders/54/9kd8nf1x4fnft0ymvb11qmc80000gn/T//RtmppCUq2s/downloaded_packages</span></span></code></pre>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://usethis.r-lib.org" class="external-link">usethis</a></span><span class="op">)</span></span></code></pre></div>
 <p>Next, in the terminal:</p>
 <pre><code>git config --global user.name "Your name"
 git config --global user.email "your email"</code></pre>
 <p>Then, back in R:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://usethis.r-lib.org/reference/use_git.html" class="external-link">use_git</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_git.html" class="external-link">use_git</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Select the positive option. Next, we’ll create our access token.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://usethis.r-lib.org/reference/github-token.html" class="external-link">create_github_token</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://usethis.r-lib.org/reference/github-token.html" class="external-link">create_github_token</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Put “GBIO class project” in for purpose. Set the access period to 90
 days. Create the token and copy it.</p>
 <p>Next, we give the token to Git:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">gitcreds</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gitcreds/man/gitcreds_get.html" class="external-link">gitcreds_set</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">gitcreds</span><span class="fu">::</span><span class="fu"><a href="https://gitcreds.r-lib.org/reference/gitcreds_get.html" class="external-link">gitcreds_set</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Paste in your token.</p>
 <p>You may need to reload the Rstudio window, but you should now be able
 to commit and push your data and scripts directory.</p>
@@ -235,8 +239,7 @@ to commit and push your data and scripts directory.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
