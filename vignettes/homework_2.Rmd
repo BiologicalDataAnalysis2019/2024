@@ -14,7 +14,7 @@ download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis201
 
 Each question will direct you to perform a task. Each question that expects code as an answer will have a space for you to enter the code. 
 
-You are welcome, and even encouraged, to work with a partner. I do ask, though, that every member submits their own homework. To submit your homework, simply save it. I will see it.
+You are welcome, and even encouraged, to work with a partner. I do ask, though, that every member submits their own homework. To submit your homework, simply save it in your RStudio. I will see it.
 
 
 ## Question One - 1 point.
