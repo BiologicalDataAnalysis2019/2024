@@ -162,6 +162,9 @@
 <p>First, we will use a modified version of surveys.csv, which has some
 strange values entered for NAs. Download like so:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/data/surveys.csv"</span>, destfile <span class="op">=</span> <span class="st">"/cloud/project/homeworks/surveys.csv"</span><span class="op">)</span></span></code></pre></div>
+<p>Also, download the homework.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/vignettes/homework_2.Rmd"</span>, destfile <span class="op">=</span> <span class="st">"/cloud/project/homeworks/homework_2.Rmd"</span><span class="op">)</span></span></code></pre></div>
 <p>Each question will direct you to perform a task. Each question that
 expects code as an answer will have a space for you to enter the
@@ -176,7 +179,7 @@ your homework, simply save it in your RStudio. I will see it.</p>
 your homework folder, and save it to a variable called
 <code>surveys</code>. Use the read_csv function in the
 <code>tidyverse</code> package to do this.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Enter your answer for Question 1 here</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -188,7 +191,7 @@ column has some odd values. Look at the help page for
 <code>read_csv</code>. Can you find a way to read these unusual values
 as NAs? Are you able to process both NA and the odd value as NAs? Try it
 out.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Enter your answer for Question 2 here</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -196,7 +199,7 @@ out.</p>
 </h3>
 <p>Remove the NA values from the <code>hindfoot_length</code> column
 using a pipe and a filter.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Enter your answer for Question 3 here</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -204,7 +207,7 @@ using a pipe and a filter.</p>
 </h3>
 <p>Verify that the NA values were removed. Don’t do this by looking at
 the column - use code.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Enter your answer for Question 4 here</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -218,7 +221,7 @@ accomplish this?</p>
 </h3>
 <p>Imagine you are testing the hypothesis that mammal body sizes will be
 larger under climate change to decrease surface to body size ratio.
-First, what columns in the dataframe will you use to address this
+First, what columns in the data frame will you use to address this
 question?</p>
 </div>
 <div class="section level3">
