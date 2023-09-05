@@ -35,12 +35,12 @@ download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis201
 
 ```{r, eval=FALSE}
 ggplot(______, mapping = aes(______, fill=____)) +
-  geom_bar()
+  geom_col()
 
 ```
 
 
-4. `geom_bar` accepts various arguments. Try `postion="dodge"` or position="stack". How does this change the plot and how you interpret it? 
+4. `geom_col` accepts various arguments. Try `postion="dodge"` or position="stack". How does this change the plot and how you interpret it? 
 
 
 ```{r}
