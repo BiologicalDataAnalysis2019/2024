@@ -95,6 +95,9 @@
       <a href="../articles/Simulation.html">Simulations</a>
     </li>
     <li>
+      <a href="../articles/bonus_tables.html">Tables.Rmd</a>
+    </li>
+    <li>
       <a href="../articles/homework_0.html">How to Do Homework</a>
     </li>
     <li>
@@ -174,9 +177,10 @@ blank cells as needed.</p>
 <ol start="0" style="list-style-type: decimal">
 <li><p>(5 pts) Create a directory called <code>projects</code>, and in
 it, a subdirectory called <code>project_one</code>. Use
-<code>download.files</code> to get <a href="%22https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/projects/project_one/ProjectOne.Rmd%22" class="external-link">this
-file</a>, and <a href="https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2021/main/projects/project_one/data/FossilAnts.csv" class="external-link">this
-one</a>.</p></li>
+<code>download.files</code> to get <a href="%22https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/vignettes/project_one.Rmd%22" class="external-link">this
+file</a>, and <a href="https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/projects/project_one/data/FossilAnts.csv" class="external-link">this
+one</a> and save them to the <code>project_one</code>
+directory.</p></li>
 <li><p>5 pts. Import the <code>tidyverse</code> package and load the
 data. The data for this part of the practical is located in the data
 directory. Save the data in a variable called <code>project_dat</code>.
@@ -206,8 +210,9 @@ why not? If not, how would you like to change them?</li>
 </ol>
 <pre><code><span><span class="co">#Answer here</span></span></code></pre>
 <ol start="6" style="list-style-type: decimal">
-<li>(5 points) Are there any columns in your dataset that contain two
-pieces of data? If so, identify them.</li>
+<li>(5 points) In the surveys dataset, we have genus and species split
+between two columns. Here, we have them combined. What are the pros and
+cons of the way we have recorded taxa in these two data sets.</li>
 </ol>
 <pre><code><span><span class="co"># Answer here</span></span></code></pre>
 <ol start="7" style="list-style-type: decimal">
@@ -221,7 +226,7 @@ function.</li>
 </ol>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Answer here</span></span></code></pre></div>
-<p>Next, we will test a hypothesis. Your hypthesis is that there are
+<p>Next, we will test a hypothesis. Your hypothesis is that there are
 more specimens in the 75 million years ago (mya) - 100 mya interval than
 the 30 mya to the present interval.</p>
 <ol start="8" style="list-style-type: decimal">
@@ -240,7 +245,7 @@ based on the values in some column?</li>
 </ol>
 <pre><code><span><span class="co">#Answer here</span></span></code></pre>
 <ol start="11" style="list-style-type: decimal">
-<li>(10 pts) Save the dataframe with the split columns into a new
+<li>(10 pts) Save the dataframe with the split taxon columns into a new
 directory called <code>project_one_data_output</code>. Save it as a csv
 file called “column_separated.csv”</li>
 </ol>

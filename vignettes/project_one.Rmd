@@ -11,14 +11,13 @@ output: html_document
 
 Below are the questions for the first data practical assignment. This project uses the "FossilAnts.csv" file, located in the data directory for the project. The point value of each question is denoted next to it. A blank cell is below each for your answer; feel free to create more blank cells as needed.
 
-0. (5 pts) Create a directory called `projects`, and in it, a subdirectory called `project_one`. Use `download.files` to get [this file]("https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2022/main/projects/project_one/ProjectOne.Rmd"), and [this one](https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2021/main/projects/project_one/data/FossilAnts.csv).
+0. (5 pts) Create a directory called `projects`, and in it, a subdirectory called `project_one`. Use `download.files` to get [this file]("https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/vignettes/project_one.Rmd"), and [this one](https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/projects/project_one/data/FossilAnts.csv) and save them to the `project_one` directory.
 
 
 1. 5 pts. Import the `tidyverse` package and load the data. The data for this part of the practical is located in the data directory. Save the data in a variable called `project_dat`. Print the data to the screen to ensure it loaded correctly.
 
 ```{r}
 #Enter Your Answer Here
-
 ```
 
 2. (5pts) Check the datatypes of each column. There is a column called reference number. This is a static identifier - it should not be changed, and is an indexer used to identify this specimen uniquely. Do we want to treat it as an integer (this is an opinion question - answers may vary).
@@ -41,7 +40,7 @@ Below are the questions for the first data practical assignment. This project us
 
 ```
 
-6. (5 points) Are there any columns in your dataset that contain two pieces of data? If so, identify them.
+6. (5 points) In the surveys dataset, we have genus and species split between two columns. Here, we have them combined. What are the pros and cons of the way we have recorded taxa in these two data sets.
 
 ```
 # Answer here
@@ -60,7 +59,7 @@ Below are the questions for the first data practical assignment. This project us
 #Answer here
 ```
 
-Next, we will test a hypothesis. Your hypthesis is that there are more specimens in the 75 million years ago (mya) - 100 mya interval than the 30 mya to the present interval.
+Next, we will test a hypothesis. Your hypothesis is that there are more specimens in the 75 million years ago (mya) - 100 mya interval than the 30 mya to the present interval.
 
 8. (5 pts) Write out the steps you would take to address this question. Will you need to split up the data? Will you need to group the data based on the values in some column? 
 
@@ -81,7 +80,7 @@ Next, we will test a hypothesis. Your hypthesis is that there are more specimens
 ```
 
 
-11. (10 pts) Save the dataframe with the split columns into a new directory called `project_one_data_output`. Save it as a csv file called "column_separated.csv" 
+11. (10 pts) Save the dataframe with the split taxon columns into a new directory called `project_one_data_output`. Save it as a csv file called "column_separated.csv" 
 
 ```{r}
 # Answer here
