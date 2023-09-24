@@ -4,6 +4,13 @@ author: April Wright; Borrows heavily from Ethan White's semester long biology c
 minutes: 90
 ---
 
+
+```{r}
+
+library(tidyverse)
+surveys <- read_csv("data/portal_data_joined.csv")
+```
+
 ### Functions enable repeatability
 
 * How many of you have done something so far in the semester, and then forgotten it later? Let's discuss how to make code more permenant, reusable and readable
@@ -178,6 +185,70 @@ calc_den(len = 2, width = 3, height = 4 )
 
 ```
 
+
+
+## More complex functions
+
+So far, we've looked at situations where we are providing one or a few arguments to a function. But what about situations where we want to be able to use functions to process our data in more complex ways? 
+
+We may want to select data from a data frame inside a function. We can do that like so:
+
+```{r}
+
+remove_nas <- function(data){
+  clean <- data %>%
+     na.omit(data) %>%
+     select(weight)
+   return(clean)
+}
+
+remove_nas(surveys)
+```
+
+But is this a good thing? This function will allow us to select one and only one column. We call this practice *hardcoding*. It makes our code inflexible - what if we want other data? We would have to edit the code itself. In general, we want to make as few changes to our code as possible. Every change introduces the chance to make a mistake.
+
+So, we can change our code a little bit to make it more flexible. We can, for example, make it so that the user tells the function what code they want. We do this by placing the column in the function body in curly braces. This tells R to prepare to accept user input. See the below:
+
+```{r}
+
+remove_nas <- function(data, column){
+  clean <- data %>%
+     na.omit(data) %>%
+     select({{column}})
+   return(clean)
+}
+
+remove_nas(surveys, hindfoot_length)
+
+
+```
+After you have run the above, you will see that we can now choose a column based on what we provide in the function call. Very handy!
+
+## Exercise:
+> We may want multiple columns of data. How can we make a function flexible to multiple columns? There are two possible solutions to this issue. Look at each of the below and see if you can figure out how they work. Discuss with a partner the pros and cons of each solution. 
+
+```{r}
+#Solution One
+remove_nas <- function(data, column, column1){
+  clean <- data %>%
+     na.omit(data) %>%
+     select({{column}}, {{column1}})
+   return(clean)
+}
+
+remove_nas(surveys, hindfoot_length, weight)
+
+# Solution Two
+cols <- c("hindfoot_length", "weight")
+remove_nas <- function(data, columns){
+  clean <- data %>%
+    na.omit(data) %>%
+    select(all_of({{columns}}))
+  return(clean)
+}
+```
+
+
 ## Testing
 
 + How can we know what we've done is good? 
@@ -186,7 +257,8 @@ calc_den(len = 2, width = 3, height = 4 )
   + Generic vs. specific
 + What about non-numerics?
   + Write some function to clean data.
-
+  
+  
 ## Functions from class
 
 ```{r}
