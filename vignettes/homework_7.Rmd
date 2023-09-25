@@ -1,5 +1,5 @@
 ---
-title: "HomeworkSix"
+title: "Homework Seven"
 author: "April Wright"
 date: "10/29/2021"
 output: html_document
@@ -9,24 +9,21 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Plotting and choices
 
 ## 10 points, due Oct. 20 at 5 PM
 
-For your final project in this class, you will be making an R Package. It will consist of 3 functions that do the following:
+For your final project in this class, you will be making an R Package. It will consist of 5 functions that do the following:
 
-+ One to clean up data, such as removing NAs or renaming columns
-+ One to plot data
-+ One of some sort of statistical test
++ A function to clean some data of your choice
++ A function to somehow manipulate, subset, or transform data
++ A statistical function (ANOVA, LM, other of your choosing)
++ A function that plots data
++ One for fun
++ MS/H-Option, two additional functions pertaining to your research data.
 
-(Master's and H-Option students see below)
+This week in class, you wrote one of your functions and added, committed and pushed it to GitHub. 
+Make  the remaining four .R files (six if you're an MS or H-Option student) in the scripts directory of your Lastname_pkg RStudio project. Title each one with what it will do. For example, if your function will make a histogram, title it "HistogramPlot.R" or something similar. Inside each, write a 1-2 sentence description of what the script will do. You do *not* need to write the function body now.
 
-You may work with any of the data sets we've worked with this semester, the ants, the surveys. Your choice.
-
-# For this week:
-
-Make three .R files (5 if you're an MS or H-Option student) in the scripts directory of your Lastname_pkg RStudio project. Title each one with what it will do. For example, if your function will make a histogram, title it "HistogramPlot.R" or something similar. Inside each, write a 1-2 sentence description of what the script will do.
-
-Add, commit, and push the three (or five) functions and the data to GitHub.
+Add, commit, and push the four (or six if you're MS or H-Option) function files and the data to GitHub.
 
 
