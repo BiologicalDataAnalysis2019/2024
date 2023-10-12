@@ -6,9 +6,9 @@ output: html_document
 ---
 
 # Final Project
-# Due Dec. 9 at class time
+# Due Nov. 27 at class time
 
-# Presentations will be Nov. 29 and Dec. 1
+# Presentations will be Nov. 27 and Dec. 29
 
 
 Much easier on this one:
@@ -19,8 +19,14 @@ Much easier on this one:
   + An example of each function must be included (20%)
   + Tutorial must be in RMarkdown format (5%)
   + Tutorial should explain what the function does, and why this is a useful good, or interesting thing to do (15%)
+  
 
 + Render the tutorial and upload it to the package website (20%) 
 
 + During class (10%):
   + Make a good faith effort to follow along with other's tutorials
+  + During your tutorial, present your material slowly enough for others to be able to keep up and do your exercises.
+  + Aim for about 10 minutes of talk time explaining what you did, how you did it, and why this was the best way to do your work. 
+  
++ After Presentations
+  + If anything didn't work during your presentation, you have until our scheduled final time (Monday, December 4, 12:30 PM) to revise it and get me a final copy.

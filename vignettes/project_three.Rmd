@@ -14,7 +14,14 @@ The goal of project three is to get you to make significant progress on the codi
 
 ## Part One
 
-Part One of project three will be to write two of your custom functions for your R package. One must be to query and/or process data, one must be to visualize data. 
+Part One of project three will be to write the remaining custom functions for your R package. As a reminder, your package must contain:
+
++ A function to clean some data of your choice
++ A function to somehow manipulate, subset, or transform data
++ A statistical function (ANOVA, LM, other of your choosing)
++ A function that plots data
++ One for fun
+
 
 Each function must: 
  
@@ -26,8 +33,6 @@ Each function must:
 
 ## Part Two
 
-This content will be covered the week of Nov. 7, so don't panic if you don't know it yet.
-
 + Each function must have an appropriate header that adequately explains how the function works
 + The package must have a README file that explains what the package does and what functions are in it.
 
@@ -35,22 +40,26 @@ This content will be covered the week of Nov. 7, so don't panic if you don't kno
 
 ## Part One
 
-Part One of project three will be to write four of your five functions. One must be to query and/or process data, one must be to visualize data. One can be any function of your choice related to your research.
+Part One of project three will be to write the remaining custom functions for your R package. As a reminder, your package must contain:
 
-Each function must be in its own .R script, and have instructions to run it. All data to run it must be included.
++ A function to clean some data of your choice
++ A function to somehow manipulate, subset, or transform data
++ A statistical function (ANOVA, LM, other of your choosing)
++ A function that plots data
++ Two that do something else pertaining to your dissertation work.
+
+Each function must: 
+ 
++ Have appropriate input and output types
++ Do the task it's supposed to do
++ It has to *work*
++ Have some way of evaluating either the output for correctness (i.e., knowing you actually dropped the NA values), or validating input (for your graphing function, it might be easier to evaluate that the inputs are right than the graph is)
+
 
 ## Part Two
-
-This content will be covered the week of Nov. 7, so don't panic if you don't know it yet.
 
 + Each function must have an appropriate header that adequately explains how the function works
 + The package must have a README file that explains what the package does and what functions are in it.
 
-## Part Three
 
-I need three pieces of information from you:
-
-- What else do you need covered in this class?
-- Is anyone else in your lab doing similar analyses to what you are doing?
-- Do you think in the future, there will be other students working on your question in your lab?
 

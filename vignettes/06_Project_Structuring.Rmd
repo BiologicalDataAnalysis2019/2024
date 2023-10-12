@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## To be completed in lieu of class 10/10/22
+## To be completed in lieu of class 10/17 and 10/19/2023.
 
 For your final project in this class, you will be developing an R package. For all participants in this class, this R package will contain:
 
@@ -17,11 +17,16 @@ For your final project in this class, you will be developing an R package. For a
 + A function to somehow manipulate, subset, or transform data
 + A statistical function (ANOVA, LM, other of your choosing)
 + A function that plots data
++ One of your choosing.
 
-For graduate students and H-Option students, you will also include two other functions of your choosing.
+*5 total functions*
+
+For graduate students and H-Option students, you will also include one additional function of your choosing for *6 total functions*.
 
 
 This week, you will begin this, in earnest. In the YourLastname_pkg, in your R folder, choose one of the above functions. Write it. Add, commit, and push it to GitHub. 
+
+Homework Seven builds on this concept and will be due Oct. 20. 
 
 
 
