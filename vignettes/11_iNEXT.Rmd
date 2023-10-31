@@ -272,6 +272,20 @@ text(cam_trap_NMDS, display = 'sites')
 ```
 
 
+We can also do something a bit nicer. In this case, we take our points and export them to ggplot to make a figure.
+
+```{r}
+
+data.scores = as.data.frame(scores(cam_trap_NMDS)$sites)
+names <- data.scores  %>%
+mutate(Location  = speciesCount$Subproject)
+plot <- ggplot(names, aes(x = NMDS1, y = NMDS2)) +
+geom_point(size = 4, aes(colour = Location))
+plot
+```
+
+
+# Exploration
 ### Now it's your turn
 Here is a link to last year's camera data from North Oak Park
 
