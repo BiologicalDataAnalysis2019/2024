@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-### Due Aug. 18th at 5pm. Simply write your answers in and save in the homeworks folder in your Rstudio.
+### Due Aug. 23rd at 5pm. Simply write your answers in and save in the homeworks folder in your Rstudio.
 
 
 ## R Markdown

@@ -3,7 +3,7 @@ title: "Homework Two"
 output: html_document
 ---
 
-# Homework Two: Due Sept. 1 at 5 pm.
+# Homework Two: Due Sept. 6 at 5 pm.
 
 First, we will use a modified version of surveys.csv, which has some strange values entered for NAs. Download like so: 
 

@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Plotting and choices
 
-## 10 points, due Sept. 8 at 5 PM
+## 10 points, due Sept. 13 at 5 PM
 
 ```{r}
 download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/vignettes/homework_3.Rmd", destfile = "/cloud/project/homeworks/homework_3.Rmd")
