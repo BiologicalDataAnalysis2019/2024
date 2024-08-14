@@ -1,0 +1,20 @@
+
+Much easier on this one:
+
++ Write a tutorial for your R Package
+  + The R package must be installable by other members of the class and installation instructions must be included in the tutorial (30%) Good.
+  + If data are required for your tutorial, instructions to download the data must be included. Good. 
+  + An example of each function must be included (20%) Good.
+  + Tutorial must be in RMarkdown format (5%) Very good.
+  + Tutorial should explain what the function does, and why this is a useful good, or interesting thing to do (15%). 
+  
+
++ Render the tutorial and upload it to the package website (20%) 
+
++ During class (10%):
+  + Make a good faith effort to follow along with other's tutorials
+  + During your tutorial, present your material slowly enough for others to be able to keep up and do your exercises. Very Good.
+  + Aim for about 10 minutes of talk time explaining what you did, how you did it, and why this was the best way to do your work.  Very good.
+  
++ After Presentations
+  + If anything didn't work during your presentation, you have until our scheduled final time (Monday, December 4, 12:30 PM) to revise it and get me a final copy.

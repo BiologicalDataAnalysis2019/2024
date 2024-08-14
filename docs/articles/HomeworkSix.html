@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">compbio2020</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -75,6 +71,9 @@
       <a href="../articles/06_Exploration_Setup.html">Exploration</a>
     </li>
     <li>
+      <a href="../articles/06_Project_Structuring.html">Project Structuring</a>
+    </li>
+    <li>
       <a href="../articles/08_linear_models.html">Introduction to Linear Models: Building and Interpreting Linear Regressions</a>
     </li>
     <li>
@@ -90,28 +89,49 @@
       <a href="../articles/HomeworkFive.html">Homework Five</a>
     </li>
     <li>
-      <a href="../articles/HomeworkFour.html">HomeworkFour</a>
-    </li>
-    <li>
       <a href="../articles/HomeworkSix.html">HomeworkSix</a>
     </li>
     <li>
-      <a href="../articles/HomeworkThree.html">Homework Three</a>
+      <a href="../articles/Simulation.html">Simulations</a>
     </li>
     <li>
-      <a href="../articles/HomeworkTwo.html">Homework Two</a>
+      <a href="../articles/bonus_tables.html">Tables.Rmd</a>
     </li>
     <li>
-      <a href="../articles/ProjectFinal.html">Project: Final</a>
+      <a href="../articles/homework_0.html">How to Do Homework</a>
     </li>
     <li>
-      <a href="../articles/ProjectOne.html">ProjectOne</a>
+      <a href="../articles/homework_1.html">Homework One</a>
     </li>
     <li>
-      <a href="../articles/ProjectThree.html">Project Three</a>
+      <a href="../articles/homework_2.html">Homework Two</a>
     </li>
     <li>
-      <a href="../articles/ProjectTwo.html">Project Two</a>
+      <a href="../articles/homework_3.html">Homework Three</a>
+    </li>
+    <li>
+      <a href="../articles/homework_4.html">Homework Four</a>
+    </li>
+    <li>
+      <a href="../articles/homework_5.html">Homework Five: Functions</a>
+    </li>
+    <li>
+      <a href="../articles/homework_6.html">HomeworkSix.Rmd</a>
+    </li>
+    <li>
+      <a href="../articles/homework_7.html">Homework Seven</a>
+    </li>
+    <li>
+      <a href="../articles/project_final.html">Project: Final</a>
+    </li>
+    <li>
+      <a href="../articles/project_one.html">ProjectOne</a>
+    </li>
+    <li>
+      <a href="../articles/project_three.html">ProjectThree</a>
+    </li>
+    <li>
+      <a href="../articles/project_two.html">Project Two</a>
     </li>
   </ul>
 </li>
@@ -126,13 +146,14 @@
 
       
 
-      </header><script src="HomeworkSix_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>HomeworkSix</h1>
-                        <h4 class="author">April Wright</h4>
+                        <h4 data-toc-skip class="author">April
+Wright</h4>
             
-            <h4 class="date">10/29/2021</h4>
+            <h4 data-toc-skip class="date">10/29/2021</h4>
       
       
       <div class="hidden name"><code>HomeworkSix.Rmd</code></div>
@@ -141,38 +162,34 @@
 
     
     
-<div id="plotting-and-choices" class="section level1">
-<h1 class="hasAnchor">
-<a href="#plotting-and-choices" class="anchor"></a>Plotting and choices</h1>
-<div id="points-due-nov--5-at-5-pm" class="section level2">
-<h2 class="hasAnchor">
-<a href="#points-due-nov--5-at-5-pm" class="anchor"></a>10 points, due Nov. 5 at 5 PM</h2>
-<p>For your final project in this class, you will be making an R Package. It will consist of 3 functions that do the following:</p>
+<div class="section level2">
+<h2 id="plotting-and-choices">Plotting and choices<a class="anchor" aria-label="anchor" href="#plotting-and-choices"></a>
+</h2>
+<div class="section level3">
+<h3 id="points-due-oct--28-at-5-pm">10 points, due Oct. 28 at 5 PM<a class="anchor" aria-label="anchor" href="#points-due-oct--28-at-5-pm"></a>
+</h3>
+<p>For your final project in this class, you will be making an R
+Package. It will consist of 3 functions that do the following:</p>
 <ul>
 <li>One to clean up data, such as removing NAs or renaming columns</li>
 <li>One to plot data</li>
 <li>One of some sort of statistical test</li>
 </ul>
 <p>(Master’s and H-Option students see below)</p>
-<p>You may work with any of the data sets we’ve worked with this semester, the ants, the surveys, NOAA/GBIF. Your choice.</p>
+<p>You may work with any of the data sets we’ve worked with this
+semester, the ants, the surveys. Your choice.</p>
 </div>
 </div>
-<div id="for-this-week" class="section level1">
-<h1 class="hasAnchor">
-<a href="#for-this-week" class="anchor"></a>For this week:</h1>
-<p>Make three .R files in your R_package_Lastname folder. Title each one with what it will do. For example, if your function will make a histogram, title it “HistogramPlot.R” or something.</p>
-<p>Choose the dataset you’d like to work with. Place it in the data directory.</p>
-<p>Add, commit, and push the three functions and the data to GitHub.</p>
-</div>
-<div id="ms-students" class="section level1">
-<h1 class="hasAnchor">
-<a href="#ms-students" class="anchor"></a>MS Students</h1>
-<p>You’re doing five functions. As we discussed, try to make a final determination of what data you’d like to use and upload it to the data directory.</p>
-</div>
-<div id="h-option" class="section level1">
-<h1 class="hasAnchor">
-<a href="#h-option" class="anchor"></a>H-Option</h1>
-<p>I will be uploading your data. <strong>Do not commit the log files to GitHub. They are too big.</strong> You’ll be working on your posterior predictive simulations. You’ll need to have a function to extract data from the posterior trace, one to run the simulations, and one to compare the original values from the posterior trace to the simulated data sets. You might also consider a function to make some sort of visual.</p>
+<div class="section level2">
+<h2 id="for-this-week">For this week:<a class="anchor" aria-label="anchor" href="#for-this-week"></a>
+</h2>
+<p>Make three .R files (5 if you’re an MS or H-Option student) in the
+scripts directory of your Lastname_pkg RStudio project. Title each one
+with what it will do. For example, if your function will make a
+histogram, title it “HistogramPlot.R” or something similar. Inside each,
+write a 1-2 sentence description of what the script will do.</p>
+<p>Add, commit, and push the three (or five) functions and the data to
+GitHub.</p>
 </div>
   </div>
 
@@ -187,11 +204,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by April Wright.</p>
+  <p></p>
+<p>Developed by April Wright.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -199,6 +218,8 @@
 
   
 
+
+  
 
   </body>
 </html>

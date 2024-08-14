@@ -119,7 +119,7 @@
       <a href="../articles/homework_6.html">HomeworkSix.Rmd</a>
     </li>
     <li>
-      <a href="../articles/homework_7.html">HomeworkSix</a>
+      <a href="../articles/homework_7.html">Homework Seven</a>
     </li>
     <li>
       <a href="../articles/project_final.html">Project: Final</a>
@@ -183,7 +183,7 @@ Wright</h4>
 datasets.</p></li>
 <li><p>In this homework, we’re going to explore how different ways of
 visualizing the same data. First, take a look at
-<code>geom_col()</code>. Group the surveys data by the species_id column
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col()</a></code>. Group the surveys data by the species_id column
 and count how many of each species there are. Use this count data to
 make a bar plot of the counts per species.</p></li>
 </ol>
@@ -202,8 +202,8 @@ These can have some interesting properties, such as being able to fill
 in bars by other aesthetics. Using the surveys dataset, try to plot the
 number of members of each species, with the bar filled in by sex.</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(______, <span class="at">mapping =</span> <span class="fu">aes</span>(______, <span class="at">fill=</span>____)) <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">ggplot</span>(______, <span class="at">mapping =</span> <span class="fu">aes</span>(______, <span class="at">fill=</span>____)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>
 <code>geom_col</code> accepts various arguments. Try
@@ -229,8 +229,8 @@ what this means, try different kernel types. Some common ones are
 “triangular”, “rectangular”, and “gaussian.” Try them out, and put the
 one you think best represents the data in the answer below.</li>
 </ol>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(______, <span class="fu">aes</span>(______)) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">binwidth =</span> <span class="dv">10</span>, <span class="at">kernel =</span><span class="st">"______"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">ggplot</span>(______, <span class="fu">aes</span>(______)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">binwidth =</span> <span class="dv">10</span>, <span class="at">kernel =</span><span class="st">"______"</span>)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="graduate-students">Graduate Students:<a class="anchor" aria-label="anchor" href="#graduate-students"></a>
@@ -287,7 +287,7 @@ start thinking about one now.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

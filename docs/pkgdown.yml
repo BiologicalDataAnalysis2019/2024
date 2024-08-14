@@ -1,5 +1,5 @@
-pandoc: 2.19.2
-pkgdown: 2.0.6
+pandoc: 3.1.11
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   00_Syllabus_and_Expectations: 00_Syllabus_and_Expectations.html
@@ -17,6 +17,7 @@ articles:
   HomeworkFive: HomeworkFive.html
   HomeworkSix: HomeworkSix.html
   Simulation: Simulation.html
+  bonus_tables: bonus_tables.html
   homework_0: homework_0.html
   homework_1: homework_1.html
   homework_2: homework_2.html
@@ -29,5 +30,5 @@ articles:
   project_one: project_one.html
   project_three: project_three.html
   project_two: project_two.html
-last_built: 2023-08-08T16:17Z
+last_built: 2024-08-14T16:21Z
 

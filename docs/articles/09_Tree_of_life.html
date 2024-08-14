@@ -119,7 +119,7 @@
       <a href="../articles/homework_6.html">HomeworkSix.Rmd</a>
     </li>
     <li>
-      <a href="../articles/homework_7.html">HomeworkSix</a>
+      <a href="../articles/homework_7.html">Homework Seven</a>
     </li>
     <li>
       <a href="../articles/project_final.html">Project: Final</a>
@@ -215,12 +215,12 @@ really like hominids.</p>
 <span><span class="co">## 3       gorilla     Gorilla             FALSE     1 417969      FALSE</span></span>
 <span><span class="co">## 4       hoolock     Hoolock             FALSE     1 712902      FALSE</span></span>
 <span><span class="co">## 5          homo        Homo             FALSE     1 770309      FALSE</span></span>
-<span><span class="co">##            flags number_matches</span></span>
-<span><span class="co">## 1                             2</span></span>
-<span><span class="co">## 2 sibling_higher              2</span></span>
-<span><span class="co">## 3 sibling_higher              1</span></span>
-<span><span class="co">## 4                             1</span></span>
-<span><span class="co">## 5 sibling_higher              1</span></span></code></pre>
+<span><span class="co">##                               flags number_matches</span></span>
+<span><span class="co">## 1                                                2</span></span>
+<span><span class="co">## 2                    sibling_higher              2</span></span>
+<span><span class="co">## 3                    sibling_higher              1</span></span>
+<span><span class="co">## 4                                                1</span></span>
+<span><span class="co">## 5 extinct_inherited, sibling_higher              1</span></span></code></pre>
 <p>Put the names of five genera into the function. If you want, you can
 use mine below, or pick new ones you prefer.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -279,7 +279,7 @@ Much like accessing NOAA data, we will need to make an API Key. Go <a href="http
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rentrez/" class="external-link">rentrez</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_search.html" class="external-link">entrez_search</a></span><span class="op">(</span>db <span class="op">=</span> <span class="st">"Nucleotide"</span>, term<span class="op">=</span><span class="st">"Ectatomma"</span>, api_key <span class="op">=</span><span class="st">"96b569c049fe3d3055c5b747112dfec84308"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Entrez search result with 690 hits (object contains 20 IDs and no web_history object)</span></span>
+<pre><code><span><span class="co">## Entrez search result with 707 hits (object contains 20 IDs and no web_history object)</span></span>
 <span><span class="co">##  Search term (as translated):  "Ectatomma"[Organism] OR Ectatomma[All Fields]</span></span></code></pre>
 <p>Holy moley that’s a lot of data. If we do that for every taxon, we’ll
 end up with a mess. Why don’t we try to filter it a bit.</p>
@@ -383,10 +383,16 @@ going to go into building phylogenetic trees - that’s a topic for
 Systematics. Here’s a quick look at these data.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ape"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Installing package into '/private/var/folders/54/9kd8nf1x4fnft0ymvb11qmc80000gn/T/Rtmpie5FUp/temp_libpath3b62461540c7'</span></span>
+<span><span class="co">## (as 'lib' is unspecified)</span></span></code></pre>
 <pre><code><span><span class="co">## </span></span>
-<span><span class="co">## The downloaded binary packages are in</span></span>
-<span><span class="co">##  /var/folders/54/9kd8nf1x4fnft0ymvb11qmc80000gn/T//RtmpcpuI5C/downloaded_packages</span></span></code></pre>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<span><span class="co">##   There is a binary version available but the source version is later:</span></span>
+<span><span class="co">##     binary source needs_compilation</span></span>
+<span><span class="co">## ape  5.7-1    5.8              TRUE</span></span></code></pre>
+<pre><code><span><span class="co">## installing the source package 'ape'</span></span></code></pre>
+<pre><code><span><span class="co">## Warning in install.packages("ape"): installation of package 'ape' had non-zero</span></span>
+<span><span class="co">## exit status</span></span></code></pre>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">coi</span> <span class="op">&lt;-</span> <span class="fu">ape</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/read.dna.html" class="external-link">read.dna</a></span><span class="op">(</span><span class="st">"Ants.seqs.fasta"</span>, format<span class="op">=</span><span class="st">"fasta"</span><span class="op">)</span></span></code></pre></div>
 </div>
   </div>

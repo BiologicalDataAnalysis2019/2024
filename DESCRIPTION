@@ -1,7 +1,7 @@
 Package: compbio2020
 Type: Package
-Title: Biological Data Analysis 2020
-Version: 0.1.0
+Title: Biological Data Analysis 2023
+Version: 3.0.0
 Authors@R: person("April", "Wright", role = c("aut", "cre"),
 	email = "april.wright@selu.edu")
 Description: R package for course materials
