@@ -10,7 +10,7 @@ output: html_document
 This is going to be a low-stakes effort to get you comfortable with RStudio and RMarkdown. First, you're going to download the RMarkdown Document for this homework. Copy and paste this command into the console of your RStudio instance.
 
 ```{r}
-download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/vignettes/homework_1.Rmd", destfile = "/cloud/project/homeworks/homework_1.Rmd")
+download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2024/main/vignettes/homework_1.Rmd", destfile = "/cloud/project/homeworks/Homework_1.Rmd")
 ```
 
 Can you find where the file downloaded to? Look at the help entry for `download.file` if you aren't sure.
@@ -23,7 +23,7 @@ Open the file and answer these two questions:
 Enter your answer here!
 ```
 
-2. (1pt) Where did your HW1.Rmd file download to? 
+2. (1pt) Where did your Homework_1.Rmd file download to? 
 
 ```
 Enter your answer here!
@@ -52,12 +52,32 @@ Answer yes or no here
 
 ```
 
-## Getting to know you all
+Given the above code, what do you think the X and Y axes represent on this graph? 
+
+```
+Answer yes or no here
+
+```
+
+## Getting to know you all - Undergrad Students
 
 For the remainder of the assignment, I need to know three things.
+
+1. What are you hoping to get out of class?
+
+2. Are there topics that aren't on the schedule that you'd be interested to see? 
+
+3. Do you know in advance of any absences I should be aware of? 
+
+
+## Getting to know you all - Grad Students
+
+For the remainder of the assignment, I need to know four things.
 
 1. What type of data will you be working with for your thesis or research project? For example: matrices of phylogenetic characters, spreadsheets of ecological observations, shapefiles from 3D scanning, etc. If you aren't actively doing research, what kinds of scientific questions do you find interesting?
 
 2. What are you hoping to get out of class?
 
 3. Are there topics that aren't on the schedule that you'd be interested to see? 
+
+4. Do you know in advance of any absences I should be aware of? 
