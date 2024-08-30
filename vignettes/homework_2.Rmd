@@ -9,12 +9,12 @@ First, we will use a modified version of surveys.csv, which has some strange val
 
 
 ```{r, eval=FALSE}
-download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/data/surveys.csv", destfile = "/cloud/project/homeworks/surveys.csv")
+download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2024/main/data/surveys.csv", destfile = "/cloud/project/homeworks/surveys.csv")
 ```
 
 Also, download the homework. 
 ```{r, eval=FALSE}
-download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/vignettes/homework_2.Rmd", destfile = "/cloud/project/homeworks/homework_2.Rmd")
+download.file(url = "https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2024/main/vignettes/homework_2.Rmd", destfile = "/cloud/project/homeworks/homework_2.Rmd")
 ```
 
 
