@@ -7,11 +7,11 @@ output: html_document
 # Data Project One
 
 ## 100 points
-## DUE Sept 15 at 11:59 PM
+## DUE Sept 24 at 11:59 PM
 
 Below are the questions for the first data practical assignment. This project uses the "FossilAnts.csv" file, located in the data directory for the project. The point value of each question is denoted next to it. A blank cell is below each for your answer; feel free to create more blank cells as needed.
 
-0. (5 pts) Create a directory called `projects`, and in it, a subdirectory called `project_one`. Use `download.files` to get [this file](https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/vignettes/project_one.Rmd), and [this one](https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/projects/project_one/FossilAnts.csv) and save them to the `project_one` directory.
+0. (5 pts) Create a directory called `projects`, and in it, a subdirectory called `project_one`. Use `download.files` to get [this file](https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2024/main/vignettes/project_one.Rmd), and [this one](https://raw.githubusercontent.com/BiologicalDataAnalysis2019/2023/main/projects/project_one/FossilAnts.csv) and save them to the `project_one` directory.
 
 
 1. 5 pts. Import the `tidyverse` package and load the data. The data for this part of the practical is located in the data directory. Save the data in a variable called `project_dat`. Print the data to the screen to ensure it loaded correctly.
