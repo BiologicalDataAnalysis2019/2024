@@ -5,13 +5,148 @@ minutes: 90
 ---
 
 
-```{r}
+# Multiple data sets: By Column
 
+So far, we have looked at a situation in which we have one spreadsheet. But often times, you may want to work across multiple spreadsheets. For example, perhaps your lab has historically collected one spreadsheet per experiment or data collection. Or you're using Excel workbook style. Let's look at examples of each of these.
+
+
+First, let's take a look at a situation in which we have our data split across two sheets. This commonly happens if we have different devices or software recording data. In this case, for the butterflies dataset, we have one data sheet for the temperatures and one for the cumultative preceptitation. This is because those data points were collected with two different data logging devices that each record separately.
+
+Let's take a peek at these data, and see if we can combine them to get a more complete picture of our data.
+
+```{r}
 library(tidyverse)
-surveys <- read_csv("data/portal_data_joined.csv")
+temp <- read_csv("../data/Butterfly_data.csv")
+rainfall <-  read_csv("../data/Butterfly_moisture.csv")
+
 ```
 
-### Functions enable repeatability
+Take a quick look at these data. In what situation might it be useful to record days in this manner?
+
+We have a common column in this dataset, which makes joining them together easy. Sort of. 
+
+```{r}
+butterflies_joined <- full_join(rainfall, temp, by= c("ButterflySpecies", "Year", "Day"), multiple = "all", relationship = "many-to-many")
+```
+
+If you take a look at these data, we now have all the columns present in the new data. This is a little unsatisfying. You might notice that some Species-Year-Day combinations are the same. If you were collecting data of this sort, you might consider assigning each observation a unique ID in the way that the surveys dataset does. 
+
+But still, we can now do some neat things with these data. 
+
+```{r}
+ggplot(butterflies_joined, aes(x = Day, y = SpringTemp, color = Cumulative_Rain)) + geom_point()
+```
+
+## Multiple Datasets: By Row
+
+In the previous example, we had a dataset where each observation was split across two datasheets. However, sometimes we might have experiments that are split across multiple datasheets. Perhaps, for example, you record data in one sheet for the control and another for the treatment. This is pretty common in different kinds of experiments - you wouldn't want someone to accidentally record treatment data with the control group.
+
+In this case, we're going to take a look at some of your classmate's phylogenetic data. It's exported in a format that is common across phylogenetics and in other software packages. It is called 'tab-separated', as opposed to comma-separated. We import it a little differently.
+
+```{r}
+
+log1 <- read_delim("../data/Kaitie_log1.log", delim  = "\t")
+log2 <- read_delim("../data/Kaitie_log2.log", delim = "\t")
+
+
+```
+What I want you to do is take a minute and scroll the columns - does anything jump out as a way to distinguish one log from another? Are any columns different? 
+
+In this case, we may need to add a column to the dataset specifying what the dataset is.
+
+```{r}
+
+log1 <- log1 %>% 
+  mutate(Treatment = "Control")
+
+log2 <- log2 %>% 
+  mutate(Treatment = "Treatment")
+
+combined <- rbind(log1, log2)
+
+```
+
+
+If you look at this object, it now has our datasets stacked on top of one another. This might not seem intutitively better, but it enables more complex grouping and plotting. For example, perhaps we want per-group means displayed in an easy-to-see table.
+
+```{r}
+
+transform_table <- combined %>% 
+  select(Treatment, starts_with("t[")) %>% 
+  group_by(Treatment) %>% 
+  summarize()
+
+
+transform_table
+```
+
+Or we can plot: 
+
+```{r}
+library(reshape2)
+
+data_mod <- combined %>% 
+  select(Treatment,starts_with("t[") ) %>% 
+  melt(id.vars='Treatment')
+
+ggplot(data_mod) + 
+     geom_boxplot(aes(x=variable, y=value, color=Treatment)) 
+```
+## Multiple Data Sheets: Workbook edition
+
+
+A common spreadsheet organization is the Workbook. Let's look at an [example](https://docs.google.com/spreadsheets/d/1uSPKCKFpNMmbbKvqf0W4P2SPSB3xu68LOJkdFOEaFNM/edit?usp=sharing). YOu can see how this is appealing, and it tends to be fairly common in both field and experimental work. We're going to download a couple packages for working with this sort of data:
+
+```{r}
+install.packages("googlesheets4")
+install.packages("readxl")
+```
+
+GoogleSheets4 is a library for working directly with data from Google. It can be very handy if you're working collaboratively with others on projects. 
+
+```{r}
+
+library(readxl)
+library(googlesheets4)
+gs4_deauth()
+
+```
+
+The `gs4_deauth` function allows you to access public datasheets without entering your password. We'll use it to download the data straight into R:
+
+
+```{r}
+raw_data <- read_sheet("https://docs.google.com/spreadsheets/d/1uSPKCKFpNMmbbKvqf0W4P2SPSB3xu68LOJkdFOEaFNM/edit?usp=sharing")
+
+```
+
+Oh no! Who sees a problem? We need to get sheets individually. So the convenience of Google Drive is somewhat counterbalanced by the rudimentary nature of the tools.
+
+```{r}
+utrecht <- read_sheet("https://docs.google.com/spreadsheets/d/1uSPKCKFpNMmbbKvqf0W4P2SPSB3xu68LOJkdFOEaFNM/edit?usp=sharing", sheet = c("Utrecht"))
+erlangen <- read_sheet("https://docs.google.com/spreadsheets/d/1uSPKCKFpNMmbbKvqf0W4P2SPSB3xu68LOJkdFOEaFNM/edit?usp=sharing", sheet = c("Erlangen"))
+zurich <- read_sheet("https://docs.google.com/spreadsheets/d/1uSPKCKFpNMmbbKvqf0W4P2SPSB3xu68LOJkdFOEaFNM/edit?usp=sharing", sheet = c("Zurich"))
+
+combined <- rbind(utrecht, erlangen, zurich)
+
+```
+Another way to tackle this is `readxl` This is a library that generates some more sophisticated outputs from Excel workbooks. For example, this same workbook can be read in this way:
+
+
+```{r}
+
+workbook <- readxl::read_excel("../data/Butterly_data_by_Site.xlsx", sheet = "Zurich")
+
+```
+
+But the thing to know is that if data are in separate worksheets, R will assume them to be separate, and you must have a protocol for merging them, if you desire to do so.
+
+
+
+
+
+
+# Functions enable repeatability
 
 * How many of you have done something so far in the semester, and then forgotten it later? Let's discuss how to make code more permenant, reusable and readable
     * Informative variable names
@@ -22,7 +157,7 @@ surveys <- read_csv("data/portal_data_joined.csv")
     * Concise and modular script
     * Functions with general structure 
 
-### Understandable chunks
+## Understandable chunks
 
 * Human brain can only hold ~7 things in memory at a given time.
     * Write programs that don't require remembering more than ~7 things at once.
@@ -32,7 +167,7 @@ surveys <- read_csv("data/portal_data_joined.csv")
     * Test your idea. Were you right? 
 * All functions should work as a single conceptual chunk, labeled in a logical way so that you don't have to remember what it does.
 
-### Reuse
+## Reuse
 
 * Want to do the same thing repeatedly?
     * Inefficient & error prone to copy code
@@ -40,7 +175,7 @@ surveys <- read_csv("data/portal_data_joined.csv")
     * If it occurs in more than one place, it will eventually be wrong somewhere.
 * Functions are written to be reusable.
 
-### Function basics
+## Function basics
 
 ```
 function_name <- function(inputs) {
@@ -84,7 +219,7 @@ shrub_vol <- calc_shrub_vol(0.8, 1.6, 2.0)
 
 
 
-### Default arguments
+## Default arguments
 
 * Defaults can be set for common inputs.
 
@@ -100,7 +235,7 @@ calc_shrub_vol(0.8, 1.6, 2.0)
 calc_shrub_vol(height = 2.0, length = 0.8, width = 1.6)
 ```
 
-### Named vs unnamed arguments
+## Named vs unnamed arguments
 
 * When to use or not use argument names
 
@@ -124,7 +259,7 @@ calc_shrub_vol(2.0, 0.8, 1.6)
     * Convention to always name optional argument
 
 
-### Combining Functions
+## Combining Functions
 
 * Each function should be single conceptual chunk of code
 * Functions can be combined to do larger tasks in two ways
@@ -194,6 +329,8 @@ So far, we've looked at situations where we are providing one or a few arguments
 We may want to select data from a data frame inside a function. We can do that like so:
 
 ```{r}
+
+surveys <- read_csv("../data/surveys.csv")
 
 remove_nas <- function(data){
   clean <- data %>%
