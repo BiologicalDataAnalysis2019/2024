@@ -1,10 +1,10 @@
 ---
 title: 'Homework Five: Functions'
 author: "April Wright"
-date: "2022-09-23"
+date: "2024-09-23"
 output: html_document
 ---
-## Due date: Sept 29, 5 PM.
+## Due date: Oct. 4, 5 PM.
 
 This homework concerns functions.
 
@@ -15,7 +15,7 @@ This homework concerns functions.
 # Answer here
 ```
 
-2. Add a test to this function. How will you know if it worked, and alert a user if it did not?
+2. Add a post-test to this function. How will you know if it worked, and alert a user if it did not?
 
 ```{r}
 # Answer here
