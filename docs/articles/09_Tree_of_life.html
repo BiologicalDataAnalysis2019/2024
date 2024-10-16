@@ -382,7 +382,7 @@ Systematics. Here’s a quick look at these data.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ape"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## The downloaded binary packages are in</span></span>
-<span><span class="co">##  /var/folders/54/9kd8nf1x4fnft0ymvb11qmc80000gn/T//RtmptmmoSa/downloaded_packages</span></span></code></pre>
+<span><span class="co">##  /var/folders/54/9kd8nf1x4fnft0ymvb11qmc80000gn/T//Rtmp9thPyS/downloaded_packages</span></span></code></pre>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">s18</span> <span class="op">&lt;-</span> <span class="fu">ape</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/read.dna.html" class="external-link">read.dna</a></span><span class="op">(</span><span class="st">"Ants.seqs.fasta"</span>, format<span class="op">=</span><span class="st">"fasta"</span><span class="op">)</span></span></code></pre></div>
 <p>These data are referred to as “unaligned” - this means we haven’t
@@ -442,15 +442,39 @@ Alignment.</p>
 involves a model of sequence evolution.</p>
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/Biostrings" class="external-link">Biostrings</a></span><span class="op">)</span></span>
-<span><span class="va">mySequence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/XStringSet-io.html" class="external-link">readDNAStringSet</a></span><span class="op">(</span><span class="st">"Ants.seqs.fasta"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">mySequence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/XStringSet-io.html" class="external-link">readDNAStringSet</a></span><span class="op">(</span><span class="st">"../Ants.seqs.fasta"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Warning in .Call2("fasta_index", filexp_list, nrec, skip, seek.first.rec, :</span></span>
-<span><span class="co">## reading FASTA file Ants.seqs.fasta: ignored 4586 invalid one-letter sequence</span></span>
+<span><span class="co">## reading FASTA file ../Ants.seqs.fasta: ignored 2293 invalid one-letter sequence</span></span>
 <span><span class="co">## codes</span></span></code></pre>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">myAlignment</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/msa/man/msa.html" class="external-link">msa</a></span><span class="op">(</span><span class="va">mySequence</span>, <span class="st">"ClustalOmega"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## using Gonnet</span></span></code></pre>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">output_seq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/msa/man/msaConvert.html" class="external-link">msaConvert</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">myAlignment</span>, type <span class="op">=</span> <span class="st">"phangorn::phyDat"</span><span class="op">)</span></span></code></pre></div>
+<p>And we can even estimate a little phylogenetic tree:</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/KlausVigo/phangorn" class="external-link">phangorn</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Loading required package: ape</span></span></code></pre>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## Attaching package: 'ape'</span></span></code></pre>
+<pre><code><span><span class="co">## The following object is masked from 'package:Biostrings':</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##     complement</span></span></code></pre>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dm</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://klausvigo.github.io/phangorn/reference/dist.hamming.html" class="external-link">dist.ml</a></span><span class="op">(</span><span class="va">output_seq</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ape/man/nj.html" class="external-link">nj</a></span><span class="op">(</span><span class="va">dm</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## Phylogenetic tree with 7 tips and 5 internal nodes.</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Tip labels:</span></span>
+<span><span class="co">##   KU672072.1 Martialis heureka voucher CAS:ENT:0106181 abdominal A (abd-A) gene, partial cds, KU672072.1 Martialis heureka voucher CAS:ENT:0106181 abdominal A (abd-A) gene, partial cds, KU672072.1 Martialis heureka voucher CAS:ENT:0106181 abdominal A (abd-A) gene, partial cds, KU672072.1 Martialis heureka voucher CAS:ENT:0106181 abdominal A (abd-A) gene, partial cds, KU672072.1 Martialis heureka voucher CAS:ENT:0106181 abdominal A (abd-A) gene, partial cds, KU672072.1 Martialis heureka voucher CAS:ENT:0106181 abdominal A (abd-A) gene, partial cds, ...</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Unrooted; includes branch lengths.</span></span></code></pre>
+<p>Or using parsimony:</p>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">treeRatchet</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://klausvigo.github.io/phangorn/reference/parsimony.html" class="external-link">pratchet</a></span><span class="op">(</span><span class="va">output_seq</span>, trace <span class="op">=</span> <span class="fl">0</span>, minit<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">treeRatchet</span><span class="op">)</span></span></code></pre></div>
+<p><img src="09_Tree_of_life_files/figure-html/unnamed-chunk-24-1.png" width="700"></p>
 </div>
   </div>
 

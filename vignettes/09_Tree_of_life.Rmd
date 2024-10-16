@@ -264,8 +264,21 @@ The process of assessing homology at the molecular level typically involves a mo
 
 ```{r}
 library(Biostrings)
-mySequence <- readDNAStringSet("Ants.seqs.fasta")
+mySequence <- readDNAStringSet("../Ants.seqs.fasta")
 myAlignment <- msa(mySequence, "ClustalOmega")
 output_seq <- msaConvert(x = myAlignment, type = "phangorn::phyDat")
 ```
 
+And we can even estimate a little phylogenetic tree:
+
+```{r}
+library(phangorn)
+dm  <- dist.ml(output_seq)
+nj(dm)
+```
+
+Or using parsimony:
+```{r}
+treeRatchet  <- pratchet(output_seq, trace = 0, minit=100)
+plot(treeRatchet)
+``` 
