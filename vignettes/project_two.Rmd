@@ -5,7 +5,7 @@ output:
   html_document: default
 ---
 
-Due Oct. 13 at 11:59 PM. 
+Due Oct. 25 at 11:59 PM. 
 
 For this first part of the exam, you can either use `surveys_complete.csv` or your own data. If you are using your own data, you must have data in which you think you have a numerical predictor variable and a numerical response variable. If you are using `surveys_complete`, you can use weight and hindfoot_length for this.
 
@@ -147,4 +147,4 @@ In this portion, you are free to use your own data if you have a categorical pre
 
 # MS students
 
-My expectation is that you'll do this with your own data. If any part of this doesn't make sense with your data, please get in touch ASAP so we can work it out.
+My expectation is that you'll do the above with your own data. If any part of this doesn't make sense with your data, please get in touch ASAP so we can pick a different classroom dataset for you.

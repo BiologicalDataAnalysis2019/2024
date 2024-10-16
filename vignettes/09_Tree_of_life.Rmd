@@ -43,7 +43,6 @@ First, we need to do some installs.
 ```{r, eval = FALSE}
 install.packages("devtools")
 devtools::install_github("ropensci/rotl")
-devtools::install_github("ropensci/traits")
 #if (!requireNamespace("BiocManager"))
 #    install.packages("BiocManager")
 #BiocManager::install()
@@ -105,21 +104,32 @@ Holy moley that's a lot of data. If we do that for every taxon, we'll end up wit
 Ectatomma <- entrez_search(db = "Nucleotide", term="Ectatomma AND 2018:2019[PDAT]", retmax = 100, api_key ="96b569c049fe3d3055c5b747112dfec84308")
 ```
 
-So there is a good amount of data for our Ectatomma ants. We're going to download some. And this gets a little tricky. First, I want you to run each line in the loop and get a feel for what each does. What does `entrez_fetch` do? What does `cat` do? Feel free to look at documentation.
-
+So there is a good amount of data for our Ectatomma ants. We're going to download some. And this gets a little tricky. The first thing we will do is try the `entrez_fetch` command:
 
 ```{r}
-for( seq_start in seq(1,50,10)){
-     recs <- entrez_fetch(db="nuccore", id = Ectatomma$ids,
+
+entrez_fetch(db="nuccore", id = Ectatomma$ids,
+             rettype="fasta", retmax=1)
+
+
+```
+
+Look at the output - does it look like we have output for every ID? 
+
+
+Let's try the below. If you've forgotten, this is called a `for loop`. It means that for each entry in the ids vector, we will download a sequence from GenBank. 
+
+```{r}
+for( id in Ectatomma$ids) {
+     recs <- entrez_fetch(db="nuccore", id = id,
                           rettype="fasta", retmax=1)
      cat(recs, file="Ect.seqs.fasta", append=TRUE)
-     cat(seq_start+49, "sequences downloaded\r")
  }
 ```
 
 Now, let's look at this file. What do we notice about it? What information is in this file?
 
-Before we move on, we're going to try one other thing. Try modifying one of the two chunks above (HINT: you will have to rerun both) in order to only get data from the mitochondrial COI gene.
+Before we move on, we're going to try one other thing. Try modifying one of the two chunks above (HINT: you will have to rerun both the search and the fetch) in order to only get data from the mitochondrial COI gene.
 
 
 All right, let's move on to trying to write a function that will return all IDs for all of the ants.
@@ -231,18 +241,31 @@ labels <- sapply(ants,search_year,  USE.NAMES = F)
 
 ## Just for fun
 
-Take a quick look at this output - it's a little neat. We're not going to go into building phylogenetic trees - that's a topic for Systematics. Here's a quick look at these data.
+Take a quick look at this output - it's a little neat. We're not going to go far into building phylogenetic trees - that's a topic for Systematics. Here's a quick look at these data.
 
 ```{r}
 install.packages("ape")
-coi <- ape::read.dna("Ants.seqs.fasta", format="fasta")
+s18 <- ape::read.dna("Ants.seqs.fasta", format="fasta")
 ```
 
 
+These data are referred to as "unaligned" - this means we haven't assigned homology at the molecular level. The process of doing this is called sequence alignment. Let's take a look at doing that. We'll install a package called `msa`, for Multiple Sequence Alignment. 
+
+```{r}
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+BiocManager::install("msa")
+library(msa)
+library(Biostrings)
+```
 
 
+The process of assessing homology at the molecular level typically involves a model of sequence evolution. 
 
-
-
-
+```{r}
+library(Biostrings)
+mySequence <- readDNAStringSet("Ants.seqs.fasta")
+myAlignment <- msa(mySequence, "ClustalOmega")
+output_seq <- msaConvert(x = myAlignment, type = "phangorn::phyDat")
+```
 

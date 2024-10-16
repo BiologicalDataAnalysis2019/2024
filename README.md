@@ -17,8 +17,8 @@ Lectures will be posted the day before they are given by 5 pm.
 | Week of Sept. 23 | [Programming I](https://biologicaldataanalysis2019.github.io/2024/articles/05_Functions.html) | [Homework Five](https://biologicaldataanalysis2019.github.io/2024/articles/homework_5.html)  |  [Project One](https://biologicaldataanalysis2019.github.io/2024/articles/project_one.html), [Homework 4](https://biologicaldataanalysis2019.github.io/2024/articles/homework_4.html) |
 | Week of Sept. 30 | Revision Management | [Homework Six](https://biologicaldataanalysis2019.github.io/2024/articles/homework_6.html) | [Homework Five](https://biologicaldataanalysis2019.github.io/2024/articles/homework_5.html)   | 
 | Week of Oct. 7 |  [Linear Models and Stats ](https://biologicaldataanalysis2019.github.io/2024/articles/08_linear_models.html)] | Nothing. [Homework Six](https://biologicaldataanalysis2019.github.io/2024/articles/homework_6.html) | 
-| Week of Oct. 14 | [Genetic Data](https://biologicaldataanalysis2019.github.io/2024/articles/09_Tree_of_life.html)] | Project Two | None | 
-| Week of Oct. 21 | [Mapping exploration](https://biologicaldataanalysis2019.github.io/2024/articles/10_GBIF_and_Location.html)  | Homework Seven | Project Two |
+| Week of Oct. 14 | [Genetic Data](https://biologicaldataanalysis2019.github.io/2024/articles/09_Tree_of_life.html)] | [Project Two](https://biologicaldataanalysis2019.github.io/2024/articles/project_two.html) | None | 
+| Week of Oct. 21 | [Mapping exploration](https://biologicaldataanalysis2019.github.io/2024/articles/10_GBIF_and_Location.html)  | Homework Seven | [Project Two](https://biologicaldataanalysis2019.github.io/2024/articles/project_two.html)  |
 | Week of Oct. 28 | R Packages & [Ecology](https://biologicaldataanalysis2019.github.io/2024/articles/11_iNEXT.html)  | Project III | Homework Seven |
 | Week of Nov. 4 |  [NMDS and Population Biology](https://biologicaldataanalysis2019.github.io/2024/articles/11_iNEXT.html)   | None | None |
 | Week of Nov. 11 | [Simulations](https://biologicaldataanalysis2019.github.io/2024/articles/Simulation.html) | None | None |  
