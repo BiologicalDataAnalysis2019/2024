@@ -10,9 +10,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-## 10 points, due Oct. 20 at 5 PM
+## 10 points, due Nov. 3 at 5 PM
 
-For your final project in this class, you will be making an R Package. It will consist of 5 functions that do the following:
+For your third project in this class, you will be making an R Package. It will consist of 5 functions that do the following:
 
 + A function to clean some data of your choice
 + A function to somehow manipulate, subset, or transform data
