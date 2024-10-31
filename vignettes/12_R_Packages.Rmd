@@ -1,0 +1,89 @@
+---
+title: "R Packages"
+author: "April Wright"
+date: "2024-10-31"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Today, folks, we're going to take a look at the work we'll be conducting for project three. If you need a refresher, take a look at project three on the course site. tl;dr: It's an R package!
+
+The nice thing is that creating R packages has never been easier due to packages like `devtools` and `usethis`. Let's load them both before we continue: 
+
+```{r}
+library(usethis)
+library(devtools)
+```
+
+Now that this is done, we will create the skeleton of your R package. Please make sure you're wherever you want that package to be located. 
+
+```{r eval=FALSE, include=TRUE}
+create_package(".")
+```
+
+Visually verify that this has worked. In your R package directory, you will now have some new files: DESCRIPTION, NAMESPACE, R/, and vignettes.
+
+Next, please take the function we wrote in class and make sure it is saved in the R/ folder. We're going to begin by writing some documentation. Open the file containing your function. Click on the magic wand icon, and scroll down to `Insert Roxygen Skeleton`. This will create the necessary documentation lines. 
+
+The title should be a short, snappy description of what your file does. The params should be one-sentence descriptions of the inputs needed to make your function go brrrrrrrrr. The return should be a description of the output type. A researcher should be able to look at your return statement to understand if their outputs are correct. If you have technical details, you can add a `@details` to provide more information to your users. When you have completed this, save and close your file. 
+
+Now, we will edit the DESCRIPTION file. This is the package metadata that enables R to install your package. Minimally, you must fill in the Package, Title, Authors, and Description lines today. 
+
+Now that we have this, we can try documenting our package. Type
+
+```{r eval=FALSE, include=TRUE}
+document()
+```
+
+Then visually check: you should now have a man folder. In it should be manual files for any R functions you documented. Open adn preview these - they look just like the documentation for real R functions! Because they are!
+
+Next, we can try installing our R package:
+
+```{r eval=FALSE, include=TRUE}
+
+install()
+
+```
+
+This is where we may run into problems. If we import functions from packages, we need to tell R that users should have those packages installed, and to do the importing. Adding dependencies is a two-step process. First, we add them to the DESCRIPTION, like so:
+
+```{r eval=FALSE, include=TRUE}
+use_package("dplyr")
+```
+
+If you used the pipe:
+
+```{r eval=FALSE, include=TRUE}
+use_pipe()
+```
+
+This can be tricky. We often work with tidyverse, which is a metapackage, or group of packages. R does not want that to be a dependency. If you can't figure out what package within tidyverse a function comes from, look at its helpfile. It will be listed at the top.
+
+The second part of this is ensuring our imports within the function are in `package::function` format. Please do that now.
+
+When you are done, document, check, and install your package. 
+
+Lastly, we're going to put these on github. If you're having github PAT issues, please do the following:
+
+```{r eval=FALSE, include=TRUE}
+create_github_token()
+set_github_pat()
+edit_r_environ()
+
+```
+
+You'll add the following line to your R environ file:
+```
+GITHUB_PAT=TOKEN HERE
+```
+
+Now, add, commit and push your package files. Get together with a partner and try installing their R package with `devtools::install_github()`.
+
+## Reminders:
++ When you've made changes to a header file, run document to capture them in your manual
++ `check()` and `install()` frequently to catch errors before they snowball
++ Imports are a two-step: add to the description and check inside the function for package::function syntax
++ Have a friend install your package frequently
